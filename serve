@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Check if APP_KEY is set, if not generate it
+if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
+  echo "APP_KEY is missing. Generating one..."
+  php artisan key:generate
+fi
+
+# Wait for the database to be ready
+until php -r "try { new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { exit(1); }"; do
+  echo "Waiting for database..."
+  sleep 5
+done
+
+# Install dependencies
+composer install
+
+# Run migrations and seeding
+php artisan migrate --force
+php artisan db:seed --force
+
+# Start the server
+php artisan serve --host=0.0.0.0 --port=8000

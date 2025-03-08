@@ -1,0 +1,48 @@
+services:
+    # to host online, add caddy to this setup and configure the reverse proxy
+    hyip_app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: hyip_app
+        volumes:
+            - .:/app
+        ports:
+            - "8000:8000"
+        env_file:
+            - .env
+        environment:
+            - COMPOSER_ALLOW_SUPERUSER=1
+            - APP_ENV=local
+            - DB_HOST=hyip_db
+            - DB_DATABASE=hyip_database
+            - DB_USERNAME=root
+            - DB_PASSWORD=root
+        depends_on:
+            - hyip_db
+        command: ["./serve"]
+        networks:
+            - hyip_network
+
+    hyip_db:
+        image: mysql:8.0
+        container_name: hyip_db
+        restart: always
+        environment:
+            MYSQL_DATABASE: hyip_database
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: hyip_user
+            MYSQL_PASSWORD: hyip_pass
+        ports:
+            - "3309:3306" # to avoid conflict with the system mysql
+        volumes:
+            - db_data:/var/lib/mysql
+        networks:
+            - hyip_network
+
+volumes:
+    db_data:
+
+networks:
+    hyip_network:
+        driver: bridge

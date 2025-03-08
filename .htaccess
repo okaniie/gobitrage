@@ -1,0 +1,5 @@
+<IfModule rewrite_module>
+    RewriteEngine on
+    RewriteRule (.*) public/index.php [L]
+    RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>

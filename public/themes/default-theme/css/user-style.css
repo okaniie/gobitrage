@@ -1,0 +1,27 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.main-body {
+    height: 100vh;
+    overflow-y: scroll;
+}
