@@ -23,7 +23,7 @@ To develop with docker, simply run the following command
 bash serve-docker
 ```
 
-Then visit the installation page `https://yourdomain.com/install`.
+Then visit the homepage to confirm installation `https://yourdomain.com`.
 
 ## Steps to run on localhost
 If you prefer to run completely on localhost;
