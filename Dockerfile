@@ -15,13 +15,17 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-
-# Install dependencies before copying application files
+# Copy composer files for caching
 COPY composer.json composer.lock /app/
-RUN composer install --optimize-autoloader 
+
+# Install dependencies without application files for caching
+RUN composer install --no-scripts --no-autoloader
 
 # Copy application files
-COPY . /app
+COPY . /app/
+
+# Install dependencies with optimized autoloader
+RUN composer install --optimize-autoloader
 
 # Make serve script executable
 RUN chmod +x ./serve
