@@ -21,6 +21,7 @@ services:
             - APP_CIPHER=aes-256-cbc
             - DB_CONNECTION=mysql
             - DB_HOST=${DB_HOST}
+            - DB_PORT=${DB_PORT}
             - DB_DATABASE=${DB_DATABASE}
             - DB_USERNAME=${DB_USERNAME}
             - DB_PASSWORD=${DB_PASSWORD}

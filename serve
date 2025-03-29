@@ -12,12 +12,21 @@ if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
   php artisan key:generate
 fi
 
+# Print environment variables (without sensitive data)
+echo "Environment variables:"
+echo "APP_ENV: $APP_ENV"
+echo "DB_CONNECTION: $DB_CONNECTION"
+echo "DB_HOST: $DB_HOST"
+echo "DB_DATABASE: $DB_DATABASE"
+echo "DB_USERNAME: $DB_USERNAME"
+echo "DB_PORT: $DB_PORT"
+
 # Wait for the database to be ready (with timeout)
 echo "Waiting for database connection..."
 TIMEOUT=60
 COUNTER=0
 while [ $COUNTER -lt $TIMEOUT ]; do
-    if php -r "try { new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { exit(1); }"; then
+    if php -r "try { \$pdo = new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { echo \$e->getMessage(); exit(1); }"; then
         echo "Database is ready!"
         break
     fi
@@ -27,18 +36,25 @@ while [ $COUNTER -lt $TIMEOUT ]; do
 done
 
 if [ $COUNTER -eq $TIMEOUT ]; then
-    echo "Database connection timeout. Starting application anyway..."
+    echo "Database connection timeout. Please check your database credentials and connection."
+    echo "Current database configuration:"
+    php artisan config:get database.connections.mysql
+    exit 1
 fi
 
-# Run migrations and seeding
-php artisan migrate --force
-php artisan db:seed --force
-
-# Clear all caches
+# Clear all caches first
+echo "Clearing caches..."
 php artisan config:clear
 php artisan cache:clear
 php artisan view:clear
 php artisan route:clear
+
+# Run migrations and seeding
+echo "Running migrations..."
+php artisan migrate --force
+
+echo "Running seeders..."
+php artisan db:seed --force
 
 # Start the server using Render's PORT
 echo "Starting server on port $PORT..."
