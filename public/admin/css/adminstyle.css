@@ -1,10 +1,268 @@
 :root {
+    --primary-color: #ff8d00;
+    --secondary-color: #333;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
     --table-dark-background: #aaa;
     --table-dark-color: #000;
     --table-lighter-background: #eee;
     --row1-background: #eee;
     --row2-background: #fff;
     --darker-orange: #dba400;
+    --max-width: 1200px;
+    --header-height: 80px;
+    --nav-width: 250px;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--secondary-color);
+    background-color: var(--light-color);
+}
+
+/* Layout */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    background: #fff;
+}
+
+.admin-header {
+    height: var(--header-height);
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.admin-body {
+    display: flex;
+    flex: 1;
+}
+
+.admin-nav {
+    width: var(--nav-width);
+    background: #fff;
+    border-right: 1px solid var(--primary-color);
+    padding: 1rem;
+}
+
+.admin-main {
+    flex: 1;
+    padding: 2rem;
+}
+
+.admin-footer {
+    background: var(--dark-color);
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Forms */
+.form {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.form th,
+.form td {
+    padding: 0.75rem;
+    border: 1px solid var(--table-dark-background);
+}
+
+.form th {
+    background: var(--table-lighter-background);
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Tables */
+.list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+.list th,
+.list td {
+    padding: 0.75rem;
+    border: 1px solid var(--table-dark-background);
+}
+
+.list th {
+    background: var(--table-lighter-background);
+    font-weight: 600;
+}
+
+.row1 { background: var(--row1-background); }
+.row2 { background: var(--row2-background); }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--darker-orange);
+    border-color: var(--darker-orange);
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Utilities */
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+.strong { font-weight: 600; }
+
+/* Help Tooltips */
+.hlp {
+    position: relative;
+    cursor: help;
+}
+
+.hlp[data-hlp]:after {
+    content: attr(data-hlp);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background: var(--dark-color);
+    color: #fff;
+    border-radius: 0.25rem;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+.hlp[data-hlp]:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-body {
+        flex-direction: column;
+    }
+    
+    .admin-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--primary-color);
+    }
+    
+    .admin-main {
+        padding: 1rem;
+    }
 }
 
 form {

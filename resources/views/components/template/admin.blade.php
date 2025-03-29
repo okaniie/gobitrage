@@ -2,57 +2,35 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <base href="{{ route('admin.dashboard') }}" />
-    <!-- Meta Tags -->
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <!-- Page Title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title }} - {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Favicon and Touch Icons -->
-    <link href="{{ asset('admin/img/ch-logo.png') }}" rel="shortcut icon" type="image/png">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('admin/img/ch-logo.png') }}" type="image/png">
 
-    <!--Stylesheet-->
-    <link rel="stylesheet" href="{{ asset('admin/css/adminstyle.css') }}" type="text/css" />
-</head>
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="{{ asset('admin/css/adminstyle.css') }}" as="style">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('admin/css/adminstyle.css') }}">
+    
+    <!-- Defer Non-Critical Scripts -->
+    <script defer>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('{{ asset('admin/sw.js') }}')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
 
-<body class="">
-    <center>
-        <table width="760" class="header" height="100">
-            <tr>
-                <td align="center">
-                    <a class="link" href="{{ route('admin.dashboard') }}">
-                        <img src="{{ asset('admin/img/ch-logo.png') }}" alt="" style="height:50px;">
-                        <h2>Admin Dashboard</h2>
-                    </a>
-                </td>
-            </tr>
-        </table>
-        <table width="760" class="body">
-            <tr>
-                <td width="160" style="border-right:1px solid var(--primary-color)">
-                    <x-navigation.admin :slug="$slug"/>
-                <td>
-                    <x-flash-bag.admin />
-                    {{ $slot }}
-                </td>
-            </tr>
-        </table>
-        <!-- Footer -->
-        <table width="760" class="footer">
-            <tr>
-                <td>
-                    <footer style="text-align: center; padding:10px 0px; margin:0;">
-                        Powered by <a target="_blank"
-                            href="https://github.com/onumahkalusamuel/gobitrage/">Gobitrage</a>. All Rights
-                        Reserved. </p>
-                    </footer>
-                </td>
-            </tr>
-        </table>
-    </center>
-    <script>
         function deleteRecord() {
             if (!confirm("Are you sure you want to delete this record?")) return false;
             this.click();
@@ -72,6 +50,36 @@
             document.querySelector('.alert').style.display = 'none';
         }
     </script>
+</head>
+
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="header-content">
+                <a href="{{ route('admin.dashboard') }}" class="logo-link">
+                    <img src="{{ asset('admin/img/ch-logo.png') }}" alt="Logo" class="logo">
+                    <h2>Admin Dashboard</h2>
+                </a>
+            </div>
+        </header>
+
+        <div class="admin-body">
+            <nav class="admin-nav">
+                <x-navigation.admin :slug="$slug"/>
+            </nav>
+            
+            <main class="admin-main">
+                <x-flash-bag.admin />
+                {{ $slot }}
+            </main>
+        </div>
+
+        <footer class="admin-footer">
+            <div class="footer-content">
+                Powered by <a href="https://github.com/onumahkalusamuel/gobitrage/" target="_blank">Gobitrage</a>. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
 </body>
 
 </html>
