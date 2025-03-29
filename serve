@@ -1,61 +1,23 @@
 #!/bin/sh
 
-# Install dependencies if vendor directory doesn't exist
-if [ ! -d "vendor" ]; then
-    echo "Installing dependencies..."
-    composer install --no-interaction
-fi
-
-# Generate application key if not set
+# Check if APP_KEY is set, if not generate it
 if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
   echo "APP_KEY is missing. Generating one..."
   php artisan key:generate
 fi
 
-# Print environment variables (without sensitive data)
-echo "Environment variables:"
-echo "APP_ENV: $APP_ENV"
-echo "DB_CONNECTION: $DB_CONNECTION"
-echo "DB_HOST: $DB_HOST"
-echo "DB_DATABASE: $DB_DATABASE"
-echo "DB_USERNAME: $DB_USERNAME"
-echo "DB_PORT: $DB_PORT"
-
-# Wait for the database to be ready (with timeout)
-echo "Waiting for database connection..."
-TIMEOUT=60
-COUNTER=0
-while [ $COUNTER -lt $TIMEOUT ]; do
-    if php -r "try { \$pdo = new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { echo \$e->getMessage(); exit(1); }"; then
-        echo "Database is ready!"
-        break
-    fi
-    echo "Waiting for database... ($COUNTER/$TIMEOUT)"
-    sleep 1
-    COUNTER=$((COUNTER + 1))
+# Wait for the database to be ready
+until php -r "try { new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { exit(1); }"; do
+  echo "Waiting for database..."
+  sleep 5
 done
 
-if [ $COUNTER -eq $TIMEOUT ]; then
-    echo "Database connection timeout. Please check your database credentials and connection."
-    echo "Current database configuration:"
-    php artisan config:get database.connections.mysql
-    exit 1
-fi
-
-# Clear all caches first
-echo "Clearing caches..."
-php artisan config:clear
-php artisan cache:clear
-php artisan view:clear
-php artisan route:clear
+# Install dependencies
+composer install
 
 # Run migrations and seeding
-echo "Running migrations..."
 php artisan migrate --force
-
-echo "Running seeders..."
 php artisan db:seed --force
 
-# Start the server using Render's PORT
-echo "Starting server on port $PORT..."
-php artisan serve --host=0.0.0.0 --port=$PORT
+# Start the server
+php artisan serve --host=0.0.0.0 --port=10000

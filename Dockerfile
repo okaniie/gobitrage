@@ -1,4 +1,4 @@
-FROM php:8.2-cli
+FROM php:8.2-fpm
 
 # Set working directory
 WORKDIR /app
@@ -15,24 +15,19 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy composer files first
-COPY composer.json composer.lock ./
 
-# Install dependencies
-RUN composer install --no-scripts --no-autoloader
+# Install dependencies before copying application files
+COPY composer.json composer.lock /app/
+RUN composer install --optimize-autoloader 
 
-# Copy the rest of the application
-COPY . .
-
-# Generate optimized autoloader
-RUN composer dump-autoload --optimize
+# Copy application files
+COPY . /app
 
 # Make serve script executable
 RUN chmod +x ./serve
 
-# Expose port for Render
-ENV PORT=8000
-EXPOSE $PORT
+# Expose default port
+EXPOSE 10000
 
-# Start command for Render
+# Default command
 CMD ["./serve"]
