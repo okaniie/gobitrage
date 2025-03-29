@@ -17,29 +17,12 @@ services:
         environment:
             - COMPOSER_ALLOW_SUPERUSER=1
             - APP_ENV=production
+            - DB_CONNECTION=mysql
             - DB_HOST=${DB_HOST}
             - DB_DATABASE=${DB_DATABASE}
             - DB_USERNAME=${DB_USERNAME}
             - DB_PASSWORD=${DB_PASSWORD}
-        depends_on:
-            - gobitrage_db
         command: ["./serve"]
-        networks:
-            - gobitrage_network
-
-    gobitrage_db:
-        image: mysql:5.7
-        container_name: gobitrage_db
-        restart: unless-stopped
-        environment:
-            MYSQL_DATABASE: gobitrage_database
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: gobitrage_user
-            MYSQL_PASSWORD: gobitrage_pass
-        ports:
-            - "3307:3306" # to avoid conflict with the system mysql
-        volumes:
-            - dbdata:/var/lib/mysql
         networks:
             - gobitrage_network
 

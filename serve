@@ -1,23 +1,39 @@
 #!/bin/sh
 
+# Install dependencies if vendor directory doesn't exist
+if [ ! -d "vendor" ]; then
+    echo "Installing dependencies..."
+    composer install --no-interaction
+fi
+
 # Check if APP_KEY is set, if not generate it
 if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
   echo "APP_KEY is missing. Generating one..."
   php artisan key:generate
 fi
 
-# Wait for the database to be ready
-until php -r "try { new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { exit(1); }"; do
-  echo "Waiting for database..."
-  sleep 5
+# Wait for the database to be ready (with timeout)
+echo "Waiting for database connection..."
+TIMEOUT=60
+COUNTER=0
+while [ $COUNTER -lt $TIMEOUT ]; do
+    if php -r "try { new PDO(getenv('DB_CONNECTION') . ':host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'), getenv('DB_USERNAME'), getenv('DB_PASSWORD')); echo 'Database is ready!'; } catch (Exception \$e) { exit(1); }"; then
+        echo "Database is ready!"
+        break
+    fi
+    echo "Waiting for database... ($COUNTER/$TIMEOUT)"
+    sleep 1
+    COUNTER=$((COUNTER + 1))
 done
 
-# Install dependencies
-composer install
+if [ $COUNTER -eq $TIMEOUT ]; then
+    echo "Database connection timeout. Starting application anyway..."
+fi
 
 # Run migrations and seeding
 php artisan migrate --force
 php artisan db:seed --force
 
 # Start the server using Render's PORT
+echo "Starting server on port $PORT..."
 php artisan serve --host=0.0.0.0 --port=$PORT
