@@ -85,11 +85,12 @@ Route::prefix('admin')
         Route::prefix('plans')
             ->controller(PlansController::class)
             ->group(function () {
+                Route::get('', 'index')->name('admin.plans');
                 Route::get('new', 'store')->name('admin.plans.new');
                 Route::post('new', 'create');
                 Route::get('{id}', 'viewSingle')->name('admin.plans.view');
                 Route::post('{id}', 'update');
-                Route::get('{id}/delete', 'delete')->name('admin.plans.delete');
+                Route::delete('{id}', 'delete')->name('admin.plans.delete');
             });
 
 

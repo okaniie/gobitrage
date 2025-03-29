@@ -29,8 +29,18 @@ class PlansController extends Controller
 
     public function delete($id)
     {
-        Plan::find($id)->delete();
-        return back()->with('success', 'Plan deleted successfully.');
+        $plan = Plan::find($id);
+        
+        if (!$plan) {
+            return back()->with('error', 'Investment plan not found.');
+        }
+
+        try {
+            $plan->delete();
+            return back()->with('success', 'Plan deleted successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to delete plan. Please try again.');
+        }
     }
 
     public function update(PlanUpdateRequest $request, $id)
