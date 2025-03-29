@@ -5,7 +5,7 @@
                 <td width="100%" valign="top" height="100%">
                     <h3>Package: {{ $plan_category_title }}<br/>
                     Add New Plan</h3>
-                    <form method="post" action="">
+                    <form method="post" action="{{ route('admin.plans.new') }}">
                         @csrf
                         <table class="form settings">
                             <tbody>
@@ -20,7 +20,7 @@
 
                                 <tr>
                                     <th>Package:</th>
-                                    <td> <select name="plan_category_id" class="inpts" disabled readonly>
+                                    <td> <select name="plan_category_id" class="inpts">
                                             @foreach ($plan_categories as $category)
                                                 <option value="{{ $category->id }}"
                                                     {{ request('plan_category_id', '') == $category->id ? 'selected' : '' }}>
