@@ -48,11 +48,13 @@
                     <td class="menutxt text-right">
                         <a href="{{ route('admin.plans.view', ['id' => $plan->id]) }}" 
                            class="btn btn-sm btn-primary">Edit</a>
-                        <a href="{{ route('admin.plans.delete', ['id' => $plan->id]) }}" 
-                           class="btn btn-sm btn-danger"
-                           onclick="return confirm('Are you sure you want to delete this investment package? This action cannot be undone.');">
-                            Delete
-                        </a>
+                        <form method="POST" 
+                              action="{{ route('admin.plans.delete', ['id' => $plan->id]) }}"
+                              style="display: inline-block;"
+                              onsubmit="return confirm('Are you sure you want to delete this investment package? This action cannot be undone.');">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @empty

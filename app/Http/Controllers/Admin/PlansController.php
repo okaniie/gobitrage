@@ -29,17 +29,23 @@ class PlansController extends Controller
 
     public function delete($id)
     {
-        $plan = Plan::find($id);
-        
-        if (!$plan) {
-            return back()->with('error', 'Investment plan not found.');
-        }
-
         try {
+            $plan = Plan::findOrFail($id);
+            
+            // Check if there are any active deposits using this plan
+            if ($plan->deposits()->where('status', 'active')->exists()) {
+                return back()->with('error', 'Cannot delete plan: There are active deposits using this plan.');
+            }
+
+            $planName = $plan->title;
             $plan->delete();
-            return back()->with('success', 'Plan deleted successfully.');
+            
+            return back()->with('success', "Investment plan '{$planName}' was deleted successfully.");
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return back()->with('error', 'Investment plan not found.');
         } catch (\Exception $e) {
-            return back()->with('error', 'Failed to delete plan. Please try again.');
+            \Log::error('Failed to delete plan: ' . $e->getMessage());
+            return back()->with('error', 'Failed to delete plan. Please try again or contact support if the problem persists.');
         }
     }
 
