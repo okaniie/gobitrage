@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>{{ $title }} - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('admin/img/ch-logo.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ secure_asset('admin/img/ch-logo.png') }}" type="image/png">
 
     <!-- Preload Critical Assets -->
-    <link rel="preload" href="{{ asset('admin/css/adminstyle.css') }}" as="style">
+    <link rel="preload" href="{{ secure_asset('admin/css/adminstyle.css') }}" as="style">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('admin/css/adminstyle.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('admin/css/adminstyle.css') }}">
     
     <!-- Defer Non-Critical Scripts -->
     <script defer>
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('{{ asset('admin/sw.js') }}')
+                navigator.serviceWorker.register('{{ secure_asset('admin/sw.js') }}')
                     .then(registration => {
                         console.log('ServiceWorker registration successful');
                     })
@@ -57,7 +58,7 @@
         <header class="admin-header">
             <div class="header-content">
                 <a href="{{ route('admin.dashboard') }}" class="logo-link">
-                    <img src="{{ asset('admin/img/ch-logo.png') }}" alt="Logo" class="logo">
+                    <img src="{{ secure_asset('admin/img/ch-logo.png') }}" alt="Logo" class="logo">
                     <h2>Admin Dashboard</h2>
                 </a>
             </div>
@@ -76,7 +77,7 @@
 
         <footer class="admin-footer">
             <div class="footer-content">
-                Powered by <a href="https://github.com/onumahkalusamuel/gobitrage/" target="_blank">Gobitrage</a>. All Rights Reserved.
+                Powered by <a href="https://github.com/onumahkalusamuel/gobitrage/" target="_blank" rel="noopener">Gobitrage</a>. All Rights Reserved.
             </div>
         </footer>
     </div>
