@@ -8,94 +8,118 @@
             </div>
             <div class="row">
                 <div class="col-md-3 mb-4">
-                    <div class="card hover-lift fade-in">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box mb-4">
-                                <i class="bi bi-piggy-bank text-primary"></i>
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=basic" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box mb-4">
+                                    <i class="bi bi-piggy-bank text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Basic Plan</h3>
+                                <div class="price-tag mb-4">
+                                    <h4 class="mb-0">$20 - $399</h4>
+                                    <p class="text-muted mb-0">Profit: 8%</p>
+                                </div>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $20</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $399</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 8%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 24 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 5%</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
                             </div>
-                            <h3 class="card-title">Basic Plan</h3>
-                            <div class="price-tag mb-4">
-                                <h4 class="mb-0">$20 - $399</h4>
-                                <p class="text-muted mb-0">Profit: 8%</p>
-                            </div>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $20</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $399</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 8%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 24 hours</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 5%</li>
-                            </ul>
-                            <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="card hover-lift fade-in" style="animation-delay: 0.2s;">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box mb-4">
-                                <i class="bi bi-gem text-primary"></i>
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=standard" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in" style="animation-delay: 0.2s;">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box mb-4">
+                                    <i class="bi bi-gem text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Standard Plan</h3>
+                                <div class="price-tag mb-4">
+                                    <h4 class="mb-0">$400 - $3,999</h4>
+                                    <p class="text-muted mb-0">Profit: 15%</p>
+                                </div>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $400</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $3,999</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 15%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 48 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 7%</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
                             </div>
-                            <h3 class="card-title">Standard Plan</h3>
-                            <div class="price-tag mb-4">
-                                <h4 class="mb-0">$400 - $3,999</h4>
-                                <p class="text-muted mb-0">Profit: 15%</p>
-                            </div>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $400</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $3,999</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 15%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 48 hours</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 7%</li>
-                            </ul>
-                            <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="card hover-lift fade-in" style="animation-delay: 0.4s;">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box mb-4">
-                                <i class="bi bi-diamond-fill text-primary"></i>
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=premium" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in" style="animation-delay: 0.4s;">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box mb-4">
+                                    <i class="bi bi-diamond-fill text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Premium Plan</h3>
+                                <div class="price-tag mb-4">
+                                    <h4 class="mb-0">$4,000 - $7,999</h4>
+                                    <p class="text-muted mb-0">Profit: 20%</p>
+                                </div>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $4,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $7,999</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 20%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 72 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 10%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Featured Badge Enabled</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
                             </div>
-                            <h3 class="card-title">Premium Plan</h3>
-                            <div class="price-tag mb-4">
-                                <h4 class="mb-0">$4,000 - $7,999</h4>
-                                <p class="text-muted mb-0">Profit: 20%</p>
-                            </div>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $4,000</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: $7,999</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 20%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 72 hours</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 10%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Featured Badge Enabled</li>
-                            </ul>
-                            <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 mb-4">
-                    <div class="card hover-lift fade-in" style="animation-delay: 0.6s;">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-box mb-4">
-                                <i class="bi bi-trophy text-primary"></i>
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=vip" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in" style="animation-delay: 0.6s;">
+                            <div class="card-body text-center p-4">
+                                <div class="icon-box mb-4">
+                                    <i class="bi bi-trophy text-primary"></i>
+                                </div>
+                                <h3 class="card-title">VIP Plan</h3>
+                                <div class="price-tag mb-4">
+                                    <h4 class="mb-0">$8,000+</h4>
+                                    <p class="text-muted mb-0">Profit: 25%</p>
+                                </div>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $8,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: No limit</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 25%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 76 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 12%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Featured Badge Enabled</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
                             </div>
-                            <h3 class="card-title">VIP Plan</h3>
-                            <div class="price-tag mb-4">
-                                <h4 class="mb-0">$8,000+</h4>
-                                <p class="text-muted mb-0">Profit: 25%</p>
-                            </div>
-                            <ul class="list-unstyled mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Minimum Investment: $8,000</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Maximum Investment: No limit</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 25%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Duration: 76 hours</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Referral Commission: 12%</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Featured Badge Enabled</li>
-                            </ul>
-                            <a href="{{ route('register') }}" class="btn btn-primary">Get Started</a>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -130,6 +154,7 @@
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 255, 136, 0.1);
+            cursor: pointer;
         }
         .hover-lift:hover {
             transform: translateY(-10px);
@@ -164,7 +189,7 @@
             color: var(--secondary-color);
         }
         .text-primary {
-            color: var(--secondary-color) !important;
+            color: #ffffff !important;
         }
         .btn-primary {
             background-color: var(--secondary-color);
@@ -175,6 +200,21 @@
             background-color: var(--accent-color);
             border-color: var(--accent-color);
             transform: translateY(-2px);
+        }
+        .card-title {
+            color: #ffffff !important;
+        }
+        .price-tag h4 {
+            color: #ffffff !important;
+        }
+        .price-tag p {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        .list-unstyled li {
+            color: #ffffff !important;
+        }
+        .text-success {
+            color: #00ff88 !important;
         }
         .fade-in {
             animation: fadeIn 0.5s ease forwards;

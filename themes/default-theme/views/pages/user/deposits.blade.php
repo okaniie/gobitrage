@@ -11,7 +11,7 @@
                     <label for="plan_id">Plan</label>
                     <select id="plan_id" name="plan_id" class="form-control">
                         @foreach ($plans as $plan)
-                            <option value="<?= $plan->id ?>">
+                            <option value="<?= $plan->id ?>" {{ $selectedPlan && $selectedPlan->id == $plan->id ? 'selected' : '' }}>
                                 {{ $plan->title }}: ${{ $plan->minimum }} -
                                 {{ !$plan->maximum ? 'above' : "$" . $plan->maximum }}
                             </option>

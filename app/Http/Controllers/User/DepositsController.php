@@ -66,10 +66,26 @@ class DepositsController extends Controller
             $currencies[$key]->balance = $wallet->balance;
         }
 
+        // Get all plans
+        $plans = Plan::where('status', "1")->get()->all();
+        
+        // If a plan is selected from URL, find it in the plans array
+        $selectedPlan = null;
+        if ($request->has('plan')) {
+            $planName = strtolower($request->get('plan'));
+            foreach ($plans as $plan) {
+                if (strtolower($plan->title) === $planName) {
+                    $selectedPlan = $plan;
+                    break;
+                }
+            }
+        }
+
         return view('pages.user.deposits', [
             'deposits' => $deposits,
-            'plans' => Plan::where('status', "1")->get()->all(),
+            'plans' => $plans,
             'currencies' => $currencies,
+            'selectedPlan' => $selectedPlan
         ]);
     }
 
