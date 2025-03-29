@@ -92,12 +92,12 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@crypto-hyip.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@gobitrage.com'),
         'name' => env('MAIL_FROM_NAME', 'Crypto Hyip Pro'),
     ],
 
     'reply_to' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@crypto-hyip.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@gobitrage.com'),
         'name' => env('MAIL_FROM_NAME', 'Crypto Hyip Pro'),
     ],
 

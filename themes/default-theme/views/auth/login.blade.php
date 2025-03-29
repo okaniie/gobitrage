@@ -26,6 +26,40 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
+
+        /* Enhanced placeholder styles */
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 1;
+            font-weight: 500;
+        }
+
+        .form-control:focus::placeholder {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-floating > .form-control:focus ~ label,
+        .form-floating > .form-control:not(:placeholder-shown) ~ label {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .form-floating > label {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
     </style>
     <div class="form-signin my-5">
         <form class="mt-5 mb-2" method="POST" action="{{ route('login') }}">

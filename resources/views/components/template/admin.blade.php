@@ -45,7 +45,7 @@
                 <td>
                     <footer style="text-align: center; padding:10px 0px; margin:0;">
                         Powered by <a target="_blank"
-                            href="https://github.com/onumahkalusamuel/crypto-hyip/">Crypto-HYIP Pro</a>. All Rights
+                            href="https://github.com/onumahkalusamuel/gobitrage/">Gobitrage</a>. All Rights
                         Reserved. </p>
                     </footer>
                 </td>

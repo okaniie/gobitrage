@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Elements -->
+    <rect width="800" height="600" fill="#1a1a1a"/>
+    <circle cx="400" cy="300" r="250" stroke="#00ff88" stroke-width="2" stroke-opacity="0.1"/>
+    
+    <!-- Trading Chart -->
+    <path d="M200 400 L300 300 L400 350 L500 250 L600 400" stroke="#00ff88" stroke-width="3" fill="none"/>
+    <circle cx="300" cy="300" r="4" fill="#00ff88"/>
+    <circle cx="400" cy="350" r="4" fill="#00ff88"/>
+    <circle cx="500" cy="250" r="4" fill="#00ff88"/>
+    
+    <!-- Crypto Symbols -->
+    <g transform="translate(250, 200)">
+        <circle cx="0" cy="0" r="30" fill="#00ff88" opacity="0.2"/>
+        <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="24" font-weight="bold">₿</text>
+    </g>
+    
+    <g transform="translate(550, 150)">
+        <circle cx="0" cy="0" r="30" fill="#00ff88" opacity="0.2"/>
+        <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="24" font-weight="bold">Ξ</text>
+    </g>
+    
+    <!-- Decorative Elements -->
+    <circle cx="200" cy="150" r="10" fill="#00ff88" opacity="0.3"/>
+    <circle cx="600" cy="450" r="15" fill="#00ff88" opacity="0.3"/>
+    <circle cx="150" cy="450" r="8" fill="#00ff88" opacity="0.3"/>
+</svg> 

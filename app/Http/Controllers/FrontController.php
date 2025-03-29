@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use Exception;
 
 class FrontController extends Controller
 {
     public function index()
     {
-        return view('pages.guest.index');
+        $plans = Plan::orderBy('ordering')->get();
+        return view('pages.guest.index', compact('plans'));
     }
 
     public function pageView($page)
     {
         try {
+            if ($page === 'investment-plans') {
+                $plans = Plan::orderBy('ordering')->get();
+                return view("pages.guest.{$page}", compact('plans'));
+            }
             return view("pages.guest.{$page}");
         } catch (Exception $e) {
             return view("pages.guest.404");

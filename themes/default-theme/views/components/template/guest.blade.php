@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="{{ config('app.name', 'Crypto HYIP Pro') }}">
+    <meta name="author" content="Gobitrage">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     {{-- <meta name="description" content="{block name=description}{$siteInfo.description}{/block}"> --}}
     {{-- <meta name="keywords" content="{block name=keywords}{$siteInfo.keywords}{/block}"> --}}
-    <title>{{ config('app.name', 'Crypto HYIP Pro') }}</title>
+    <title>Gobitrage - Your Trusted Investment Platform</title>
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
@@ -63,6 +63,195 @@
         </script>
     @endif
     {{-- {{ \App\Models\Setting::get('header_code') }} --}}
+
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #00ff88;
+            --accent-color: #ff3366;
+            --text-color: #ffffff;
+            --dark-bg: #0a0a0a;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+        }
+        
+        .navbar {
+            background-color: var(--primary-color) !important;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            color: var(--secondary-color) !important;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand:hover {
+            color: var(--accent-color) !important;
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            color: var(--text-color) !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('/assets/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-color);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(255, 51, 102, 0.1));
+            animation: gradientAnimation 10s ease infinite;
+        }
+        
+        .feature-box {
+            text-align: center;
+            padding: 30px;
+            margin-bottom: 30px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
+        }
+        
+        .feature-box i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-box:hover i {
+            transform: scale(1.2);
+            color: var(--accent-color);
+        }
+        
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 50px 0;
+        }
+        
+        .footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Animations */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
 
 </head>
 
@@ -155,6 +344,7 @@
     </svg>
 
     <x-navigation.guest />
+    <x-general.crypto-ticker />
     <main>
         {{ $slot }}
     </main>
@@ -168,6 +358,25 @@
     </script>
     {{ \App\Models\Setting::get('footer_code') }}
     <!--Body Inner end-->
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            // Observe all elements with animation classes
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 
 </html>

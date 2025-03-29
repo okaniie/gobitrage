@@ -1,12 +1,15 @@
+version: '3'
 services:
     # to host online, add caddy to this setup and configure the reverse proxy
-    hyip_app:
+    gobitrage_app:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: hyip_app
+        container_name: gobitrage_app
+        restart: unless-stopped
+        working_dir: /var/www
         volumes:
-            - .:/app
+            - ./:/var/www
         ports:
             - "8000:8000"
         env_file:
@@ -14,35 +17,36 @@ services:
         environment:
             - COMPOSER_ALLOW_SUPERUSER=1
             - APP_ENV=local
-            - DB_HOST=hyip_db
-            - DB_DATABASE=hyip_database
-            - DB_USERNAME=root
-            - DB_PASSWORD=root
+            - DB_HOST=gobitrage_db
+            - DB_DATABASE=gobitrage_database
+            - DB_USERNAME=gobitrage_user
+            - DB_PASSWORD=gobitrage_pass
         depends_on:
-            - hyip_db
+            - gobitrage_db
         command: ["./serve"]
         networks:
-            - hyip_network
+            - gobitrage_network
 
-    hyip_db:
-        image: mysql:8.0
-        container_name: hyip_db
-        restart: always
+    gobitrage_db:
+        image: mysql:5.7
+        container_name: gobitrage_db
+        restart: unless-stopped
         environment:
-            MYSQL_DATABASE: hyip_database
+            MYSQL_DATABASE: gobitrage_database
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: hyip_user
-            MYSQL_PASSWORD: hyip_pass
+            MYSQL_USER: gobitrage_user
+            MYSQL_PASSWORD: gobitrage_pass
         ports:
-            - "3309:3306" # to avoid conflict with the system mysql
+            - "3307:3306" # to avoid conflict with the system mysql
         volumes:
-            - db_data:/var/lib/mysql
+            - dbdata:/var/lib/mysql
         networks:
-            - hyip_network
+            - gobitrage_network
 
 volumes:
-    db_data:
+    dbdata:
+        driver: local
 
 networks:
-    hyip_network:
+    gobitrage_network:
         driver: bridge

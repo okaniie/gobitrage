@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'user_type' => empty(User::first()) ? "admin" : "user",
+            'user_type' => 'user',
             'secret_question' => $request->secret_question ?? "",
             'secret_answer' => $request->secret_answer ?? "",
         ]);

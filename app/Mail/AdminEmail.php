@@ -48,7 +48,7 @@ class AdminEmail extends Mailable
 
         return $this
             ->subject($this->subjectText)
-            ->to(env('MAIL_FROM_ADDRESS', 'hello@crypto-hyip.com'), env('MAIL_FROM_NAME', 'Crypto Hyip Pro'))
+            ->to(env('MAIL_FROM_ADDRESS', 'hello@gobitrage.com'), env('MAIL_FROM_NAME', 'Gobitrage'))
             ->view('emails.baseemail');
     }
 }
