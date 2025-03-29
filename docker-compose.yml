@@ -11,21 +11,39 @@ services:
         volumes:
             - ./:/var/www
         ports:
-            - "${PORT:-8000}:${PORT:-8000}"
+            - "8000:8000"
         env_file:
             - .env
         environment:
             - COMPOSER_ALLOW_SUPERUSER=1
-            - APP_ENV=production
-            - APP_DEBUG=false
+            - APP_ENV=local
+            - APP_DEBUG=true
             - APP_CIPHER=aes-256-cbc
             - DB_CONNECTION=mysql
-            - DB_HOST=${DB_HOST}
-            - DB_PORT=${DB_PORT}
-            - DB_DATABASE=${DB_DATABASE}
-            - DB_USERNAME=${DB_USERNAME}
-            - DB_PASSWORD=${DB_PASSWORD}
-        command: ["./serve"]
+            - DB_HOST=gobitrage_db
+            - DB_PORT=3306
+            - DB_DATABASE=gobitrage_database
+            - DB_USERNAME=gobitrage_user
+            - DB_PASSWORD=gobitrage_pass
+        depends_on:
+            - gobitrage_db
+        command: php artisan serve --host=0.0.0.0 --port=8000
+        networks:
+            - gobitrage_network
+
+    gobitrage_db:
+        image: mysql:5.7
+        container_name: gobitrage_db
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: gobitrage_database
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: gobitrage_user
+            MYSQL_PASSWORD: gobitrage_pass
+        ports:
+            - "3307:3306"
+        volumes:
+            - dbdata:/var/lib/mysql
         networks:
             - gobitrage_network
 

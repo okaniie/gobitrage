@@ -2,11 +2,67 @@
 
 namespace Database\Seeders;
 
+use App\Models\Plan;
+use App\Models\PlanCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class PlanSeeder extends Seeder
 {
+    private $plans = [
+        [
+            'title' => 'Basic Plan',
+            'minimum' => 20,
+            'maximum' => 399,
+            'percentage' => 8,
+            'duration' => 24,
+            'duration_type' => 'hour',
+            'profit_frequency' => 'end',
+            'referral_percentage' => 5,
+            'has_badge' => '0',
+            'ordering' => 1,
+            'status' => '1'
+        ],
+        [
+            'title' => 'Standard Plan',
+            'minimum' => 400,
+            'maximum' => 3999,
+            'percentage' => 15,
+            'duration' => 48,
+            'duration_type' => 'hour',
+            'profit_frequency' => 'end',
+            'referral_percentage' => 7,
+            'has_badge' => '0',
+            'ordering' => 2,
+            'status' => '1'
+        ],
+        [
+            'title' => 'Premium Plan',
+            'minimum' => 4000,
+            'maximum' => 7999,
+            'percentage' => 20,
+            'duration' => 72,
+            'duration_type' => 'hour',
+            'profit_frequency' => 'end',
+            'referral_percentage' => 10,
+            'has_badge' => '1',
+            'ordering' => 3,
+            'status' => '1'
+        ],
+        [
+            'title' => 'VIP Plan',
+            'minimum' => 8000,
+            'maximum' => 0, // 0 means unlimited
+            'percentage' => 25,
+            'duration' => 76,
+            'duration_type' => 'hour',
+            'profit_frequency' => 'end',
+            'referral_percentage' => 12,
+            'has_badge' => '1',
+            'ordering' => 4,
+            'status' => '1'
+        ]
+    ];
+
     /**
      * Run the database seeds.
      *
@@ -14,51 +70,19 @@ class PlanSeeder extends Seeder
      */
     public function run()
     {
-        $plans = [
-            [
-                'plan_category_id' => 1,
-                'title' => 'Starter Plan',
-                'ordering' => 1,
-                'has_badge' => '0',
-                'minimum' => 100.00,
-                'maximum' => 1000.00,
-                'percentage' => 20.00,
-                'referral_percentage' => 5.00,
-                'duration_type' => 'day',
-                'profit_frequency' => 'end',
-                'duration' => 7,
-                'status' => '1',
-            ],
-            [
-                'plan_category_id' => 1,
-                'title' => 'Professional Plan',
-                'ordering' => 2,
-                'has_badge' => '0',
-                'minimum' => 1000.00,
-                'maximum' => 10000.00,
-                'percentage' => 35.00,
-                'referral_percentage' => 5.00,
-                'duration_type' => 'day',
-                'profit_frequency' => 'end',
-                'duration' => 7,
-                'status' => '1',
-            ],
-            [
-                'plan_category_id' => 1,
-                'title' => 'Enterprise Plan',
-                'ordering' => 3,
-                'has_badge' => '1',
-                'minimum' => 10000.00,
-                'maximum' => 100000.00,
-                'percentage' => 50.00,
-                'referral_percentage' => 5.00,
-                'duration_type' => 'day',
-                'profit_frequency' => 'end',
-                'duration' => 7,
-                'status' => '1',
-            ],
-        ];
+        // Get the Crypto Plans category
+        $category = PlanCategory::where('title', 'Crypto Plans')->first();
+        
+        if (!$category) {
+            throw new \Exception('Crypto Plans category not found. Please run PlanCategorySeeder first.');
+        }
 
-        DB::table('plans')->insert($plans);
+        // Create plans if they don't exist
+        if (!Plan::exists()) {
+            foreach ($this->plans as $plan) {
+                $plan['plan_category_id'] = $category->id;
+                Plan::create($plan);
+            }
+        }
     }
 } 
