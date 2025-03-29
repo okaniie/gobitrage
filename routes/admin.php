@@ -90,7 +90,7 @@ Route::prefix('admin')
                 Route::post('new', 'create');
                 Route::get('{id}', 'viewSingle')->name('admin.plans.view');
                 Route::post('{id}', 'update');
-                Route::delete('{id}', 'delete')->name('admin.plans.delete');
+                Route::get('{id}/delete', 'delete')->name('admin.plans.delete');
             });
 
 
