@@ -6,7 +6,7 @@ if [ ! -d "vendor" ]; then
     composer install --no-interaction
 fi
 
-# Check if APP_KEY is set, if not generate it
+# Generate application key if not set
 if [ -z "$(grep '^APP_KEY=' .env | cut -d '=' -f2)" ]; then
   echo "APP_KEY is missing. Generating one..."
   php artisan key:generate
@@ -33,6 +33,12 @@ fi
 # Run migrations and seeding
 php artisan migrate --force
 php artisan db:seed --force
+
+# Clear all caches
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
 
 # Start the server using Render's PORT
 echo "Starting server on port $PORT..."

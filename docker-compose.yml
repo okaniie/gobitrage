@@ -17,6 +17,8 @@ services:
         environment:
             - COMPOSER_ALLOW_SUPERUSER=1
             - APP_ENV=production
+            - APP_DEBUG=false
+            - APP_CIPHER=aes-256-cbc
             - DB_CONNECTION=mysql
             - DB_HOST=${DB_HOST}
             - DB_DATABASE=${DB_DATABASE}
