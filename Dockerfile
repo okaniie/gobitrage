@@ -21,8 +21,9 @@ COPY . /app
 # Make serve script executable
 RUN chmod +x ./serve
 
-# Expose default port
-EXPOSE 8000
+# Expose port for Render
+ENV PORT=8000
+EXPOSE $PORT
 
-# Default command
+# Start command for Render
 CMD ["./serve"]

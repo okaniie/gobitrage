@@ -11,16 +11,16 @@ services:
         volumes:
             - ./:/var/www
         ports:
-            - "8000:8000"
+            - "${PORT:-8000}:${PORT:-8000}"
         env_file:
             - .env
         environment:
             - COMPOSER_ALLOW_SUPERUSER=1
-            - APP_ENV=local
-            - DB_HOST=gobitrage_db
-            - DB_DATABASE=gobitrage_database
-            - DB_USERNAME=gobitrage_user
-            - DB_PASSWORD=gobitrage_pass
+            - APP_ENV=production
+            - DB_HOST=${DB_HOST}
+            - DB_DATABASE=${DB_DATABASE}
+            - DB_USERNAME=${DB_USERNAME}
+            - DB_PASSWORD=${DB_PASSWORD}
         depends_on:
             - gobitrage_db
         command: ["./serve"]
