@@ -1,9 +1,9 @@
 <x-template.guest>
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 slide-in-left">
+        <div class="">
+            <div class=" flex items-center mx-auto p-10 ">
+                <div class="col-left">
                     <h1 class="display-4 fw-bold mb-4">Welcome to Gobitrage</h1>
                     <p class="lead mb-4">Your trusted partner in cryptocurrency investment. Start your journey with as little as $100 and earn up to 50% weekly returns.</p>
                     <div class="d-flex gap-3">
@@ -11,7 +11,7 @@
                         <a href="{{ url('/investment-plans') }}" class="btn btn-outline-light btn-lg">View Plans</a>
                     </div>
                 </div>
-                <div class="col-lg-6 slide-in-right">
+                <div class="col-right">
                     <div class="hero-image-wrapper">
                         <img src="/assets/images/hero-meeting.jpg" alt="Professional Investment Meeting" class="img-fluid rounded-3 shadow-lg hero-image">
                         <div class="floating-elements">
@@ -35,6 +35,8 @@
                 overflow: hidden;
                 padding: 100px 0;
                 background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+                width: 1200px;
+                margin: 0 auto;
             }
             .hero-section::before {
                 content: '';
@@ -90,6 +92,23 @@
                 height: 60px;
                 filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.3));
             }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+        }
+        .col-left {
+            width: 600px;
+            padding-right: 20px;
+        }
+        .col-right {
+            width: 600px;
+            padding-left: 20px;
+        }
             @keyframes float {
                 0% {
                     transform: translateY(0px);
@@ -101,7 +120,7 @@
                     transform: translateY(0px);
                 }
             }
-            @media (max-width: 991.98px) {
+            /* @media (max-width: 991.98px) {
                 .hero-section {
                     text-align: center;
                     padding: 60px 0;
@@ -112,7 +131,7 @@
                 .d-flex {
                     justify-content: center;
                 }
-            }
+            } */
         </style>
     </section>
 
@@ -120,22 +139,22 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fade-in">Why Choose Gobitrage?</h2>
-            <div class="row">
-                <div class="col-md-4">
+            <div class="grid grid-cols-3 gap-5">
+                <div class="">
                     <div class="feature-box fade-in">
                         <i class="bi bi-shield-check"></i>
                         <h3>Secure Investment</h3>
                         <p>Your funds are protected with state-of-the-art security measures and transparent operations.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="">
                     <div class="feature-box fade-in" style="animation-delay: 0.2s;">
                         <i class="bi bi-graph-up"></i>
                         <h3>High Returns</h3>
                         <p>Earn up to 50% weekly returns on your investments through our proven trading strategies.</p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="">
                     <div class="feature-box fade-in" style="animation-delay: 0.4s;">
                         <i class="bi bi-clock"></i>
                         <h3>24/7 Support</h3>
