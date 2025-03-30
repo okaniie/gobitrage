@@ -169,8 +169,8 @@
     <section class="py-5 bg-gradient">
         <div class="container">
             <h2 class="text-center mb-5 fade-in">How to Join Gobitrage</h2>
-            <div class="row g-4">
-                <div class="col-md-3">
+            <div class="grid grid-cols-4 gap-5">
+                <div class="">
                     <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body text-center p-4">
                             <div class="icon-box mb-4">
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="">
                     <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body text-center p-4">
                             <div class="icon-box mb-4">
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="">
                     <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body text-center p-4">
                             <div class="icon-box mb-4">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="">
                     <div class="card h-100 border-0 shadow-sm hover-lift">
                         <div class="card-body text-center p-4">
                             <div class="icon-box mb-4">
@@ -291,8 +291,8 @@
                 <h2 class="display-4 fw-bold mb-3 fade-in">Investment Plans</h2>
                 <p class="lead fade-in" style="animation-delay: 0.2s;">Choose the perfect investment plan that suits your goals</p>
             </div>
-            <div class="row">
-                <div class="col-md-3 mb-4">
+            <div class="grid grid-cols-4 gap-5 ">
+                <div class=" mb-4">
                     @auth
                         <a href="{{ route('user.deposits') }}?plan=basic" class="text-decoration-none">
                     @else
@@ -320,7 +320,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class=" mb-4">
                     @auth
                         <a href="{{ route('user.deposits') }}?plan=standard" class="text-decoration-none">
                     @else
@@ -348,7 +348,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class=" mb-4">
                     @auth
                         <a href="{{ route('user.deposits') }}?plan=premium" class="text-decoration-none">
                     @else
@@ -377,7 +377,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 mb-4">
+                <div class=" mb-4">
                     @auth
                         <a href="{{ route('user.deposits') }}?plan=vip" class="text-decoration-none">
                     @else
@@ -414,8 +414,8 @@
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-5 fade-in">What Our Investors Say</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
+            <div class="grid grid-cols-3 gap-5">
+                <div class=" mb-4">
                     <div class="card h-100 slide-in-left">
                         <div class="card-body">
                             <p class="card-text">"I've been investing with Gobitrage for over a year now, and the returns have been consistently excellent. The support team is always helpful and responsive."</p>
@@ -423,7 +423,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class=" mb-4">
                     <div class="card h-100 slide-in-left" style="animation-delay: 0.2s;">
                         <div class="card-body">
                             <p class="card-text">"The platform is user-friendly and secure. I started with a small investment and gradually increased it as I saw the consistent returns."</p>
@@ -431,7 +431,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class=" mb-4">
                     <div class="card h-100 slide-in-left" style="animation-delay: 0.4s;">
                         <div class="card-body">
                             <p class="card-text">"Gobitrage has transformed my investment portfolio. The weekly returns are impressive, and the withdrawal process is smooth."</p>
