@@ -365,6 +365,19 @@
     <script src="{{ asset('assets/js/view-mode.js') }}"></script>
     
     {{ \App\Models\Setting::get('footer_code') }}
+
+    <!-- Smartsupp Live Chat script -->
+    <script type="text/javascript">
+        var _smartsupp = _smartsupp || {};
+        _smartsupp.key = '0c5f48735f0e2df778ee1ab793f855009f75ccce';
+        window.smartsupp||(function(d) {
+            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+            c.type='text/javascript';c.charset='utf-8';c.async=true;
+            c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+        })(document);
+    </script>
+    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
     <!--Body Inner end-->
     <script>
         // Intersection Observer for animations
