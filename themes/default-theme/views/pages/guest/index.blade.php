@@ -307,12 +307,12 @@
                                 </div>
                                 <h3 class="card-title">Basic Plan</h3>
                                 <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$20 - $399</h4>
+                                    <h4 class="mb-0">$20 - $1,999</h4>
                                     <p class="text-muted mb-0">Profit: 8%</p>
                                 </div>
                                 <ul class="list-unstyled mb-3">
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $20</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $399</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $1,999</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 8%</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>24 hours</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>5% Referral</li>
@@ -335,12 +335,12 @@
                                 </div>
                                 <h3 class="card-title">Premium Plan</h3>
                                 <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$2,000+</h4>
+                                    <h4 class="mb-0">$2,000 - $5,999</h4>
                                     <p class="text-muted mb-0">Profit: 20%</p>
                                 </div>
                                 <ul class="list-unstyled mb-3">
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $2,000</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>No Maximum</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $5,999</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 20%</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>72 hours</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>10% Referral</li>
@@ -363,12 +363,12 @@
                                 </div>
                                 <h3 class="card-title">VIP Plan</h3>
                                 <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$8,000+</h4>
+                                    <h4 class="mb-0">$6,000 - $9,999</h4>
                                     <p class="text-muted mb-0">Profit: 25%</p>
                                 </div>
                                 <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $8,000</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: No limit</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $6,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $9,999</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 25%</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>76 hours</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>12% Referral</li>
@@ -391,11 +391,11 @@
                                 </div>
                                 <h3 class="card-title">Elite Plan</h3>
                                 <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$15,000+</h4>
+                                    <h4 class="mb-0">$10,000+</h4>
                                     <p class="text-muted mb-0">Profit: 30%</p>
                                 </div>
                                 <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $15,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $10,000</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: No limit</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 30%</li>
                                     <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>96 hours</li>
