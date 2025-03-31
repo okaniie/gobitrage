@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <h5>About Gobitrage</h5>
-                <p>Gobitrage is a fully certified, licensed company offering investors around the globe reliable investment schedules with minimum investment as low as $100.</p>
+                <p>Gobitrage is a fully certified, licensed company offering investors around the globe reliable investment schedules with minimum investment as low as $20.</p>
             </div>
             <div class="col-md-4 mb-4">
                 <h5>Quick Links</h5>

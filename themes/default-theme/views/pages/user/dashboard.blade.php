@@ -87,6 +87,11 @@
     <style>
         :root {
             --vh: 12.05px;
+            --primary-color: #2962ff;
+            --secondary-color: #1c1f2a;
+            --accent-color: #00ff88;
+            --text-primary: #ffffff;
+            --text-secondary: #5d6588;
         }
 
         body {
@@ -94,79 +99,155 @@
             min-height: 100vh;
             min-height: calc(var(--vh, 1vh) * 100);
             overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .dashboard-wrapper {
             min-height: 100vh;
             min-height: calc(var(--vh, 1vh) * 100);
             background: #0a0b0e;
-            padding-bottom: 2rem;
+            padding-bottom: 0;
         }
 
         .card {
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             background: #13151c;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
         }
-        
-        .btn-dark {
-            background: #1c1f2a;
-            border: none;
-            padding: 10px 20px;
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
-        
-        .btn-dark:hover {
-            background: #252936;
+
+        .card-body {
+            padding: 1.5rem;
         }
-        
-        .text-muted {
-            color: #5d6588 !important;
-        }
-        
+
         .card-header {
             background: #13151c;
             border-bottom: 1px solid #1c1f2a;
+            padding: 1rem 1.5rem;
+        }
+
+        .card-title {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .btn-dark {
+            background: var(--secondary-color);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        
+        .btn-dark:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(41, 98, 255, 0.3);
+        }
+        
+        .text-muted {
+            color: var(--text-secondary) !important;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card h3 {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0;
         }
         
         .btn-outline-secondary {
-            border-color: #1c1f2a;
-            color: #5d6588;
+            border-color: var(--secondary-color);
+            color: var(--text-secondary);
+            border-radius: 6px;
+            padding: 6px 12px;
+            transition: all 0.3s ease;
         }
         
         .btn-outline-secondary:hover {
-            background: #1c1f2a;
+            background: var(--primary-color);
+            border-color: var(--primary-color);
             color: white;
         }
 
         .container-fluid {
             max-width: 1920px;
             margin: 0 auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            padding: 1.5rem;
         }
 
         .trading-chart {
-            height: 400px;
+            height: 600px;
             width: 100%;
             overflow: hidden;
+            border-radius: 8px;
         }
 
         .crypto-chart {
             height: 400px;
             width: 100%;
             overflow: hidden;
+            border-radius: 8px;
         }
 
         #tradingview_widget, #crypto_widget {
             background: #13151c;
         }
 
+        .btn-group {
+            gap: 0.5rem;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+            border-radius: 8px !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-group .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Stats Cards Animation */
+        .col-md-3 {
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .col-md-3:nth-child(1) { animation-delay: 0.1s; }
+        .col-md-3:nth-child(2) { animation-delay: 0.2s; }
+        .col-md-3:nth-child(3) { animation-delay: 0.3s; }
+        .col-md-3:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container-fluid {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
+                padding: 1rem;
             }
 
             .row {
@@ -181,6 +262,7 @@
 
             .btn-group {
                 flex-wrap: wrap;
+                gap: 0.25rem;
             }
 
             .btn-group .btn {
@@ -189,14 +271,19 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                padding: 10px 15px;
             }
 
-            .trading-chart, .crypto-chart {
-                height: 300px;
+            .trading-chart {
+                height: 500px;
+            }
+
+            .crypto-chart {
+                height: 350px;
             }
 
             .card-header {
-                padding: 0.75rem;
+                padding: 0.75rem 1rem;
             }
 
             .card-title {
@@ -204,11 +291,11 @@
             }
 
             h3 {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
             }
 
-            h5 {
-                font-size: 0.875rem;
+            .card-body {
+                padding: 1rem;
             }
         }
 
@@ -216,10 +303,19 @@
         @media (max-width: 375px) {
             .btn-group .btn {
                 flex: 1 1 100%;
+                margin: 2px 0;
             }
 
-            .trading-chart, .crypto-chart {
-                height: 250px;
+            .trading-chart {
+                height: 400px;
+            }
+
+            .crypto-chart {
+                height: 300px;
+            }
+
+            .container-fluid {
+                padding: 0.75rem;
             }
         }
     </style>

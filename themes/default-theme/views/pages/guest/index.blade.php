@@ -4,25 +4,39 @@
         <div class="hero-overlay"></div>
         <div class="container position-relative">
             <div class="working-since">WORKING SINCE 2020</div>
-            <div class="row align-items-center min-vh-75">
-                <div class="col-lg-8 slide-in-left">
-                    <h1 class="display-3 fw-bold mb-4 text-white">Welcome to Gobitrage</h1>
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-6 slide-in-left">
+                    <h1 class="display-4 fw-bold mb-3 text-white">Welcome to Gobitrage</h1>
                     <p class="lead mb-4 text-white-75">Your trusted partner in cryptocurrency investment. Start your journey with as little as $20 and earn up to 50% weekly returns.</p>
-                    <div class="d-flex gap-3">
+                    <div class="d-flex gap-3 mb-4">
                         <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Get Started</a>
                         <a href="{{ url('/investment-plans') }}" class="btn btn-outline-light btn-lg">View Plans</a>
                     </div>
+                    <div class="d-flex gap-3">
+                        <div class="text-center">
+                            <div class="h3 text-white mb-0">50%</div>
+                            <div class="text-white-75">Weekly Returns</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="h3 text-white mb-0">24/7</div>
+                            <div class="text-white-75">Support</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="h3 text-white mb-0">$20</div>
+                            <div class="text-white-75">Min Deposit</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-4 slide-in-right">
-                        <div class="floating-elements">
-                            <div class="float-element bitcoin">
-                                <img src="/assets/images/bitcoin.svg" alt="Bitcoin" class="float-icon">
-                            </div>
-                            <div class="float-element ethereum">
-                                <img src="/assets/images/ethereum.svg" alt="Ethereum" class="float-icon">
-                            </div>
-                            <div class="float-element chart">
-                                <img src="/assets/images/chart.svg" alt="Chart" class="float-icon">
+                <div class="col-lg-6 slide-in-right">
+                    <div class="floating-elements">
+                        <div class="float-element bitcoin">
+                            <img src="/assets/images/bitcoin.svg" alt="Bitcoin" class="float-icon">
+                        </div>
+                        <div class="float-element ethereum">
+                            <img src="/assets/images/ethereum.svg" alt="Ethereum" class="float-icon">
+                        </div>
+                        <div class="float-element chart">
+                            <img src="/assets/images/chart.svg" alt="Chart" class="float-icon">
                         </div>
                     </div>
                 </div>
@@ -34,7 +48,7 @@
                 overflow: hidden;
                 background: url('/assets/images/hero-meeting.jpg') no-repeat center center;
                 background-size: cover;
-                min-height: 75vh;
+                min-height: 50vh;
                 display: flex;
                 align-items: center;
             }
@@ -50,8 +64,8 @@
             .hero-section .container {
                 z-index: 2;
             }
-            .min-vh-75 {
-                min-height: 75vh;
+            .min-vh-50 {
+                min-height: 50vh;
             }
             .text-white-75 {
                 color: rgba(255, 255, 255, 0.75);
@@ -59,7 +73,7 @@
             .floating-elements {
                 position: relative;
                 height: 100%;
-                min-height: 300px;
+                min-height: 200px;
             }
             .float-element {
                 position: absolute;
@@ -82,8 +96,8 @@
                 animation-delay: 4s;
             }
             .float-icon {
-                width: 80px;
-                height: 80px;
+                width: 60px;
+                height: 60px;
                 filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.3));
             }
             @keyframes float {
@@ -100,54 +114,70 @@
             @media (max-width: 991.98px) {
                 .hero-section {
                     text-align: center;
-                    min-height: 60vh;
+                    min-height: 40vh;
                 }
-                .min-vh-75 {
-                    min-height: 60vh;
+                .min-vh-50 {
+                    min-height: 40vh;
                 }
                 .d-flex {
                     justify-content: center;
                 }
                 .floating-elements {
-                    min-height: 200px;
+                    min-height: 150px;
                     margin-top: 2rem;
                 }
                 .float-icon {
-                    width: 60px;
-                    height: 60px;
+                    width: 50px;
+                    height: 50px;
                 }
             }
             @media (max-width: 768px) {
                 .hero-section {
-                    min-height: 50vh;
+                    min-height: 35vh;
                 }
-                .min-vh-75 {
-                    min-height: 50vh;
+                .min-vh-50 {
+                    min-height: 35vh;
                 }
-                .display-3 {
-                    font-size: 2.5rem;
+                .display-4 {
+                    font-size: 2rem;
                 }
                 .lead {
-                    font-size: 1rem;
+                    font-size: 0.9rem;
                 }
                 .btn-lg {
-                    padding: 0.6rem 1.2rem;
+                    padding: 0.5rem 1rem;
                     font-size: 0.9rem;
+                }
+                .h3 {
+                    font-size: 1.5rem;
+                }
+                .text-white-75 {
+                    font-size: 0.8rem;
                 }
             }
             .working-since {
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(5px);
-                padding: 8px 20px;
+                padding: 6px 16px;
                 border-radius: 50px;
                 color: white;
                 display: inline-block;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
                 font-weight: 500;
                 letter-spacing: 1px;
                 border: 1px solid rgba(255, 255, 255, 0.2);
+                font-size: 0.9rem;
             }
         </style>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-4 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-3 fade-in">Ready to Start Your Investment Journey?</h2>
+            <p class="lead mb-3 fade-in" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
+            <a href="{{ route('register') }}" class="btn btn-light btn-lg fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
+        </div>
     </section>
 
     <!-- Cryptocurrencies Section -->
@@ -789,15 +819,6 @@
                 }
             }
         </style>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="mb-4 fade-in">Ready to Start Your Investment Journey?</h2>
-            <p class="lead mb-4 fade-in" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
-            <a href="{{ route('register') }}" class="btn btn-light btn-lg fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
-        </div>
     </section>
 </x-template.guest>
 
