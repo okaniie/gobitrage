@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Gobitrage">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=0.1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     {{-- <meta name="description" content="{block name=description}{$siteInfo.description}{/block}"> --}}
     {{-- <meta name="keywords" content="{block name=keywords}{$siteInfo.keywords}{/block}"> --}}
     <title>Gobitrage - Your Trusted Investment Platform</title>

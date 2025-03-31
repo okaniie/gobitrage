@@ -44,14 +44,27 @@
 
     <span class="nav-divider"></span>
 
-    <a class="first" href="{{ route('logout') }}"
-        onclick="event.preventDefault();
-             document.getElementById('logout-form').submit();">
+    <a class="first" href="#" onclick="event.preventDefault(); handleLogout()">
         <span>Logout</span>
     </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
 
-    {{-- <a class="first" href="{{ route('logout') }}" onclick="return logoutUser()">Logout</a> --}}
+    <script>
+    function handleLogout() {
+        if (confirm('Are you sure you want to logout?')) {
+            fetch('{{ route('logout') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                credentials: 'same-origin'
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/';
+                }
+            });
+        }
+    }
+    </script>
 </nav>

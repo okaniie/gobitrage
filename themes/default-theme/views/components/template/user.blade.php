@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.1, maximum-scale=0.1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     {{-- <meta name="description" content=""> --}}
     {{-- <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,6 +17,22 @@
     <link href="{{ asset('themes/default-theme/css/user-style.css') }}" rel="stylesheet">
 
     <style>
+        /* Base styles */
+        :root {
+            --header-height: 70px;
+            --nav-width: 280px;
+        }
+
+        body {
+            font-size: 18px;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            touch-action: pan-x pan-y;
+            -webkit-touch-callout: default;
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
         .navbar {
             background: #13151c;
             border-bottom: 1px solid #1c1f2a;
