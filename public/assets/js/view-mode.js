@@ -12,8 +12,8 @@ const ViewModeController = {
             document.head.appendChild(this.viewport);
         }
         
-        // Set viewport to 0.1 scale
-        this.viewport.setAttribute('content', 'width=device-width, initial-scale=0.1, maximum-scale=0.1, user-scalable=no');
+        // Set viewport to 1.0 scale
+        this.viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
     }
 };
 
