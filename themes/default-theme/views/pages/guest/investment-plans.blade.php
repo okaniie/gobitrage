@@ -1,6 +1,6 @@
 <x-template.guest>
     <!-- Investment Plans Section -->
-    <section class="py-5">
+    <section class="py-5 investment-plans">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="display-4 fw-bold mb-3 fade-in">Investment Plans</h2>
@@ -135,86 +135,140 @@
     </section>
 
     <style>
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            background: rgba(0, 255, 136, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+        .investment-plans {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 51, 102, 0.05) 100%);
+            padding: 4rem 0;
         }
-        .card:hover .icon-box {
-            transform: scale(1.1);
-            background: rgba(0, 255, 136, 0.2);
-        }
-        .hover-lift {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            cursor: pointer;
-        }
-        .hover-lift:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 1rem 3rem rgba(0, 255, 136, 0.2) !important;
-        }
-        .price-tag {
-            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(255, 51, 102, 0.1));
-            padding: 1rem;
-            border-radius: 10px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-        }
-        .card {
-            position: relative;
+        .investment-plans .card {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 20px;
             overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
         }
-        .card::before {
+        .investment-plans .card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(255, 51, 102, 0.1));
-            opacity: 0;
-            transition: all 0.3s ease;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
         }
-        .card:hover::before {
-            opacity: 1;
+        .investment-plans .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
         }
-        .bi {
-            font-size: 2rem;
+        .investment-plans .icon-box {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(255, 51, 102, 0.2));
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+        .investment-plans .card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .investment-plans .card-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .investment-plans .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            border-radius: 3px;
+        }
+        .investment-plans .price-tag {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(255, 51, 102, 0.15));
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border: 2px solid rgba(0, 255, 136, 0.2);
+        }
+        .investment-plans .price-tag h4 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg);
+            margin-bottom: 0.5rem;
+        }
+        .investment-plans .price-tag p {
+            font-size: 1.2rem;
+            font-weight: 600;
             color: var(--secondary-color);
+            margin: 0;
         }
-        .text-primary {
-            color: #ffffff !important;
+        .investment-plans .list-unstyled li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--dark-bg);
         }
-        .btn-primary {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            transition: all 0.3s ease;
+        .investment-plans .list-unstyled li i {
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
         }
-        .btn-primary:hover {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
+        .investment-plans .btn-primary {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+            transition: all 0.4s ease;
         }
-        .card-title {
-            color: #ffffff !important;
+        .investment-plans .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
         }
-        .price-tag h4 {
-            color: #ffffff !important;
-        }
-        .price-tag p {
-            color: rgba(255, 255, 255, 0.7) !important;
-        }
-        .list-unstyled li {
-            color: #ffffff !important;
-        }
-        .text-success {
-            color: #00ff88 !important;
+        @media (max-width: 768px) {
+            .investment-plans {
+                padding: 3rem 0;
+            }
+            .investment-plans .card {
+                margin-bottom: 2rem;
+            }
+            .investment-plans .card-title {
+                font-size: 1.6rem;
+            }
+            .investment-plans .price-tag h4 {
+                font-size: 1.5rem;
+            }
+            .investment-plans .list-unstyled li {
+                font-size: 1rem;
+            }
+            .container {
+                width: 100% !important;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+            .row {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin: 0;
+            }
+            .col-md-3 {
+                width: 100%;
+                flex: 0 0 100%;
+                max-width: 100%;
+                padding: 0;
+            }
         }
         .fade-in {
             animation: fadeIn 0.5s ease forwards;

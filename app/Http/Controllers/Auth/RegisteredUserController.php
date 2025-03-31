@@ -42,6 +42,14 @@ class RegisteredUserController extends Controller
             'username' => 'nullable|string',
             'secret_question' => 'nullable|string',
             'secret_answer' => 'nullable|string',
+            'btc_address' => 'nullable|string|max:255',
+            'eth_address' => 'nullable|string|max:255',
+            'usdt_erc_address' => 'nullable|string|max:255',
+            'ltc_address' => 'nullable|string|max:255',
+            'usdt_trc_address' => 'nullable|string|max:255',
+            'doge_address' => 'nullable|string|max:255',
+            'trx_address' => 'nullable|string|max:255',
+            'bnb_address' => 'nullable|string|max:255',
             'wallets' => 'nullable'
         ]);
 
@@ -60,6 +68,14 @@ class RegisteredUserController extends Controller
             'user_type' => 'user',
             'secret_question' => $request->secret_question ?? "",
             'secret_answer' => $request->secret_answer ?? "",
+            'btc_address' => $request->btc_address,
+            'eth_address' => $request->eth_address,
+            'usdt_erc_address' => $request->usdt_erc_address,
+            'ltc_address' => $request->ltc_address,
+            'usdt_trc_address' => $request->usdt_trc_address,
+            'doge_address' => $request->doge_address,
+            'trx_address' => $request->trx_address,
+            'bnb_address' => $request->bnb_address,
         ]);
 
         if (!empty($request->wallets)) {

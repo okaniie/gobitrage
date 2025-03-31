@@ -18,9 +18,56 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
+            
+            .grid-pattern {
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+                background-size: 20px 20px;
+            }
+            
+            .dark .grid-pattern {
+                background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            }
         </style>
     </head>
     <body class="antialiased">
+        <!-- Company Registration Certificate Section -->
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg max-w-4xl mx-auto mt-8 p-6">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">Licensed & Regulated</h2>
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 px-6">
+                    <img src="/images/company/acra-certificate.jpg" alt="ACRA Certificate" class="rounded-lg shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2 px-6 mt-8 md:mt-0">
+                    <h3 class="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Registered with ACRA Singapore</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        GOBITRAGE LTD is officially registered with the Accounting and Corporate Regulatory Authority (ACRA) of Singapore, demonstrating our commitment to regulatory compliance and transparency.
+                    </p>
+                    <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Company Registration: 202037221C
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Incorporated: August 1st, 2020
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Status: Exempt Private Company Limited by Shares
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
