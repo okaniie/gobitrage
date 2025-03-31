@@ -54,7 +54,7 @@
                         <p class="text-muted mb-0">Manage your withdrawal wallet addresses below.</p>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('user.profile.wallets') }}" class="row g-4">
+                        <form method="post" action="{{ route('user.profile') }}" class="row g-4">
                             @csrf
                             @foreach ($addresses as $address)
                                 <div class="form-group col-md-6">
