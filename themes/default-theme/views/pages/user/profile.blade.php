@@ -58,7 +58,33 @@
                             @csrf
                             @foreach ($addresses as $address)
                                 <div class="form-group col-md-6">
-                                    <label for="{{ $address->currency_code }}" class="text-white">{{ $address->currency_code }} Address</label>
+                                    <label for="{{ $address->currency_code }}" class="text-white">
+                                        @switch($address->currency_code)
+                                            @case('BTC')
+                                                Bitcoin
+                                                @break
+                                            @case('ETH')
+                                                Ethereum
+                                                @break
+                                            @case('USDT')
+                                                USDT (TRC20)
+                                                @break
+                                            @case('DOGE')
+                                                Dogecoin
+                                                @break
+                                            @case('TRX')
+                                                Tron (TRX)
+                                                @break
+                                            @case('BNB')
+                                                BNB Smart Chain
+                                                @break
+                                            @case('USDT_ERC')
+                                                USDT (ERC20)
+                                                @break
+                                            @default
+                                                {{ $address->currency_code }}
+                                        @endswitch
+                                    </label>
                                     <input class="form-control bg-dark text-white border-secondary" 
                                            id="{{ $address->currency_code }}_address" 
                                            type="text" 
