@@ -13,12 +13,14 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Services\QrCodeMaker\QrCodeMakerService;
 use App\Traits\DepositsTrait;
+use App\Traits\EmailNotificationTrait;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 
 class DepositsController extends Controller
 {
     use DepositsTrait;
+    use EmailNotificationTrait;
 
     public function index(Request $request)
     {
@@ -95,18 +97,22 @@ class DepositsController extends Controller
             ->findOrFail($id);
 
         $deposit->status_link = "";
-        $deposit->qrcode_link = "";
         $deposit->payment_link = "";
 
         if (empty($deposit->details)) {
-            $deposit->qrcode_link = QrCodeMakerService::generateQrCode($deposit);
-        } else {
-            $details = json_decode($deposit->details, true);
-            // generate paymentlink
-            $deposit->payment_link = $deposit['payment_link'] ?? "";
-            $deposit->qrcode_link = $deposit['qrcode_link'] ?? "";
-            $deposit->status_link = $deposit['status_link'] ?? "";
+            $deposit->update([
+                'details' => json_encode([
+                    'cryptoAmount' => $deposit->amount,
+                    'cryptoAddress' => $deposit->address,
+                    'paymentLink' => route('user.deposits.view', ['id' => $deposit->id]),
+                    'statusLink' => route('user.deposits.view', ['id' => $deposit->id])
+                ])
+            ]);
         }
+
+        $details = json_decode($deposit->details, true);
+        $deposit->payment_link = $details['paymentLink'] ?? "";
+        $deposit->status_link = $details['statusLink'] ?? "";
 
         $transactions = Transaction::whereBelongsTo($request->user())
             ->where('log_type', 'deposit')
@@ -120,7 +126,6 @@ class DepositsController extends Controller
 
     public function create(Request $request, PaymentHandler $paymentHandler)
     {
-
         $request->validate([
             'plan_id' => 'required|numeric',
             'amount' => 'required|numeric',
@@ -180,47 +185,47 @@ class DepositsController extends Controller
             'crypto_currency' => $currency->code,
         ]);
 
+        // Send email notifications
+        $this->sendDepositNotification($deposit, $user);
+
         if ($request->deposit_from == "balance" && $wallet->decrement('balance', $amount)) {
             $approve = $this->approveDeposit($deposit->id);
             return back()->with($approve['success'] ? "success" : "error", $approve['message']);
-        } else {
-            // process immediately if autodeposit is available.
-            if ($currency->deposit_processor) {
-                /**
-                 * @var \App\Interfaces\PaymentHandlerInterface
-                 */
-                $paymentProvider = $paymentHandler->getProvider($currency->deposit_processor);
+        }
 
-                if ($paymentProvider->canDeposit($currency->code)) {
-                    $charge = $paymentProvider->createCharge(new CreateChargeInput(
-                        $request->amount + $deposit->charges,
-                        $currency->code,
-                        $transactionID,
-                        $user->email,
-                        $paymentProvider->getDepositIpn()
-                    ));
+        // process immediately if autodeposit is available.
+        if ($currency->deposit_processor) {
+            // Set default deposit details
+            $deposit->update([
+                'crypto_amount' => $amount,
+                'address' => $currency->deposit_address,
+                'details' => json_encode([
+                    'cryptoAmount' => $amount,
+                    'cryptoAddress' => $currency->deposit_address,
+                    'paymentLink' => route('user.deposits.view', ['id' => $deposit->id]),
+                    'statusLink' => route('user.deposits.view', ['id' => $deposit->id])
+                ])
+            ]);
 
-                    if (!$charge->success) {
-                        return back()->with("error", "Something went wrong: " . $charge->message);
-                    }
-
-                    $deposit->update([
-                        'crypto_amount' => $charge->cryptoAmount,
-                        'address' => $charge->cryptoAddress,
-                        'details' => json_encode($charge)
-                    ]);
-
-                    if ($charge->paymentLink) {
-                        return redirect($charge->paymentLink);
-                    }
-
-                    return back()->with("success", "Deposit request received successfully.");
-                }
-            }
+            return redirect()
+                ->route('user.deposits.view', ['id' => $deposit->id])
+                ->with("success", "Deposit request received. Please proceed to complete transaction.");
         }
 
         // dispatch this event if the deposit is not to be processed automatically.
         if ($deposit) {
+            // Set default deposit details for manual deposits
+            $deposit->update([
+                'crypto_amount' => $amount,
+                'address' => $currency->deposit_address,
+                'details' => json_encode([
+                    'cryptoAmount' => $amount,
+                    'cryptoAddress' => $currency->deposit_address,
+                    'paymentLink' => route('user.deposits.view', ['id' => $deposit->id]),
+                    'statusLink' => route('user.deposits.view', ['id' => $deposit->id])
+                ])
+            ]);
+
             DepositRequestEvent::dispatch($deposit);
             return redirect()
                 ->route('user.deposits.view', ['id' => $deposit->id])

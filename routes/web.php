@@ -49,5 +49,8 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/user.php';
 
+// Test notifications route
+Route::get('/test-notifications', [App\Http\Controllers\TestController::class, 'testNotifications']);
+
 //catch-all page
 Route::get('/{page}', [FrontController::class, 'pageView'])->name('page');

@@ -27,6 +27,7 @@ services:
             - DB_PASSWORD=gobitrage_pass
         depends_on:
             - gobitrage_db
+            - mailhog
         command: php artisan serve --host=0.0.0.0 --port=8000
         networks:
             - gobitrage_network
@@ -44,6 +45,15 @@ services:
             - "3307:3306"
         volumes:
             - dbdata:/var/lib/mysql
+        networks:
+            - gobitrage_network
+
+    mailhog:
+        image: mailhog/mailhog
+        container_name: gobitrage_mailhog
+        ports:
+            - "1025:1025" # SMTP server
+            - "8025:8025" # Web interface
         networks:
             - gobitrage_network
 

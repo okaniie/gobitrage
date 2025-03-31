@@ -160,6 +160,38 @@ class EmailTemplateSeeder extends Seeder
             'content' => "Hello #name#,<br/><br/>A penalty of $#amount# has been deducted from your accoun. Please contact support for further assistance.<br/><br/>Thank you.",
             'description' => "Users will receive this e-mail when penalty is subtracted from account.<br/><strong>Personalization:</strong><br/>#name# - first and last user name.<br/>#username# - user login</br>#amount# - the amount</br>#site_url# - your site url<br/>#site_name# - your site name<br/>",
         ],
+
+        // deposit notifications
+        [
+            'code' => 'deposit--admin',
+            'title' => 'Admin - New Deposit',
+            'subject' => 'New Deposit Request',
+            'content' => "A new deposit request has been received.<br/><br/>User: #name# (#username#)<br/>Amount: #amount# #currency#<br/>Plan: #plan#<br/>Transaction ID: #transaction_id#<br/><br/>Please review and process this deposit request.",
+            'description' => "Admin will receive this e-mail when a new deposit request is made.<br/><strong>Personalization:</strong><br/>#name# - user's full name<br/>#username# - user's username<br/>#amount# - deposit amount<br/>#currency# - currency code<br/>#plan# - plan title<br/>#transaction_id# - transaction ID",
+        ],
+        [
+            'code' => 'deposit--user',
+            'title' => 'Deposit Request Received',
+            'subject' => 'Deposit Request Received - #site_name#',
+            'content' => "Hello #name#,<br/><br/>Your deposit request has been received.<br/><br/>Amount: #amount# #currency#<br/>Plan: #plan#<br/>Transaction ID: #transaction_id#<br/><br/>We will process your deposit request shortly.<br/><br/>Thank you for choosing #site_name#.",
+            'description' => "Users will receive this e-mail when they make a deposit request.<br/><strong>Personalization:</strong><br/>#name# - user's full name<br/>#amount# - deposit amount<br/>#currency# - currency code<br/>#plan# - plan title<br/>#transaction_id# - transaction ID<br/>#site_name# - your site name",
+        ],
+
+        // withdrawal notifications
+        [
+            'code' => 'withdrawal--admin',
+            'title' => 'Admin - New Withdrawal',
+            'subject' => 'New Withdrawal Request',
+            'content' => "A new withdrawal request has been received.<br/><br/>User: #name# (#username#)<br/>Amount: #amount# #currency#<br/>Address: #address#<br/>Transaction ID: #transaction_id#<br/><br/>Please review and process this withdrawal request.",
+            'description' => "Admin will receive this e-mail when a new withdrawal request is made.<br/><strong>Personalization:</strong><br/>#name# - user's full name<br/>#username# - user's username<br/>#amount# - withdrawal amount<br/>#currency# - currency code<br/>#address# - withdrawal address<br/>#transaction_id# - transaction ID",
+        ],
+        [
+            'code' => 'withdrawal--user',
+            'title' => 'Withdrawal Request Received',
+            'subject' => 'Withdrawal Request Received - #site_name#',
+            'content' => "Hello #name#,<br/><br/>Your withdrawal request has been received.<br/><br/>Amount: #amount# #currency#<br/>Address: #address#<br/>Transaction ID: #transaction_id#<br/><br/>We will process your withdrawal request shortly.<br/><br/>Thank you for choosing #site_name#.",
+            'description' => "Users will receive this e-mail when they make a withdrawal request.<br/><strong>Personalization:</strong><br/>#name# - user's full name<br/>#amount# - withdrawal amount<br/>#currency# - currency code<br/>#address# - withdrawal address<br/>#transaction_id# - transaction ID<br/>#site_name# - your site name",
+        ],
     ];
 
     /**

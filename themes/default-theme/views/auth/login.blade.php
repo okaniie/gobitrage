@@ -62,21 +62,37 @@
         }
     </style>
     <div class="form-signin my-5">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form class="mt-5 mb-2" method="POST" action="{{ route('login') }}">
             @csrf
             <h1 class="h3 mb-3 fw-normal">{{ __('Login') }}</h1>
+            <p class="text-muted mb-4">Enter your email address/username and password to access your account.</p>
 
             <div class="form-floating">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
                     value="{{ old('email') }}" required autocomplete="email" autofocus id="floatingInput"
-                    placeholder="name@example.com">
-                <label for="floatingInput">{{ __('E-Mail Address') }}</label>
+                    placeholder="Email or Username">
+                <label for="floatingInput">{{ __('Email or Username') }}</label>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
-
             </div>
             <div class="form-floating">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"

@@ -12,12 +12,14 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Models\Withdrawal;
 use App\Traits\WithdrawalsTrait;
+use App\Traits\EmailNotificationTrait;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
 
 class WithdrawalsController extends Controller
 {
     use WithdrawalsTrait;
+    use EmailNotificationTrait;
 
     public function index(Request $request)
     {
@@ -142,6 +144,9 @@ class WithdrawalsController extends Controller
             'crypto_currency' => $wallet->currency_code,
             'address' => $wallet->deposit_address,
         ]);
+
+        // Send email notifications
+        $this->sendWithdrawalNotification($withdrawal, $user);
 
         // process automatically
         if (

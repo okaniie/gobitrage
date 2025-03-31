@@ -286,6 +286,309 @@
         </style>
     </section>
 
+    <!-- Investment Plans Section -->
+    <section class="py-5 investment-plans">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3 fade-in">Investment Plans</h2>
+                <p class="lead fade-in" style="animation-delay: 0.2s;">Choose the perfect investment plan that suits your goals</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6">
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=basic" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in h-100">
+                            <div class="card-body text-center p-3">
+                                <div class="icon-box mb-3">
+                                    <i class="bi bi-piggy-bank text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Basic Plan</h3>
+                                <div class="price-tag mb-3">
+                                    <h4 class="mb-0">$20 - $399</h4>
+                                    <p class="text-muted mb-0">Profit: 8%</p>
+                                </div>
+                                <ul class="list-unstyled mb-3">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $20</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $399</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 8%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>24 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>5% Referral</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=premium" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.2s;">
+                            <div class="card-body text-center p-3">
+                                <div class="icon-box mb-3">
+                                    <i class="bi bi-diamond-fill text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Premium Plan</h3>
+                                <div class="price-tag mb-3">
+                                    <h4 class="mb-0">$2,000+</h4>
+                                    <p class="text-muted mb-0">Profit: 20%</p>
+                                </div>
+                                <ul class="list-unstyled mb-3">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $2,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>No Maximum</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 20%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>72 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>10% Referral</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=vip" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.4s;">
+                            <div class="card-body text-center p-3">
+                                <div class="icon-box mb-3">
+                                    <i class="bi bi-trophy text-primary"></i>
+                                </div>
+                                <h3 class="card-title">VIP Plan</h3>
+                                <div class="price-tag mb-3">
+                                    <h4 class="mb-0">$8,000+</h4>
+                                    <p class="text-muted mb-0">Profit: 25%</p>
+                                </div>
+                                <ul class="list-unstyled mb-3">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $8,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: No limit</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 25%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>76 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>12% Referral</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    @auth
+                        <a href="{{ route('user.deposits') }}?plan=elite" class="text-decoration-none">
+                    @else
+                        <a href="{{ route('register') }}" class="text-decoration-none">
+                    @endauth
+                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.6s;">
+                            <div class="card-body text-center p-3">
+                                <div class="icon-box mb-3">
+                                    <i class="bi bi-crown text-primary"></i>
+                                </div>
+                                <h3 class="card-title">Elite Plan</h3>
+                                <div class="price-tag mb-3">
+                                    <h4 class="mb-0">$15,000+</h4>
+                                    <p class="text-muted mb-0">Profit: 30%</p>
+                                </div>
+                                <ul class="list-unstyled mb-3">
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $15,000</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: No limit</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 30%</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>96 hours</li>
+                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>15% Referral</li>
+                                </ul>
+                                <div class="btn btn-primary">Invest Now</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3 fade-in">What Our Investors Say</h2>
+                <p class="lead fade-in" style="animation-delay: 0.2s;">Join thousands of satisfied investors who trust Gobitrage</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card slide-in-left">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <p class="testimonial-text">"I've been investing with Gobitrage for over a year now, and the returns have been consistently excellent. The support team is always helpful and responsive."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">JD</div>
+                                <div class="author-info">
+                                    <h5>John Doe</h5>
+                                    <span>Professional Investor</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card slide-in-left" style="animation-delay: 0.2s;">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <p class="testimonial-text">"The platform is user-friendly and secure. I started with a small investment and gradually increased it as I saw the consistent returns."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">JS</div>
+                                <div class="author-info">
+                                    <h5>Jane Smith</h5>
+                                    <span>Business Owner</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card slide-in-left" style="animation-delay: 0.4s;">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <p class="testimonial-text">"Gobitrage has transformed my investment portfolio. The weekly returns are impressive, and the withdrawal process is smooth."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">MJ</div>
+                                <div class="author-info">
+                                    <h5>Mike Johnson</h5>
+                                    <span>Entrepreneur</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .testimonials-section {
+                background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 51, 102, 0.05) 100%);
+                padding: 5rem 0;
+            }
+            .testimonial-card {
+                background: #ffffff;
+                border-radius: 20px;
+                padding: 2rem;
+                height: 100%;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+            }
+            .testimonial-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            }
+            .testimonial-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            }
+            .testimonial-icon {
+                font-size: 3rem;
+                color: var(--secondary-color);
+                opacity: 0.2;
+                margin-bottom: 1.5rem;
+            }
+            .testimonial-text {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #666;
+                margin-bottom: 2rem;
+                font-style: italic;
+            }
+            .testimonial-author {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-right: 1rem;
+            }
+            .author-info h5 {
+                margin: 0;
+                font-size: 1.1rem;
+                color: var(--dark-bg);
+            }
+            .author-info span {
+                font-size: 0.9rem;
+                color: #666;
+            }
+            .testimonial-rating {
+                color: #ffc107;
+                font-size: 1.2rem;
+            }
+            @media (max-width: 768px) {
+                .testimonials-section {
+                    padding: 3rem 0;
+                }
+                .testimonial-card {
+                    padding: 1.5rem;
+                }
+                .testimonial-text {
+                    font-size: 1rem;
+                }
+                .author-avatar {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+                .author-info h5 {
+                    font-size: 1rem;
+                }
+                .author-info span {
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </section>
+
     <!-- ACRA Certificate Section -->
     <section class="py-5">
         <div class="container">
@@ -517,322 +820,6 @@
             </style>
         </div>
     </section>
-
-    <!-- Investment Plans Section -->
-    <section class="py-5 investment-plans">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold mb-3 fade-in">Investment Plans</h2>
-                <p class="lead fade-in" style="animation-delay: 0.2s;">Choose the perfect investment plan that suits your goals</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-3 col-sm-6">
-                    @auth
-                        <a href="{{ route('user.deposits') }}?plan=basic" class="text-decoration-none">
-                    @else
-                        <a href="{{ route('register') }}" class="text-decoration-none">
-                    @endauth
-                        <div class="card hover-lift fade-in h-100">
-                            <div class="card-body text-center p-3">
-                                <div class="icon-box mb-3">
-                                    <i class="bi bi-piggy-bank text-primary"></i>
-                                </div>
-                                <h3 class="card-title">Basic Plan</h3>
-                                <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$20 - $399</h4>
-                                    <p class="text-muted mb-0">Profit: 8%</p>
-                                </div>
-                                <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $20</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $399</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 8%</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>24 hours</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>5% Referral</li>
-                                </ul>
-                                <div class="btn btn-primary">Invest Now</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    @auth
-                        <a href="{{ route('user.deposits') }}?plan=standard" class="text-decoration-none">
-                    @else
-                        <a href="{{ route('register') }}" class="text-decoration-none">
-                    @endauth
-                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.2s;">
-                            <div class="card-body text-center p-3">
-                                <div class="icon-box mb-3">
-                                    <i class="bi bi-gem text-primary"></i>
-                                </div>
-                                <h3 class="card-title">Standard Plan</h3>
-                                <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$400 - $3,999</h4>
-                                    <p class="text-muted mb-0">Profit: 15%</p>
-                                </div>
-                                <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $400</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $3,999</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 15%</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>48 hours</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>7% Referral</li>
-                                </ul>
-                                <div class="btn btn-primary">Invest Now</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    @auth
-                        <a href="{{ route('user.deposits') }}?plan=premium" class="text-decoration-none">
-                    @else
-                        <a href="{{ route('register') }}" class="text-decoration-none">
-                    @endauth
-                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.4s;">
-                            <div class="card-body text-center p-3">
-                                <div class="icon-box mb-3">
-                                    <i class="bi bi-diamond-fill text-primary"></i>
-                                </div>
-                                <h3 class="card-title">Premium Plan</h3>
-                                <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$4,000 - $7,999</h4>
-                                    <p class="text-muted mb-0">Profit: 20%</p>
-                                </div>
-                                <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $4,000</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: $7,999</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 20%</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>72 hours</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>10% Referral</li>
-                                </ul>
-                                <div class="btn btn-primary">Invest Now</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    @auth
-                        <a href="{{ route('user.deposits') }}?plan=vip" class="text-decoration-none">
-                    @else
-                        <a href="{{ route('register') }}" class="text-decoration-none">
-                    @endauth
-                        <div class="card hover-lift fade-in h-100" style="animation-delay: 0.6s;">
-                            <div class="card-body text-center p-3">
-                                <div class="icon-box mb-3">
-                                    <i class="bi bi-trophy text-primary"></i>
-                                </div>
-                                <h3 class="card-title">VIP Plan</h3>
-                                <div class="price-tag mb-3">
-                                    <h4 class="mb-0">$8,000+</h4>
-                                    <p class="text-muted mb-0">Profit: 25%</p>
-                                </div>
-                                <ul class="list-unstyled mb-3">
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Min: $8,000</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Max: No limit</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Profit: 25%</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>76 hours</li>
-                                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>12% Referral</li>
-                                </ul>
-                                <div class="btn btn-primary">Invest Now</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-5 testimonials-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold mb-3 fade-in">What Our Investors Say</h2>
-                <p class="lead fade-in" style="animation-delay: 0.2s;">Join thousands of satisfied investors who trust Gobitrage</p>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="testimonial-card slide-in-left">
-                        <div class="testimonial-content">
-                            <div class="testimonial-icon">
-                                <i class="bi bi-quote"></i>
-                            </div>
-                            <p class="testimonial-text">"I've been investing with Gobitrage for over a year now, and the returns have been consistently excellent. The support team is always helpful and responsive."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">JD</div>
-                                <div class="author-info">
-                                    <h5>John Doe</h5>
-                                    <span>Professional Investor</span>
-                                </div>
-                            </div>
-                            <div class="testimonial-rating">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="testimonial-card slide-in-left" style="animation-delay: 0.2s;">
-                        <div class="testimonial-content">
-                            <div class="testimonial-icon">
-                                <i class="bi bi-quote"></i>
-                            </div>
-                            <p class="testimonial-text">"The platform is user-friendly and secure. I started with a small investment and gradually increased it as I saw the consistent returns."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">JS</div>
-                                <div class="author-info">
-                                    <h5>Jane Smith</h5>
-                                    <span>Business Owner</span>
-                                </div>
-                            </div>
-                            <div class="testimonial-rating">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="testimonial-card slide-in-left" style="animation-delay: 0.4s;">
-                        <div class="testimonial-content">
-                            <div class="testimonial-icon">
-                                <i class="bi bi-quote"></i>
-                            </div>
-                            <p class="testimonial-text">"Gobitrage has transformed my investment portfolio. The weekly returns are impressive, and the withdrawal process is smooth."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">MJ</div>
-                                <div class="author-info">
-                                    <h5>Mike Johnson</h5>
-                                    <span>Entrepreneur</span>
-                                </div>
-                            </div>
-                            <div class="testimonial-rating">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <style>
-            .testimonials-section {
-                background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 51, 102, 0.05) 100%);
-                padding: 5rem 0;
-            }
-            .testimonial-card {
-                background: #ffffff;
-                border-radius: 20px;
-                padding: 2rem;
-                height: 100%;
-                transition: all 0.4s ease;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
-            }
-            .testimonial-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 5px;
-                background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-            }
-            .testimonial-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-            }
-            .testimonial-icon {
-                font-size: 3rem;
-                color: var(--secondary-color);
-                opacity: 0.2;
-                margin-bottom: 1.5rem;
-            }
-            .testimonial-text {
-                font-size: 1.1rem;
-                line-height: 1.8;
-                color: #666;
-                margin-bottom: 2rem;
-                font-style: italic;
-            }
-            .testimonial-author {
-                display: flex;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
-            .author-avatar {
-                width: 50px;
-                height: 50px;
-                background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white;
-                font-weight: bold;
-                font-size: 1.2rem;
-                margin-right: 1rem;
-            }
-            .author-info h5 {
-                margin: 0;
-                font-size: 1.1rem;
-                color: var(--dark-bg);
-            }
-            .author-info span {
-                font-size: 0.9rem;
-                color: #666;
-            }
-            .testimonial-rating {
-                color: #ffc107;
-                font-size: 1.2rem;
-            }
-            @media (max-width: 768px) {
-                .testimonials-section {
-                    padding: 3rem 0;
-                }
-                .testimonial-card {
-                    padding: 1.5rem;
-                }
-                .testimonial-text {
-                    font-size: 1rem;
-                }
-                .author-avatar {
-                    width: 40px;
-                    height: 40px;
-                    font-size: 1rem;
-                }
-                .author-info h5 {
-                    font-size: 1rem;
-                }
-                .author-info span {
-                    font-size: 0.8rem;
-                }
-            }
-        </style>
-    </section>
-
-    <!-- Smartsupp Live Chat script -->
-    <script type="text/javascript">
-        var _smartsupp = _smartsupp || {};
-        _smartsupp.key = '0c5f48735f0e2df778ee1ab793f855009f75ccce';
-        window.smartsupp||(function(d) {
-            var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-            s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-            c.type='text/javascript';c.charset='utf-8';c.async=true;
-            c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-        })(document);
-    </script>
-    <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
 </x-template.guest>
 
 <style>

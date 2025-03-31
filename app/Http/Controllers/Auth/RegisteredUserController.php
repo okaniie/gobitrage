@@ -94,8 +94,6 @@ class RegisteredUserController extends Controller
             }
         }
 
-        Auth::login($user);
-
         if (!empty($referrer)) {
             Referral::create([
                 'referral_user_id' => $referrer->id,
@@ -111,6 +109,6 @@ class RegisteredUserController extends Controller
             return redirect(route('admin.dashboard'));
         }
 
-        return redirect(route('user.dashboard'));
+        return redirect(route('login'))->with('status', 'Registration successful! Please login.');
     }
 }
