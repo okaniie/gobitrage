@@ -1,135 +1,242 @@
 <x-template.admin title="Dashboard" slug="dashboard">
-    <h3>Information</h3>
-    <table class="form">
-        <tbody>
-            <tr>
-                <th>Users:</th>
-                <td>
-                    <a data-hlp="Total users registered in the system"
-                        class="hlp badge badge-info"><?= $users['active'] ?></a>
-                    <a data-hlp="How many active users does your system contain"
-                        class="hlp badge badge-success"><?= $users['active'] ?>
-                        <?php if ($users['total'] !== 0) : ?>
-                        (<?php echo number_format(($users['active'] / $users['total']) * 100, 2); ?>%)
-                        <?php endif; ?>
-                    </a>
-                    <a data-hlp="How many users are disabled (cannot login and can not earn any funds from principal)"
-                        class="hlp badge badge-danger">
-                        <?= $users['blocked'] ?>
-                        <?php if ($users['total'] !== 0) : ?>
-                        (<?php echo number_format(($users['blocked'] / $users['total']) * 100, 2); ?>%)
-                        <?php endif; ?>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th>Investment Packages:</th>
-                <td> <a data-hlp="Active investment packages number. Active users earn if they have deposited funds in these packages."
-                        class="hlp badge badge-success"><?= $plans ?></a> </td>
-            </tr>
-            <tr>
-                <th>Withdrawals</th>
-                <td>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Currency</th>
-                                <th style="text-align: left;">Status</th>
-                                <th style="text-align: left;">Total</th>
-                                <th style="text-align: left;">Amount</th>
-                            </tr>
-                            <?php foreach ($withdrawals as $key => $item) : ?>
-                            <tr class="<?= $key % 2 ? 'row2' : 'row1' ?>">
-                                <th><img alt="{{ $item->currency }}" /></th>
-                                <td>
-                                    <a class="link strong"
-                                        href="{{ route('admin.withdrawals', ['status' => $item->status, 'crypto_currency' => $item->currency]) }}">
-                                        {{ $item->status }}
-                                    </a>
-                                </td>
-                                <td class="strong">{{ $item->total }}</td>
-                                <td class="strong text-right text-{{ $item->status }}">
-                                    ${{ number_format($item->amount, 2) }}</td>
-                            </tr>
-                            <?php endforeach; ?>
+    <div class="dashboard-container">
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Total Users</h6>
+                        <h3 class="card-title mb-0">{{ $users['total'] }}</h3>
+                        <div class="mt-2">
+                            <span class="badge bg-success">{{ $users['active'] }} Active</span>
+                            <span class="badge bg-danger">{{ $users['blocked'] }} Blocked</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Investment Packages</h6>
+                        <h3 class="card-title mb-0">{{ $plans }}</h3>
+                        <p class="card-text text-muted mb-0">Active packages</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Total Referrals</h6>
+                        <h3 class="card-title mb-0">{{ $referrals['total'] }}</h3>
+                        <p class="card-text text-muted mb-0">Bonus: {{ number_format($referrals['amount'], 2) }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">Pending Withdrawals</h6>
+                        <h3 class="card-title mb-0">
+                            @php
+                                $pending = collect($withdrawals)->where('status', 'pending')->sum('total');
+                            @endphp
+                            {{ $pending }}
+                        </h3>
+                        <p class="card-text text-muted mb-0">Awaiting approval</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <th>Deposits</th>
-                <td>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Currency</th>
-                                <th style="text-align: left;">Status</th>
-                                <th style="text-align: left;">Total</th>
-                                <th style="text-align: left;">Amount</th>
-                            </tr>
-                            <?php foreach ($deposits as $key => $item) : ?>
-                            <tr class="<?= $key % 2 ? 'row2' : 'row1' ?>">
-                                <th><img alt="{{ $item->currency }}" /></th>
-                                <td>
-                                    <a class="link strong"
-                                        href="{{ route('admin.deposits', ['status' => $item->status, 'crypto_currency' => $item->currency]) }}">
-                                        {{ ucwords($item->status) }}
-                                    </a>
-                                </td>
-                                <td class="strong">{{ $item->total }}</td>
-                                <td class="strong text-right text-{{ $item->status }}">
-                                    ${{ number_format($item->amount, 2) }}</td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <th>Transactions</th>
-                <td>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Currency</th>
-                                <th style="text-align: left;">Type</th>
-                                <th style="text-align: left;">Total</th>
-                                <th style="text-align: left;">Amount</th>
-                            </tr>
-                            <?php foreach ($transactions as $key => $item) : ?>
-                            <tr class="<?= $key % 2 ? 'row2' : 'row1' ?>">
-                                <th><img alt="<?= $item->currency ?>" /></th>
-                                <td>
-                                    <a class="link strong text-<?= $item->type ?>"
-                                        href="{{ route('admin.transactions', ['log_type' => $item->type, 'crypto_currency' => $item->currency]) }}">
-                                        {{ ucwords($item->type) }}
-                                    </a>
-                                </td>
-                                <td class="strong">{{ $item->total }}</td>
-                                <td class="strong text-right text-{{ $item->type }}">
-                                    ${{ number_format($item->amount, 2) }}</td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <!-- Quick Actions -->
+        <div class="row g-4 mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="{{ route('admin.withdrawals', ['status' => 'pending']) }}" class="btn btn-primary">
+                                <i class="bi bi-cash-stack"></i> Process Withdrawals
+                            </a>
+                            <a href="{{ route('admin.deposits', ['status' => 'pending']) }}" class="btn btn-success">
+                                <i class="bi bi-wallet2"></i> Review Deposits
+                            </a>
+                            <a href="{{ route('admin.users') }}" class="btn btn-info">
+                                <i class="bi bi-people"></i> Manage Users
+                            </a>
+                            <a href="{{ route('admin.settings') }}" class="btn btn-secondary">
+                                <i class="bi bi-gear"></i> System Settings
+                    </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="alert alert-warning">
-        Welcome to the Crypto-HYIP Pro Admin Area!<br>
-        You can see help messages on almost all pages of the admin area in this part.<br> <br>
-        You can see how many members are registered in the system on this page.<br>
-        System supports 2 types of users:<br>
-        <li>Active users. These users can login to the members area and receive earnings.</li>
-        <li>Disabled users. These users can not login to the members area and will not receive any earnings.</li> <br>
-        User becomes active when registering and only administrator can change status of any registered user. You can
-        see
-        how many users are active and disabled in the system at the top of this page. <br> <br>
-        Investment packages:<br> You can create unlimited sets of investment packages with any settings and payout
-        options<br><br>
+        <!-- Recent Activity -->
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Recent Deposits</h5>
+                        <a href="{{ route('admin.deposits') }}" class="btn btn-sm btn-link">View All</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+            </tr>
+                                </thead>
+                        <tbody>
+                                    @foreach($deposits->take(5) as $deposit)
+                                    <tr>
+                                        <td>{{ $deposit->user->username }}</td>
+                                        <td>{{ number_format($deposit->amount, 2) }} {{ $deposit->currency }}</td>
+                                <td>
+                                            <span class="badge bg-{{ $deposit->status === 'completed' ? 'success' : 'warning' }}">
+                                                {{ ucfirst($deposit->status) }}
+                                            </span>
+                                </td>
+                                        <td>{{ $deposit->created_at->format('M d, Y') }}</td>
+                            </tr>
+                                    @endforeach
+                        </tbody>
+                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">Recent Withdrawals</h5>
+                        <a href="{{ route('admin.withdrawals') }}" class="btn btn-sm btn-link">View All</a>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                            </tr>
+                                </thead>
+                        <tbody>
+                                    @foreach($withdrawals->take(5) as $withdrawal)
+                                    <tr>
+                                        <td>{{ $withdrawal->user->username }}</td>
+                                        <td>{{ number_format($withdrawal->amount, 2) }} {{ $withdrawal->currency }}</td>
+                                <td>
+                                            <span class="badge bg-{{ $withdrawal->status === 'completed' ? 'success' : 'warning' }}">
+                                                {{ ucfirst($withdrawal->status) }}
+                                            </span>
+                                </td>
+                                        <td>{{ $withdrawal->created_at->format('M d, Y') }}</td>
+                            </tr>
+                                    @endforeach
+                        </tbody>
+                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Section -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <h5 class="alert-heading">Welcome to the Admin Dashboard!</h5>
+                    <p class="mb-0">Here you can manage your system's users, transactions, and settings. Use the navigation menu on the left to access different sections.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <style>
+    .dashboard-container {
+        padding: 1rem;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+    }
+
+    .card-header {
+        background: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    .table th {
+        border-top: none;
+        font-weight: 600;
+    }
+
+    .badge {
+        padding: 0.5em 0.75em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .card {
+            background: #2d2d2d;
+            border-color: #404040;
+        }
+
+        .card-header {
+            border-color: #404040;
+        }
+
+        .table {
+            color: #fff;
+        }
+
+        .table th,
+        .table td {
+            border-color: #404040;
+        }
+
+        .text-muted {
+            color: #adb5bd !important;
+        }
+
+        .alert-info {
+            background-color: #1a1a1a;
+            border-color: #404040;
+            color: #fff;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            padding: 0.5rem;
+        }
+
+        .card {
+            margin-bottom: 1rem;
+        }
+
+        .table-responsive {
+            margin: 0 -1rem;
+        }
+    }
+    </style>
 </x-template.admin>

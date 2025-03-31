@@ -34,31 +34,34 @@ class AuthenticatedSessionController extends Controller
     {
         $request->ensureIsNotRateLimited();
 
-        if (!Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            // try username
-            $failed = true;
-            $user = User::where('username', $request->email)->first();
-            if ($user) {
-                if (!Auth::attempt(['email' => $user->email, 'password' => $request->password], $request->filled('remember'))) {
-                    $failed = false;
-                }
-            }
+        // First try email login
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            $request->session()->regenerate();
 
-            if ($failed) {
-                RateLimiter::hit($request->throttleKey());
-                throw ValidationException::withMessages([
-                    'email' => __('auth.failed'),
-                ]);
+            if ($request->user()->user_type == "admin") {
+                event(new AdminLoggedInEvent);
+                return redirect(route('admin.dashboard'));
             }
+            return redirect(route('user.dashboard'));
         }
 
-        $request->session()->regenerate();
+        // If email login fails, try username
+        $user = User::where('username', $request->email)->first();
+        if ($user && Auth::attempt(['email' => $user->email, 'password' => $request->password], $request->filled('remember'))) {
+            $request->session()->regenerate();
 
-        if ($request->user()->user_type == "admin") {
-            event(new AdminLoggedInEvent);
-            return redirect(route('admin.dashboard'));
+            if ($request->user()->user_type == "admin") {
+                event(new AdminLoggedInEvent);
+                return redirect(route('admin.dashboard'));
+            }
+            return redirect(route('user.dashboard'));
         }
-        return redirect(route('user.dashboard'));
+
+        // If both attempts fail, increment rate limiter and throw error
+        RateLimiter::hit($request->throttleKey());
+        throw ValidationException::withMessages([
+            'email' => __('auth.failed'),
+        ]);
     }
 
     /**
