@@ -1,5 +1,5 @@
 <x-template.user title="Dashboard" slug="dashboard">
-    <meta name="viewport" content="width=device-width, initial-scale=0.7, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <!-- TradingView Widget BEGIN -->
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     
@@ -94,12 +94,51 @@
             --text-secondary: #5d6588;
         }
 
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
         body {
             background: #0a0b0e !important;
             min-height: 100vh;
             min-height: calc(var(--vh, 1vh) * 100);
             overflow-x: hidden;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Responsive Font Sizes */
+        @media screen and (min-width: 1920px) {
+            html {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 1366px) {
+            html {
+                font-size: 15px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            html {
+                font-size: 13px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
         }
 
         .dashboard-wrapper {
