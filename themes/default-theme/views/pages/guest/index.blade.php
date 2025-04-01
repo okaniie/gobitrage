@@ -606,17 +606,7 @@
         </style>
     </section>
 
-    <!-- ACRA Certificate Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center display-5 fw-bold mb-4">Licensed & Regulated</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Features Section -->
     <section class="py-5 features-section">
