@@ -1,108 +1,112 @@
 <x-template.admin title="Plan Categories" slug="plan-categories">
-    <h3>Investment Packages</h3>
+    <div class="container-fluid">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3 class="mb-0">Investment Packages</h3>
+            </div>
+        </div>
 
-    <table class="list" width="100%" cellspacing="1" cellpadding="2" border="0">
-        <tbody>
-            <tr>
-                <th><b>Package</b></th>
-                <th><b>Deposit (US$)</b></th>
-                <th><b>Profit (%)</b></th>
-                <th><b>-</b></th>
-            </tr>
-            @foreach ($plan_categories as $key => $category)
-                <tr class="row1">
-                    <td><strong class="font-18">{{ $category->title }}</strong></td>
-                    <td colspan="2" style="text-align: center">{{ $category->description }}</td>
-                    <td class="menutxt" bgcolor="FFF9B3" align="right">
-                        <a href="{{ route('admin.plan-categories.delete', ['id' => $category->id]) }}"
-                            onclick="return deleteRecord()">[delete]</a>
-                        @if ($key > 0)
-                            <a
-                                href="{{ route('admin.plan-categories.move', ['id' => $category->id, 'dir' => 'up']) }}">[up]</a>
-                        @endif
-                        @if ($key < count($plan_categories)-1)
-                            <a
-                                href="{{ route('admin.plan-categories.move', ['id' => $category->id, 'dir' => 'down']) }}">[down]</a>
-                        @endif
-                    </td>
-                </tr>
-                @foreach ($category->plans as $key => $plan)
-                    <tr class="row2">
-                        <td>
-                            {{ $plan->title }}<br />
-                            @if ($plan->has_badge == 1)
-                                <small class="badge badge-approved">Featured</small>
-                            @endif
-                        </td>
-                        <td style="text-align: right">
-                            ${{ number_format($plan->minimum, 2) }} -
-                            {{ $plan->maximum == 0 ? 'above' : '$' . number_format($plan->maximum, 2) }}
-                        </td>
-                        <td style="text-align: right">
-                            {{ $plan->percentage }}%
-                        </td>
-                        <td class="menutxt" bgcolor="FFF9B3" align="right">
-                            <a href="{{ route('admin.plans.view', ['id' => $plan->id]) }}">[edit]</a>
-                            <a href="{{ route('admin.plans.delete', ['id' => $plan->id]) }}"
-                                onclick="return deleteRecord()">[delete]</a>
-                        </td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td colspan="4" style="text-align: right">
-                        <form method="get" action="{{ route('admin.plans.view', ['id' => 'new']) }}">
-                            <input type="hidden" name="plan_category_id" value="{{ $category->id }}" />
-                            <input type="submit" value="+ Add Plan" class="sbmt" size="15"  style="background-color:#0005"/>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Package</th>
+                                        <th>Deposit (US$)</th>
+                                        <th>Profit (%)</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($plan_categories as $key => $category)
+                                        <tr>
+                                            <td>
+                                                <strong class="font-18">{{ $category->title }}</strong>
+                                                <div class="text-muted">{{ $category->description }}</div>
+                                            </td>
+                                            <td colspan="2" class="text-center">
+                                                @foreach ($category->plans as $plan)
+                                                    <div class="mb-2">
+                                                        <strong>{{ $plan->title }}</strong>
+                                                        @if ($plan->has_badge == 1)
+                                                            <span class="badge badge-approved">Featured</span>
+                                                        @endif
+                                                        <div class="text-muted">
+                                                            ${{ number_format($plan->minimum, 2) }} -
+                                                            {{ $plan->maximum == 0 ? 'above' : '$' . number_format($plan->maximum, 2) }}
+                                                        </div>
+                                                        <div class="text-muted">{{ $plan->percentage }}%</div>
+                                                    </div>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="{{ route('admin.plan-categories.delete', ['id' => $category->id]) }}"
+                                                        onclick="return deleteRecord()" class="btn btn-sm btn-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                    @if ($key > 0)
+                                                        <a href="{{ route('admin.plan-categories.move', ['id' => $category->id, 'dir' => 'up']) }}"
+                                                            class="btn btn-sm btn-secondary">
+                                                            <i class="bi bi-arrow-up"></i>
+                                                        </a>
+                                                    @endif
+                                                    @if ($key < count($plan_categories)-1)
+                                                        <a href="{{ route('admin.plan-categories.move', ['id' => $category->id, 'dir' => 'down']) }}"
+                                                            class="btn btn-sm btn-secondary">
+                                                            <i class="bi bi-arrow-down"></i>
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">New Package</h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Package Title</label>
+                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') }}</textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </form>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <hr />
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <table class="forTexts" width="100%" height="100%" cellspacing="0" cellpadding="10" border="0">
-        <tbody>
-            <tr>
-                <td width="100%" valign="top" height="100%">
-                    <h3>New Package</h3>
-                    <form method="post" action="">
-                        @csrf
-                        <table class="form settings">
-                            <tbody>
-                                <tr>
-                                    <th colspan="2"></th>
-                                </tr>
-                                <tr>
-                                    <th>Package Title:</th>
-                                    <td><input type="text" name="title" value="{{ old('title') }}" class="inpts"
-                                            style="width:98%"></td>
-                                </tr>
-
-                                <tr>
-                                    <th>Description:</th>
-                                    <td>
-                                        <textarea name="description" class="inpts" style="width:98%">{{ old('description') }}</textarea>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <center> <input type="submit" value="Submit" class="btn btn-success sbmt"> </center>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <br />
-
-    <div class="alert alert-warning"> Investment Packages:<br>
-        This is a logical grouping of Plans.<br><br>
-        <strong>Note:</strong> Deleting an investment package will delete all plans under it.
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="alert alert-warning">
+                    <h5 class="alert-heading">Investment Packages</h5>
+                    <p class="mb-0">This is a logical grouping of Plans.</p>
+                    <hr>
+                    <p class="mb-0"><strong>Note:</strong> Deleting an investment package will delete all plans under it.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 </x-template.admin>

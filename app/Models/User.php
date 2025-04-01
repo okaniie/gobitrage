@@ -27,6 +27,14 @@ class User extends Authenticatable
         'secret_answer',
         'status',
         'auto_withdrawal',
+        'btc_address',
+        'eth_address',
+        'usdt_erc_address',
+        'ltc_address',
+        'usdt_trc_address',
+        'doge_address',
+        'trx_address',
+        'bnb_address',
     ];
 
     /**

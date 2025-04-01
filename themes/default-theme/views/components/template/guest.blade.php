@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Gobitrage">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     {{-- <meta name="description" content="{block name=description}{$siteInfo.description}{/block}"> --}}
     {{-- <meta name="keywords" content="{block name=keywords}{$siteInfo.keywords}{/block}"> --}}
     <title>Gobitrage - Your Trusted Investment Platform</title>
@@ -18,26 +18,24 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- View Mode Styles -->
+    <link rel="stylesheet" href="{{ asset('assets/css/view-mode.css') }}">
+    
     <!-- google translate -->
     <style type="text/css">
         .goog-logo-link {
             display: none !important;
         }
-
         .goog-te-gadget {
             color: transparent !important;
         }
-
         .goog-te-gadget .goog-te-combo {
-            color: blue !important;
+            color: var(--text-color) !important;
         }
-
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
-
         body {
             top: 0px !important;
         }
@@ -348,9 +346,13 @@
     <x-navigation.guest />
     <x-general.crypto-ticker />
     <main>
-        {{ $slot }}
+        <div class="main-content">
+            <div id="google_translate_element"></div>
+            {{ $slot }}
+        </div>
     </main>
     <x-footer.guest />
+
     <!--
       Javascript Files
       ==================================================
@@ -358,7 +360,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    
+    <!-- View Mode Script -->
+    <script src="{{ asset('assets/js/view-mode.js') }}"></script>
+    
     {{ \App\Models\Setting::get('footer_code') }}
+
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+    (function(w,d,v3){
+    w.chaportConfig = {
+      appId : '67eb37fb4492a3ec53055f19'
+    };
+
+    if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';
+    
+    // Add error handling
+    s.onerror = function() {
+        console.error('Failed to load Chaport chat script');
+    };
+    
+    s.onload = function() {
+        console.log('Chaport chat script loaded successfully');
+    };
+    
+    var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+    </script>
+    <!-- End of Chaport Live Chat code -->
+
     <!--Body Inner end-->
     <script>
         // Intersection Observer for animations
@@ -378,6 +407,19 @@
                 observer.observe(el);
             });
         });
+    </script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+
+    <script type="text/javascript" 
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 </body>
 
