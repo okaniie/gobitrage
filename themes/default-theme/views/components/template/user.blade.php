@@ -14,6 +14,16 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link href="{{ asset('themes/default-theme/css/user-style.css') }}" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+        .nav-btn {
+        background: linear-gradient(45deg, rgba(0, 255, 136, 0.8), rgba(255, 51, 102, 0.8));
+        padding: 1rem;
+        border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    </style>
 </head>
 
 <body>

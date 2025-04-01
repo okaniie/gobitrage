@@ -13,7 +13,7 @@
         border-radius: 0;
     }
 </style>
-<div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem; border-right: 2px solid #0d6efd">
+<div class="d-flex flex-column flex-shrink-0 bg-light" style="border-right: 2px solid #0d6efd">
     <a href="{{ route('user.dashboard') }}" class="d-block p-3 link-dark text-decoration-none" title="Icon-only"
         data-bs-toggle="tooltip" data-bs-placement="right">
         <svg class="bi" width="40" height="32">
@@ -25,16 +25,17 @@
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
         <li>
             <a href="{{ route('user.dashboard') }}"
-                class="nav-link {{ $slug == 'dashboard' ? 'active' : '' }} py-3 border-top border-bottom"
+             class="flex gap-3 px-3 py-2 {{ $slug == 'dashboard' ? 'nav-btn' : '' }}"
                 title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard">
                     <use xlink:href="#speedometer" />
                 </svg>
-            </a>
+                <p>Account</p>
+             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('user.deposits') }}"
-                class="nav-link {{ $slug == 'deposits' ? 'active' : '' }} py-3 border-bottom" aria-current="page"
+                class="flex gap-3 {{ $slug == 'deposits' ? 'nav-btn' : '' }} py-3 border-bottom" aria-current="page"
                 title="Deposits" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi" width="24" height="24" role="img" aria-label="Deposits">
                     <use xlink:href="#bank-fill" />
@@ -43,7 +44,7 @@
         </li>
         <li>
             <a href="{{ route('user.withdrawals') }}"
-                class="nav-link {{ $slug == 'withdrawals' ? 'active' : '' }} py-3 border-bottom" title="Withdrawals"
+                class="flex gap-3 {{ $slug == 'withdrawals' ? 'nav-btn' : '' }} py-3 border-bottom" title="Withdrawals"
                 data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg role="img" aria-label="Withdrawals" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" viewBox="0 0 24 24">
@@ -54,7 +55,7 @@
         </li>
         <li>
             <a href="{{ route('user.referrals') }}"
-                class="nav-link {{ $slug == 'referrals' ? 'active' : '' }} py-3 border-bottom" title="Referrals"
+                class="flex gap-3 {{ $slug == 'referrals' ? 'nav-btn' : '' }} py-3 border-bottom" title="Referrals"
                 data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi" width="24" height="24" role="img" aria-label="Referrals">
                     <use xlink:href="#people-fill" />
@@ -63,7 +64,7 @@
         </li>
         <li>
             <a href="{{ route('user.transactions') }}"
-                class="nav-link {{ $slug == 'transactions' ? 'active' : '' }} py-3 border-bottom" title="Transactions"
+                class="flex gap-3 {{ $slug == 'transactions' ? 'nav-btn' : '' }} py-3 border-bottom" title="Transactions"
                 data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi" width="24" height="24" role="img" aria-label="Profile">
                     <use xlink:href="#list-fill" />
@@ -72,7 +73,7 @@
         </li>
         <li>
             <a href="{{ route('user.profile') }}"
-                class="nav-link {{ $slug == 'profile' ? 'active' : '' }} py-3 border-bottom" title="Profile"
+                class="flex gap-3 {{ $slug == 'profile' ? 'nav-btn' : '' }} py-3 border-bottom" title="Profile"
                 data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi" width="24" height="24" role="img" aria-label="Profile">
                     <use xlink:href="#people-circle" />
@@ -83,7 +84,7 @@
             <a href="#"
                 onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"
-                class="nav-link py-3 border-bottom" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
+                class="flex gap-3 py-3 border-bottom" title="Logout" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                     viewBox="0 0 24 24">
                     <path d="M16 10v-5l8 7-8 7v-5h-8v-4h8zm-16-8v20h14v-2h-12v-16h12v-2h-14z" />
