@@ -19,20 +19,18 @@
                                             <option {{ request('status') == 'pending' ? 'selected' : '' }}
                                                 value="pending">
                                                 Pending</option>
-                                            <option {{ request('status') == 'released' ? 'selected' : '' }}
+                                            {{-- <option {{ request('status') == 'released' ? 'selected' : '' }}
                                                 value="released">
-                                                Released</option>
+                                                Released</option> --}}
                                         </select><br>
                                         <select name="crypto_currency" class="inpts">
                                         </select>
                                     </td>
                                     <td style="text-align:right;">
                                         <div style="margin-bottom:5px;">
-                                            From: <input name="from" type="date" value="{{ old('from') }}"
-                                                class="inpts" />
+                                            From: <input name="from" type="date" value="{{ request('from') }}" class="inpts" />
                                         </div>
-                                        To: <input name="to" value="{{ old('to') }}" type="date"
-                                            class="inpts" />
+                                        To: <input name="to" value="{{ request('to') }}" type="date" class="inpts" />
                                     </td>
                                     <td style="text-align:right"> Per Page:
                                         <select name="rpp" class="inpts nosize">

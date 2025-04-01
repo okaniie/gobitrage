@@ -16,7 +16,6 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link href="{{ asset('admin/css/admin-style.css') }}" rel="stylesheet">
     
     <!-- Preload Critical Assets -->
     <link rel="preload" href="{{ secure_asset('admin/css/adminstyle.css') }}" as="style">

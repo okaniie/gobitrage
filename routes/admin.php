@@ -66,7 +66,7 @@ Route::prefix('admin')
         Route::prefix('deposits')
             ->controller(DepositsController::class)
             ->group(function () {
-                Route::get('', 'index')->name('admin.deposits');
+                Route::get('', 'deposits')->name('admin.deposits');
                 Route::get('{id}', 'viewSingle')->name('admin.deposits.view');
                 Route::get('{id}/delete', 'delete')->name('admin.deposits.delete');
                 Route::get('{id}/release', 'release')->name('admin.deposits.release');
