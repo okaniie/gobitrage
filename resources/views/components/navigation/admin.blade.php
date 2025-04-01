@@ -35,31 +35,31 @@
 
     <div class="nav-section">
         <div class="menu-title">Transactions</div>
-        <a class="nav-link {{ $slug == 'transactions' ? 'active' : '' }}" href="{{ route('admin.transactions') }}">
+        <a class="nav-link {{ $slug == 'transactions' && empty(request('log_type')) ? 'active' : '' }}" href="{{ route('admin.transactions') }}">
             <i class="bi bi-clock-history"></i> All Transactions
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'deposit']) }}">
+        <a class="nav-link {{ request('log_type') == 'deposit' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'deposit']) }}">
             <i class="bi bi-arrow-down-circle"></i> Deposits
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'deposit-earning']) }}">
+        <a class="nav-link {{ request('log_type') == 'deposit-earning' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'deposit-earning']) }}">
             <i class="bi bi-graph-up"></i> Deposit Earnings
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'deposit-release']) }}">
+        <a class="nav-link {{ request('log_type') == 'deposit-release' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'deposit-release']) }}">
             <i class="bi bi-arrow-up-circle"></i> Deposit Releases
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'withdrawal']) }}">
+        <a class="nav-link {{ request('log_type') == 'withdrawal' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'withdrawal']) }}">
             <i class="bi bi-cash-coin"></i> Withdrawals
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'earning']) }}">
+        <a class="nav-link {{ request('log_type') == 'earning' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'earning']) }}">
             <i class="bi bi-currency-dollar"></i> Earnings
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'referral']) }}">
+        <a class="nav-link {{ request('log_type') == 'referral' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'referral']) }}">
             <i class="bi bi-share"></i> Referral Commissions
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'bonus']) }}">
+        <a class="nav-link {{ request('log_type') == 'bonus' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'bonus']) }}">
             <i class="bi bi-gift"></i> Bonuses
         </a>
-        <a class="nav-link" href="{{ route('admin.transactions', ['log_type' => 'penalty']) }}">
+        <a class="nav-link {{ request('log_type') == 'penalty' ? 'active' : '' }}" href="{{ route('admin.transactions', ['log_type' => 'penalty']) }}">
             <i class="bi bi-exclamation-triangle"></i> Penalties
         </a>
     </div>
