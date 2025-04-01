@@ -30,32 +30,38 @@
             --header-height: 70px;
             --nav-width: 280px;
             --zoom-level: 1;
+            --primary-color: #ff8d00;
+            --secondary-color: #333;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
         }
 
         body {
-            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
             line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: var(--light-color);
             -webkit-text-size-adjust: 100%;
             touch-action: pan-x pan-y;
             -webkit-touch-callout: default;
             -webkit-user-select: text;
             user-select: text;
-            zoom: var(--zoom-level);
-            -moz-transform: scale(var(--zoom-level));
-            -moz-transform-origin: 0 0;
         }
 
         .admin-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transform-origin: top left;
-            transition: transform 0.3s ease;
         }
 
         .admin-header {
             height: var(--header-height);
-            background: #fff;
+            background: var(--primary-color);
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: fixed;
             top: 0;
@@ -76,17 +82,18 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: #333;
+            color: #fff;
         }
 
         .logo {
-            height: 50px;
-            margin-right: 20px;
+            height: 40px;
+            margin-right: 15px;
         }
 
         .logo-link h2 {
-            font-size: 24px;
+            font-size: 20px;
             margin: 0;
+            font-weight: 600;
         }
 
         .admin-body {
@@ -97,13 +104,14 @@
 
         .admin-nav {
             width: var(--nav-width);
-            background: #f8f9fa;
+            background: #fff;
             padding: 25px;
             position: fixed;
             left: 0;
             top: var(--header-height);
             bottom: 0;
             overflow-y: auto;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
 
@@ -111,82 +119,103 @@
             flex: 1;
             margin-left: var(--nav-width);
             padding: 25px;
-            background: #fff;
-            min-height: calc(100vh - var(--header-height));
-        }
-
-        /* Zoom Controls */
-        .zoom-controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #fff;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: flex;
-            gap: 10px;
-        }
-
-        .zoom-btn {
-            padding: 5px 10px;
-            border: none;
             background: #f8f9fa;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .zoom-btn:hover {
-            background: #e9ecef;
-        }
-
-        /* Content styles */
-        .content-wrapper {
             min-height: calc(100vh - var(--header-height));
-            padding: 25px;
         }
 
-        .form {
-            width: 100%;
-            margin-bottom: 25px;
-            font-size: 1.2rem;
+        /* Form styles */
+        .form-control {
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
-        .form th {
-            padding: 20px;
-            text-align: left;
-            vertical-align: top;
-            font-size: 1.3rem;
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(255, 141, 0, 0.25);
+        }
+
+        .form-label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Table styles */
+        .table {
+            margin-bottom: 1rem;
+            background-color: #fff;
+            border-radius: 0.375rem;
+            overflow: hidden;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
             font-weight: 600;
+            padding: 0.75rem;
         }
 
-        .form td {
-            padding: 20px;
-            vertical-align: top;
-            font-size: 1.2rem;
+        .table td {
+            padding: 0.75rem;
+            vertical-align: middle;
         }
 
-        .badge {
-            font-size: 1.3rem;
-            padding: 15px 20px;
-            margin: 0 8px;
-            border-radius: 8px;
-            display: inline-block;
+        .table tbody tr:hover {
+            background-color: rgba(0,0,0,0.02);
         }
 
-        table {
-            margin-bottom: 2rem;
-            width: 100%;
-            font-size: 1.2rem;
-        }
-
+        /* Card styles */
         .card {
-            margin-bottom: 2rem;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 0.375rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem;
+        }
+
+        .card-body {
+            padding: 1.25rem;
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #e67e00;
+            border-color: #e67e00;
+        }
+
+        /* Alert styles */
+        .alert {
+            border: none;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
         }
 
         /* Responsive Design */
@@ -201,6 +230,11 @@
 
             .admin-main {
                 margin-left: 0;
+                padding: 1rem;
+            }
+
+            .table-responsive {
+                margin: 0 -1rem;
             }
         }
 
@@ -227,52 +261,39 @@
                 background: #2d2d2d;
             }
 
-            .form th, .form td {
-                border-color: #404040;
-            }
-
-            .zoom-controls {
+            .table {
                 background: #2d2d2d;
-            }
-
-            .zoom-btn {
-                background: #404040;
                 color: #fff;
             }
 
-            .zoom-btn:hover {
-                background: #505050;
+            .table th {
+                background: #363636;
+                border-color: #404040;
             }
-        }
 
-        .language-switcher {
-            position: relative;
-        }
-        .language-switcher .form-select {
-            background-color: var(--dark-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.25rem 2rem 0.25rem 1rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 20px;
-        }
-        .language-switcher .form-select:focus {
-            background-color: var(--dark-bg);
-            border-color: var(--primary-color);
-            color: var(--text-color);
-            box-shadow: none;
-        }
-        .language-switcher .form-select option {
-            background-color: var(--dark-bg);
-            color: var(--text-color);
-        }
-        @media (max-width: 768px) {
-            .language-switcher {
-                margin-bottom: 1rem;
+            .table td {
+                border-color: #404040;
             }
-            .language-switcher .form-select {
-                width: 100%;
+
+            .form-control {
+                background: #363636;
+                border-color: #404040;
+                color: #fff;
+            }
+
+            .form-control:focus {
+                background: #404040;
+                border-color: var(--primary-color);
+                color: #fff;
+            }
+
+            .form-label {
+                color: #fff;
+            }
+
+            .alert {
+                background: #363636;
+                border-color: #404040;
             }
         }
     </style>
@@ -342,8 +363,7 @@
 
         // Mobile menu toggle
         function toggleMobileMenu() {
-            const nav = document.querySelector('.admin-nav');
-            nav.classList.toggle('show');
+            document.querySelector('.admin-nav').classList.toggle('show');
         }
 
         function changeLanguage(lang) {
@@ -387,7 +407,7 @@
                     <img src="{{ secure_asset('admin/img/ch-logo.png') }}" alt="Logo" class="logo">
                     <h2>Admin Dashboard</h2>
                 </a>
-                <button class="btn btn-link d-md-none" onclick="toggleMobileMenu()">
+                <button class="btn btn-link d-md-none text-white" onclick="toggleMobileMenu()">
                     <i class="bi bi-list"></i>
                 </button>
             </div>

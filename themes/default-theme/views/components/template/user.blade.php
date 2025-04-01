@@ -179,6 +179,7 @@
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
                 </div>
             </div>
@@ -235,6 +236,25 @@
         })(document);
     </script>
     <noscript> Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update CSRF token for all forms
+        function updateCsrfToken() {
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            document.querySelectorAll('input[name="_token"]').forEach(input => {
+                input.value = token;
+            });
+        }
+
+        // Handle logout
+        document.querySelector('.btn-logout').addEventListener('click', function(e) {
+            e.preventDefault();
+            updateCsrfToken();
+            document.getElementById('logout-form').submit();
+        });
+    });
+    </script>
 </body>
 
 </html>
