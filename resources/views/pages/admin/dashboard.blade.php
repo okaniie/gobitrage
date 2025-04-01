@@ -100,7 +100,7 @@
                                         <td>{{ $deposit->user->username }}</td>
                                         <td>{{ number_format($deposit->amount, 2) }} {{ $deposit->currency }}</td>
                                 <td>
-                                            <span class="badge bg-{{ $deposit->status === 'completed' ? 'success' : 'warning' }}">
+                                            <span class="badge bg-{{ $deposit->status === 'approved' ? 'success' : 'warning' }}">
                                                 {{ ucfirst($deposit->status) }}
                                             </span>
                                 </td>
@@ -136,7 +136,7 @@
                                         <td>{{ $withdrawal->user->username }}</td>
                                         <td>{{ number_format($withdrawal->amount, 2) }} {{ $withdrawal->currency }}</td>
                                 <td>
-                                            <span class="badge bg-{{ $withdrawal->status === 'completed' ? 'success' : 'warning' }}">
+                                            <span class="badge bg-{{ $withdrawal->status === 'approved' ? 'success' : 'warning' }}">
                                                 {{ ucfirst($withdrawal->status) }}
                                             </span>
                                 </td>

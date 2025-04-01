@@ -20,16 +20,13 @@ class DashboardController extends Controller
         $users['total'] = $users['active'] + $users['blocked'];
 
         // deposits
-        $deposits = Deposit::select('crypto_currency as currency', 'status')
-            ->selectRaw('COUNT(*) as total, SUM(amount) as amount')
-            ->groupBy(['currency', 'status'])
-            ->orderBy('currency')->get()->all();
+        $deposits = Deposit::with('user')->latest()->take(5)->get();
 
         // withdrawals
         $withdrawals = Withdrawal::select(['crypto_currency as currency', 'status'])
             ->selectRaw('COUNT(*) as total, SUM(amount) as amount')
             ->groupBy(['currency', 'status'])
-            ->orderBy('currency')->get()->all();
+            ->orderBy('currency')->get();
 
         // plans
         $plans = Plan::count() ?? 0;
@@ -44,7 +41,7 @@ class DashboardController extends Controller
         $transactions = Transaction::select(['log_type as type', 'crypto_currency as currency'])
             ->selectRaw('COUNT(*) as total, SUM(amount) as amount')
             ->groupBy(['type', 'currency'])
-            ->orderBy('currency')->get()->all();
+            ->orderBy('currency')->get();
 
         return view('pages.admin.dashboard', [
             'users' => $users,
