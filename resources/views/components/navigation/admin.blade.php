@@ -112,82 +112,75 @@
         }
     }
     </script>
-</nav>
 
-<style>
-.admin-nav {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1rem;
-}
+    <style>
+    .admin-nav {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 1rem;
+    }
 
-.nav-section {
-    margin-bottom: 1.5rem;
-}
+    .nav-section {
+        margin-bottom: 1.5rem;
+    }
 
-.menu-title {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #6c757d;
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 0.5rem;
-    color: #333;
-    text-decoration: none;
-    border-radius: 0.375rem;
-    transition: all 0.2s ease;
-    margin-bottom: 0.25rem;
-}
-
-.nav-link i {
-    margin-right: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.nav-link:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #000;
-}
-
-.nav-link.active {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-@media (prefers-color-scheme: dark) {
     .menu-title {
-        color: #adb5bd;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        margin-bottom: 0.75rem;
+        padding-left: 0.75rem;
+        letter-spacing: 0.05em;
     }
 
     .nav-link {
-        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0.75rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+        margin-bottom: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .nav-link i {
+        margin-right: 0.75rem;
+        font-size: 1.1rem;
+        width: 1.5rem;
+        text-align: center;
     }
 
     .nav-link:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #fff;
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+        color: var(--primary-color);
     }
 
     .nav-link.active {
         background-color: var(--primary-color);
         color: #fff;
     }
-}
 
-@media (max-width: 768px) {
-    .admin-nav {
-        padding: 0.5rem;
+    .nav-link.text-danger {
+        color: var(--danger-color) !important;
     }
 
-    .nav-link {
-        padding: 1rem 0.5rem;
+    .nav-link.text-danger:hover {
+        background-color: rgba(var(--danger-color-rgb), 0.1);
+        color: var(--danger-color) !important;
     }
-}
-</style>
+
+    @media (max-width: 768px) {
+        .admin-nav {
+            padding: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 1rem 0.75rem;
+        }
+    }
+    </style>
+</nav>
