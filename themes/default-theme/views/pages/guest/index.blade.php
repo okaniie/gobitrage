@@ -624,7 +624,7 @@
         <div class="container position-relative">
             <h2 class="text-center mb-5 fade-in text-white">Why Choose Gobitrage?</h2>
             <div class="row">
-                <div class="col-md-4">
+                <div class="">
                     <div class="feature-box fade-in">
                         <i class="bi bi-shield-check"></i>
                         <h3>Secure Investment</h3>
