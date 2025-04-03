@@ -14,7 +14,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="{{ asset('themes/default-theme/css/user-style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ secure_asset('admin/css/adminstyle.css') }}">
 
     <style>
         /* Base styles */
