@@ -4,6 +4,9 @@
             <tr>
                 <td width="100%" valign="top" height="100%">
                     <h3>Processings:</h3>
+                    <a href="{{ route('admin.processings.create') }}"
+                        class="sbmt btn-sm btn-info">Add
+                    </a>
                     <table class="list">
                         <tbody>
                             <tr>

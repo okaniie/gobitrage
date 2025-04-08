@@ -138,7 +138,10 @@ Route::prefix('admin')
             ->controller(ProcessingsController::class)
             ->group(function () {
                 Route::get('', 'index')->name('admin.processings');
+                Route::get('/create', 'create')->name('admin.processings.create');
+                Route::post('/store', 'store')->name('admin.processings.store');
                 Route::get('{id}', 'view')->name('admin.processings.view');
                 Route::post('{id}', 'update');
             });
+
     });

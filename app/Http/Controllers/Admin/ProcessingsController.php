@@ -20,6 +20,44 @@ class ProcessingsController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('pages.admin.processings.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'display_name' => 'required|string|max:255',
+            'code' => 'required|string|max:255|unique:currencies,code',
+            'status' => 'required|in:0,1',
+            'deposit_from_balance' => 'required|in:0,1',
+            'deposit_from_processor' => 'required|in:0,1',
+            'deposit_processor' => 'nullable|string|max:255',
+            'deposit_address' => 'nullable|string|max:255',
+            'deposit_min' => 'nullable|numeric|min:0',
+            'deposit_max' => 'nullable|numeric|min:0',
+            'deposit_fees_percentage' => 'nullable|numeric|min:0',
+            'deposit_fees_additional' => 'nullable|numeric|min:0',
+            'deposit_fees_min' => 'nullable|numeric|min:0',
+            'deposit_fees_max' => 'nullable|numeric|min:0',
+            'withdrawal_processor' => 'nullable|string|max:255',
+            'withdrawal_min' => 'nullable|numeric|min:0',
+            'withdrawal_max' => 'nullable|numeric|min:0',
+            'withdrawal_fees_percentage' => 'nullable|numeric|min:0',
+            'withdrawal_fees_additional' => 'nullable|numeric|min:0',
+            'withdrawal_fees_min' => 'nullable|numeric|min:0',
+            'withdrawal_fees_max' => 'nullable|numeric|min:0',
+            'auto_withdrawal' => 'required|in:0,1',
+            'auto_withdrawal_min' => 'nullable|numeric|min:0',
+            'auto_withdrawal_max' => 'nullable|numeric|min:0',
+        ]);
+
+        Currency::create($validated);
+
+        return redirect()->route('admin.processings')->with('success', 'Processing record created successfully.');
+    }
+
     public function view(PaymentHandler $payment, $id)
     {
         $currency = Currency::findOrFail($id);
