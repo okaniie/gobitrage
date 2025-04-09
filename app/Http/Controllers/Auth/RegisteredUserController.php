@@ -12,6 +12,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SignUpMail;
+
 
 class RegisteredUserController extends Controller
 {
@@ -77,6 +80,16 @@ class RegisteredUserController extends Controller
             'trx_address' => $request->trx_address,
             'bnb_address' => $request->bnb_address,
         ]);
+
+        
+        if ($user->email != null) {
+            try {
+                Mail::to($user->email)->send(new SignUpMail($user));
+            } catch (\Exception $e) {
+                // Handle the exception if needed
+            }
+        }
+        
 
         if (!empty($request->wallets)) {
             foreach ($request->wallets as $currency_code => $address) {
