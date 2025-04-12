@@ -1,11 +1,11 @@
 <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-4">
+    <div class="p-10">
+        <div class="flex">
+            <div class="basis-1/3">
                 <h5>About Gobitrage</h5>
                 <p>Gobitrage is a fully certified, licensed company offering investors around the globe reliable investment schedules with minimum investment as low as $20.</p>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="basis-1/3">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
                     <li><a href="{{ url('/about-us') }}">About Us</a></li>
@@ -14,7 +14,7 @@
                     <li><a href="{{ url('/contact-us') }}">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="basis-1/3">
                 <h5>Contact Us</h5>
                 <ul class="list-unstyled">
                     <li><i class="bi bi-envelope"></i> support@gobitrage.com</li>

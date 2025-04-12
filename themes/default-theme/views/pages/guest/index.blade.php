@@ -27,8 +27,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 slide-in-right basis-1/2">
-                    <div class="floating-elements">
+                <div class="basis-1/2">
+                    <div class="floating-elements ">
                         <div class="float-element bitcoin">
                             <img src="/assets/images/bitcoin.svg" alt="Bitcoin" class="float-icon">
                         </div>
@@ -72,7 +72,7 @@
             }
             .floating-elements {
                 position: relative;
-                height: 100%;
+                height: 50%;
                 min-height: 200px;
             }
             .float-element {
@@ -141,10 +141,10 @@
 
     <!-- CTA Section -->
     <section class=" text-white bg-blue-600">
-        <div class="container text-center py-10">
-            <h2 class="mb-3 fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
-            <p class="lead mb-3 fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
-            <a href="{{ route('register') }}" class="btn btn-light bg-white text-black text-xl rounded-md p-4 fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
+        <div class="container text-center py-10 flex flex-col gap-3 items-center">
+            <h2 class="fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
+            <p class="lead fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
+            <a href="{{ route('register') }}" class=" btn-light bg-white text-black text-xl rounded-md p-4 w-fit fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
         </div>
     </section>
 
@@ -152,12 +152,12 @@
     <section class="py-5 crypto-section">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">WE WORK WITH E-CURRENCIES</h2>
-                <p class="text-muted">Fast and secure transactions</p>
+                <h2 class="text-white text-2xl font-bold">WE WORK WITH E-CURRENCIES</h2>
+                <p class="text-gray-500">Fast and secure transactions</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="crypto-card">
+            <div class="grid grid-cols-3 gap-5">
+                <div class="mb-4">
+                    <div class="crypto-card flex flex-col items-center">
                         <img src="/assets/images/btc.svg" alt="Bitcoin" class="crypto-icon">
                         <h4>Bitcoin</h4>
                         @auth
@@ -167,8 +167,8 @@
                         @endauth
                     </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="crypto-card">
+                <div class=" mb-4">
+                    <div class="crypto-card flex flex-col items-center">
                         <img src="/assets/images/usdt.svg" alt="USDT" class="crypto-icon">
                         <h4>USDT</h4>
                         @auth
@@ -178,8 +178,8 @@
                         @endauth
                     </div>
                 </div>
-                <div class="col-md-3 col-6 mb-4">
-                    <div class="crypto-card">
+                <div class=" mb-4">
+                    <div class="crypto-card flex flex-col items-center">
                         <img src="/assets/images/tron.svg" alt="TRON" class="crypto-icon">
                         <h4>TRON</h4>
                         @auth
@@ -233,35 +233,17 @@
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                 color: white;
             }
-            @media (max-width: 768px) {
-                .crypto-card {
-                    padding: 1.5rem;
-                }
-                .crypto-icon {
-                    width: 60px;
-                    height: 60px;
-                    margin-bottom: 1rem;
-                }
-                .crypto-card h4 {
-                    font-size: 1rem;
-                    margin-bottom: 0.8rem;
-                }
-                .crypto-btn {
-                    padding: 6px 16px;
-                    font-size: 0.8rem;
-                }
-            }
         </style>
     </section>
 
     <!-- Investment Plans Section -->
     <section class="py-5 investment-plans">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold mb-3 fade-in">Investment Plans</h2>
-                <p class="lead fade-in" style="animation-delay: 0.2s;">Choose the perfect investment plan that suits your goals</p>
+            <div class="text-center font-bold text-white mb-5">
+                <h2 class="display-4 mb-3 text-6xl fade-in">Investment Plans</h2>
+                <p class="lead text-2xl  fade-in" style="animation-delay: 0.2s;">Choose the perfect investment plan that suits your goals</p>
             </div>
-            <div class="row g-4">
+            <div class="grid grid-cols-4 gap-2">
                 <div class="col-md-3 col-sm-6">
                     @auth
                         <a href="{{ route('user.deposits') }}?plan=basic" class="text-decoration-none">
@@ -381,11 +363,11 @@
     <!-- Testimonials Section -->
     <section class="py-5 testimonials-section">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold mb-3 fade-in">What Our Investors Say</h2>
-                <p class="lead fade-in" style="animation-delay: 0.2s;">Join thousands of satisfied investors who trust Gobitrage</p>
+            <div class="text-center font-bold text-white mb-5">
+                <h2 class="display-4 text-6xl mb-3 fade-in">What Our Investors Say</h2>
+                <p class="lead text-2xl fade-in" style="animation-delay: 0.2s;">Join thousands of satisfied investors who trust Gobitrage</p>
             </div>
-            <div class="row">
+            <div class="grid grid-cols-3 gap-3">
                 <div class="col-md-4 mb-4">
                     <div class="testimonial-card slide-in-left">
                         <div class="testimonial-content">
@@ -560,9 +542,8 @@
     <!-- ACRA Certificate Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center display-5 fw-bold mb-4">Licensed & Regulated</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
+            <h2 class="text-center display-5 font-bold text-5xl text-white">Licensed & Regulated</h">
+                <div class="pt-5">
                     <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
                 </div>
             </div>
@@ -573,8 +554,8 @@
     <section class="py-5 features-section">
         <div class="features-overlay"></div>
         <div class="container ">
-            <h2 class="text-center mb-5 fade-in text-white">Why Choose Gobitrage?</h2>
-            <div class="row">
+            <h2 class="text-center mb-5 fade-in text-2xl text-white">Why Choose Gobitrage?</h2>
+            <div class="grid grid-cols-3 gap-3">
                 <div class="">
                     <div class="feature-box fade-in">
                         <i class="bi bi-shield-check"></i>
@@ -727,9 +708,8 @@
             <!-- ACRA Certificate Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center display-5 fw-bold mb-4">Licensed & Regulated</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
+            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4">Licensed & Regulated</h">
+                <div class="pt-5">
                     <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
                 </div>
             </div>
