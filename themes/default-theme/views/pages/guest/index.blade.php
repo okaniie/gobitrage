@@ -378,7 +378,7 @@
                             <div class="testimonial-author">
                                 <div class="author-avatar">JD</div>
                                 <div class="author-info">
-                                    <h5>John Doe</h5>
+                                    <h5>John Glass</h5>
                                     <span>Professional Investor</span>
                                 </div>
                             </div>
@@ -539,16 +539,7 @@
         </style>
     </section>
 
-    <!-- ACRA Certificate Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center display-5 font-bold text-5xl text-white">Licensed & Regulated</h">
-                <div class="pt-5">
-                    <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
+  
 
     <!-- Features Section -->
     <section class="py-5 features-section">
