@@ -3,47 +3,48 @@
         vertical-align: -.125em;
         fill: currentColor;
     }
-
-    .text-small {
-        font-size: 85%;
-    }
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            Gobitrage
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/') }}">Home</a>
+
+<nav class="bg-[#1a1a1a] p-4 border-b shadow-md text-nowrap" >
+    <div class=" flex items-center justify-between lg:gap-[320px] px-4 py-2">
+        <div class="w-full md:w-auto flex">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                Gobitrage
+            </a>
+        </div>
+
+        <div class="flex items-center lg:pl-15 text-md text-gray-800 w-full" >
+            <ul class="flex gap-3 items-center ">
+                <li>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/home') }}">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
+                <li>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/about-us') }}">About Us</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/investment-plans') }}">Investment Plans</a>
+                <li>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/investment-plans') }}">Investment Plans</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/faqs') }}">FAQs</a>
+                <li>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/faqs') }}">FAQs</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/contact-us') }}">Contact Us</a>
+                <li>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/contact-us') }}">Contact Us</a>
                 </li>
+            </ul>
+
+            <ul class="flex gap-1">
                 @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary ms-2" href="{{ route('login') }}">Login</a>
-                    </li>
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light ms-2" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @endif
+                <li>
+                    <a  class="nav-link btn-primary p-2 ml-2 border rounded-sm" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Login
+                    </a>
+                </li>
+                @if (Route::has('register'))
+                <li>
+                    <a class="nav-link p-2 ml-2 border rounded-sm hover:bg-white " href="{{ route('register') }}">Register</a>
+                </li>
+                @endif
                 @endif
             </ul>
         </div>

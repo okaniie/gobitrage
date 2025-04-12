@@ -2,17 +2,17 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
-        <div class="container position-relative">
+        <div class="container flex flex-col">
             <div class="working-since">WORKING SINCE 2020</div>
-            <div class="row align-items-center min-vh-50">
-                <div class="col-lg-6 slide-in-left">
-                    <h1 class="display-4 fw-bold mb-3 text-white">Welcome to Gobitrage</h1>
-                    <p class="lead mb-4 text-white-75">Your trusted partner in cryptocurrency investment. Start your journey with as little as $20 and earn up to 50% weekly returns.</p>
-                    <div class="d-flex gap-3 mb-4">
-                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Get Started</a>
-                        <a href="{{ url('/investment-plans') }}" class="btn btn-outline-light btn-lg">View Plans</a>
+            <div class="flex align-items-center min-vh-50">
+                <div class="col-lg-6 slide-in-left basis-1/2">
+                    <h1 class="text-6xl fw-bold mb-3 text-white font-bold">Welcome to Gobitrage</h1>
+                    <p class=" mb-4 text-white/75 text-xl">Your trusted partner in cryptocurrency investment. Start your journey with as little as $20 and earn up to 50% weekly returns.</p>
+                    <div class="justify-start mb-4 text-2xl flex gap-3">
+                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg btn-primary p-2 ml-2 border rounded-sm">Get Started</a>
+                        <a href="{{ url('/investment-plans') }}" class="btn btn-outline-light btn-lg p-2 ml-2 border rounded-sm hover:bg-white">View Plans</a>
                     </div>
-                    <div class="d-flex gap-3">
+                    <div class="flex gap-3 text-xl">
                         <div class="text-center">
                             <div class="h3 text-white mb-0">50%</div>
                             <div class="text-white-75">Weekly Returns</div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 slide-in-right">
+                <div class="col-lg-6 slide-in-right basis-1/2">
                     <div class="floating-elements">
                         <div class="float-element bitcoin">
                             <img src="/assets/images/bitcoin.svg" alt="Bitcoin" class="float-icon">
@@ -102,7 +102,6 @@
             }
 
         .container {
-            width: 1200px;
             margin: 0 auto;
         }
         .row {
@@ -114,7 +113,6 @@
             padding-right: 20px;
         }
         .col-right {
-            width: 600px;
             padding-left: 20px;
         }
             @keyframes float {
@@ -128,72 +126,25 @@
                     transform: translateY(0px);
                 }
             }
-            /* @media (max-width: 991.98px) {
-                .hero-section {
-                    text-align: center;
-                    min-height: 40vh;
-                }
-                .min-vh-50 {
-                    min-height: 40vh;
-                }
-                .d-flex {
-                    justify-content: center;
-                }
-                .floating-elements {
-                    min-height: 150px;
-                    margin-top: 2rem;
-                }
-                .float-icon {
-                    width: 50px;
-                    height: 50px;
-                }
-            }
-            @media (max-width: 768px) {
-                .hero-section {
-                    min-height: 35vh;
-                }
-                .min-vh-50 {
-                    min-height: 35vh;
-                }
-                .display-4 {
-                    font-size: 2rem;
-                }
-                .lead {
-                    font-size: 0.9rem;
-                }
-                .btn-lg {
-                    padding: 0.5rem 1rem;
-                    font-size: 0.9rem;
-                }
-                .h3 {
-                    font-size: 1.5rem;
-                }
-                .text-white-75 {
-                    font-size: 0.8rem;
-                }
-            }
             .working-since {
-                background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(5px);
                 padding: 6px 16px;
-                border-radius: 50px;
                 color: white;
                 display: inline-block;
                 margin-bottom: 1.5rem;
                 font-weight: 500;
                 letter-spacing: 1px;
-                border: 1px solid rgba(255, 255, 255, 0.2);
                 font-size: 0.9rem;
             }
         </style>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-4 bg-primary text-white">
-        <div class="container text-center">
-            <h2 class="mb-3 fade-in">Ready to Start Your Investment Journey?</h2>
-            <p class="lead mb-3 fade-in" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
-            <a href="{{ route('register') }}" class="btn btn-light btn-lg fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
+    <section class=" text-white bg-blue-600">
+        <div class="container text-center py-10">
+            <h2 class="mb-3 fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
+            <p class="lead mb-3 fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
+            <a href="{{ route('register') }}" class="btn btn-light bg-white text-black text-xl rounded-md p-4 fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
         </div>
     </section>
 
@@ -621,7 +572,7 @@
     <!-- Features Section -->
     <section class="py-5 features-section">
         <div class="features-overlay"></div>
-        <div class="container position-relative">
+        <div class="container ">
             <h2 class="text-center mb-5 fade-in text-white">Why Choose Gobitrage?</h2>
             <div class="row">
                 <div class="">
@@ -851,29 +802,6 @@
 </x-template.guest>
 
 <style>
-    .container {
-        max-width: 1280px !important;
-        width: 100% !important;
-        margin-right: auto;
-        margin-left: auto;
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-
-    @media (max-width: 1280px) {
-        .container {
-            width: 100% !important;
-            padding-right: 20px;
-            padding-left: 20px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .container {
-            width: 100% !important;
-            padding-right: 15px;
-            padding-left: 15px;
-        }
 
         .row {
             display: grid;
@@ -899,11 +827,7 @@
         }
 
         .hero-section {
-            padding: 30px 0;
-        }
-
-        .display-4 {
-            font-size: 1.8rem;
+            padding: 30px;
         }
 
         .lead {
