@@ -1,6 +1,14 @@
 <x-template.guest>
     <!-- Hero Section -->
     <section class="hero-section">
+        <section class="hero-section relative">
+    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
+        <source src="/assets/images/Businessvd.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="container flex flex-col z-10 relative">
+        <!-- All your hero content here -->
         <div class="hero-overlay"></div>
         <div class="container flex flex-col">
             <div class="working-since">WORKING SINCE 2020</div>
@@ -46,7 +54,6 @@
             .hero-section {
                 position: relative;
                 overflow: hidden;
-                background: url('/assets/images/Businessvd.mp4') no-repeat center center;
                 background-size: cover;
                 min-height: 50vh;
                 display: flex;
