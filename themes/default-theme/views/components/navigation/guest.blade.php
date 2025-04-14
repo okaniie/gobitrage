@@ -17,7 +17,7 @@
         <div class="flex items-center lg:pl-15 text-md text-gray-800 w-full" >
             <ul class="flex gap-3 items-center ">
                 <li>
-                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/home') }}">Home</a>
+                    <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/') }}">Home</a>
                 </li>
                 <li>
                     <a class="nav-link hover:text-blue-600 p-2" href="{{ url('/about-us') }}">About Us</a>
