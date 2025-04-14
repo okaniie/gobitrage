@@ -140,7 +140,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class=" text-white bg-blue-600">
+    <section class=" text-white bg-green-600">
         <div class="container text-center py-10 flex flex-col gap-3 items-center">
             <h2 class="fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
             <p class="lead fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
@@ -148,49 +148,71 @@
         </div>
     </section>
 
-    <!-- Cryptocurrencies Section -->
-    <section class="py-5 crypto-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="text-white text-2xl font-bold">WE WORK WITH E-CURRENCIES</h2>
-                <p class="text-gray-500">Fast and secure transactions</p>
-            </div>
-            <div class="grid grid-cols-3 gap-5">
-                <div class="mb-4">
-                    <div class="crypto-card flex flex-col items-center">
-                        <img src="/assets/images/btc.svg" alt="Bitcoin" class="crypto-icon">
-                        <h4>Bitcoin</h4>
-                        @auth
-                            <a href="{{ route('user.deposits') }}" class="crypto-btn">Deposit Now</a>
-                        @else
-                            <a href="{{ route('register') }}" class="crypto-btn">Deposit Now</a>
-                        @endauth
-                    </div>
-                </div>
-                <div class=" mb-4">
-                    <div class="crypto-card flex flex-col items-center">
-                        <img src="/assets/images/usdt.svg" alt="USDT" class="crypto-icon">
-                        <h4>USDT</h4>
-                        @auth
-                            <a href="{{ route('user.deposits') }}" class="crypto-btn">Deposit Now</a>
-                        @else
-                            <a href="{{ route('register') }}" class="crypto-btn">Deposit Now</a>
-                        @endauth
-                    </div>
-                </div>
-                <div class=" mb-4">
-                    <div class="crypto-card flex flex-col items-center">
-                        <img src="/assets/images/tron.svg" alt="TRON" class="crypto-icon">
-                        <h4>TRON</h4>
-                        @auth
-                            <a href="{{ route('user.deposits') }}" class="crypto-btn">Deposit Now</a>
-                        @else
-                            <a href="{{ route('register') }}" class="crypto-btn">Deposit Now</a>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-        </div>
+ <!-- Cryptocurrencies Section -->
+<section class="py-5 crypto-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-uppercase">WE WORK WITH E-CURRENCIES</h2>
+      <p class="text-muted">Fast and secure transactions</p>
+    </div>
+    <div class="row g-4">
+      <!-- Bitcoin -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/btc.svg" alt="Bitcoin" width="50" class="mb-3">
+        <h5>Bitcoin</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+      
+      <!-- USDT -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/usdt.svg" alt="USDT" width="50" class="mb-3">
+        <h5>USDT</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+      
+      <!-- TRON -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/tron.svg" alt="TRON" width="50" class="mb-3">
+        <h5>TRON</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+
+      <!-- Litecoin -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/litecoin.svg" alt="Litecoin" width="50" class="mb-3">
+        <h5>Litecoin</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+
+      <!-- BNB -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/bnb.svg" alt="BNB" width="50" class="mb-3">
+        <h5>BNB</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+    </div>
+  </div>
+
         <style>
             .crypto-section {
                 background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
