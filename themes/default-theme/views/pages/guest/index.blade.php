@@ -1,15 +1,22 @@
 <x-template.guest>
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section relative">
+        <!-- Background Video -->
+        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+            <source src="/assets/images/Businessvd.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
         <div class="hero-overlay"></div>
-        <div class="container flex flex-col">
+
+        <div class="container flex flex-col z-10 relative">
             <div class="working-since">WORKING SINCE 2020</div>
             <div class="flex align-items-center min-vh-50">
                 <div class="col-lg-6 slide-in-left basis-1/2">
                     <h1 class="text-6xl fw-bold mb-3 text-white font-bold">Welcome to Gobitrage</h1>
-                    <p class=" mb-4 text-white/75 text-xl">Your trusted partner in cryptocurrency investment. Start your journey with as little as $20 and earn up to 50% weekly returns.</p>
+                    <p class="mb-4 text-white/75 text-xl">Your trusted partner in cryptocurrency investment. Start your journey with as little as $20 and earn up to 50% weekly returns.</p>
                     <div class="justify-start mb-4 text-2xl flex gap-3">
-                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg btn-primary p-2 ml-2 border rounded-sm">Get Started</a>
+                        <a href="{{ route('register') }}" class="btn btn-primary btn-lg p-2 ml-2 border rounded-sm">Get Started</a>
                         <a href="{{ url('/investment-plans') }}" class="btn btn-outline-light btn-lg p-2 ml-2 border rounded-sm hover:bg-white">View Plans</a>
                     </div>
                     <div class="flex gap-3 text-xl">
@@ -28,7 +35,7 @@
                     </div>
                 </div>
                 <div class="basis-1/2">
-                    <div class="floating-elements ">
+                    <div class="floating-elements">
                         <div class="float-element bitcoin">
                             <img src="/assets/images/bitcoin.svg" alt="Bitcoin" class="float-icon">
                         </div>
@@ -42,12 +49,11 @@
                 </div>
             </div>
         </div>
+
         <style>
             .hero-section {
                 position: relative;
                 overflow: hidden;
-                background: url('/assets/images/hero-meeting.jpg') no-repeat center center;
-                background-size: cover;
                 min-height: 50vh;
                 display: flex;
                 align-items: center;
@@ -140,7 +146,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class=" text-white bg-blue-600">
+    <section class=" text-white bg-green-600">
         <div class="container text-center py-10 flex flex-col gap-3 items-center">
             <h2 class="fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
             <p class="lead fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
@@ -378,7 +384,7 @@
                             <div class="testimonial-author">
                                 <div class="author-avatar">JD</div>
                                 <div class="author-info">
-                                    <h5>John Doe</h5>
+                                    <h5>John Glass</h5>
                                     <span>Professional Investor</span>
                                 </div>
                             </div>
@@ -539,16 +545,7 @@
         </style>
     </section>
 
-    <!-- ACRA Certificate Section -->
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center display-5 font-bold text-5xl text-white">Licensed & Regulated</h">
-                <div class="pt-5">
-                    <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
+  
 
     <!-- Features Section -->
     <section class="py-5 features-section">

@@ -36,9 +36,9 @@
             <ul class="flex gap-1">
                 @if (Route::has('login'))
                 <li>
-                    <a  class="nav-link btn-primary p-2 ml-2 border rounded-sm" href="{{ route('login') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Login
-                    </a>
+                    <a class="nav-link btn-primary p-2 ml-2 border rounded-sm" href="{{ route('login') }}">
+    Login
+</a>
                 </li>
                 @if (Route::has('register'))
                 <li>
