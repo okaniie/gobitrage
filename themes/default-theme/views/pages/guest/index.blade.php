@@ -154,15 +154,14 @@
             <a href="{{ route('register') }}" class=" btn-light bg-white text-black text-xl rounded-md p-4 w-fit fade-in" style="animation-delay: 0.4s;">Create Account Now</a>
         </div>
     </section>
-
- <!-- Cryptocurrencies Section -->
+!-- Cryptocurrencies Section -->
 <section class="py-5 crypto-section">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="fw-bold text-uppercase">WE WORK WITH E-CURRENCIES</h2>
       <p class="text-muted">Fast and secure transactions</p>
     </div>
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center">
       <!-- Bitcoin -->
       <div class="col-md-4 col-lg-2 text-center">
         <img src="/assets/images/btc.svg" alt="Bitcoin" width="50" class="mb-3">
@@ -173,7 +172,7 @@
           <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
         @endauth
       </div>
-      
+
       <!-- USDT -->
       <div class="col-md-4 col-lg-2 text-center">
         <img src="/assets/images/usdt.svg" alt="USDT" width="50" class="mb-3">
@@ -184,7 +183,7 @@
           <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
         @endauth
       </div>
-      
+
       <!-- TRON -->
       <div class="col-md-4 col-lg-2 text-center">
         <img src="/assets/images/tron.svg" alt="TRON" width="50" class="mb-3">
@@ -217,13 +216,36 @@
           <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
         @endauth
       </div>
+
+      <!-- Ethereum -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/ethereum.svg" alt="Ethereum" width="50" class="mb-3">
+        <h5>Ethereum</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
+
+      <!-- Dogecoin -->
+      <div class="col-md-4 col-lg-2 text-center">
+        <img src="/assets/images/dogecoin.svg" alt="Dogecoin" width="50" class="mb-3">
+        <h5>Dogecoin</h5>
+        @auth
+          <a href="{{ route('user.deposit') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @else
+          <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Deposit Now</a>
+        @endauth
+      </div>
     </div>
   </div>
 
-        <style>
-            .crypto-section {
-                background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
-            }
+  <style>
+    .crypto-section {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.05) 100%);
+    }
+  
             .crypto-card {
                 background: white;
                 border-radius: 15px;
