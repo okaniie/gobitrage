@@ -140,7 +140,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class=" text-white bg-blue-600">
+    <section class=" text-white bg-green-600">
         <div class="container text-center py-10 flex flex-col gap-3 items-center">
             <h2 class="fade-in text-4xl">Ready to Start Your Investment Journey?</h2>
             <p class="lead fade-in text-2xl" style="animation-delay: 0.2s;">Join thousands of successful investors who trust Gobitrage with their investments.</p>
