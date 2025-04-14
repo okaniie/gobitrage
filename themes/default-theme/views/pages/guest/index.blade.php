@@ -396,4 +396,761 @@
                     <div class="testimonial-card slide-in-left" style="animation-delay: 0.2s;">
                         <div class="testimonial-content">
                             <div class="testimonial-icon">
-                          
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <p class="testimonial-text">"The platform is user-friendly and secure. I started with a small investment and gradually increased it as I saw the consistent returns."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">JS</div>
+                                <div class="author-info">
+                                    <h5>Jane Smith</h5>
+                                    <span>Business Owner</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card slide-in-left" style="animation-delay: 0.4s;">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <p class="testimonial-text">"Gobitrage has transformed my investment portfolio. The weekly returns are impressive, and the withdrawal process is smooth."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">MJ</div>
+                                <div class="author-info">
+                                    <h5>Mike Johnson</h5>
+                                    <span>Entrepreneur</span>
+                                </div>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .testimonials-section {
+                background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 51, 102, 0.05) 100%);
+                padding: 5rem 0;
+            }
+            .testimonial-card {
+                background: #ffffff;
+                border-radius: 20px;
+                padding: 2rem;
+                height: 100%;
+                transition: all 0.4s ease;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+            }
+            .testimonial-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            }
+            .testimonial-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+            }
+            .testimonial-icon {
+                font-size: 3rem;
+                color: var(--secondary-color);
+                opacity: 0.2;
+                margin-bottom: 1.5rem;
+            }
+            .testimonial-text {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                color: #666;
+                margin-bottom: 2rem;
+                font-style: italic;
+            }
+            .testimonial-author {
+                display: flex;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            .author-avatar {
+                width: 50px;
+                height: 50px;
+                background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                font-size: 1.2rem;
+                margin-right: 1rem;
+            }
+            .author-info h5 {
+                margin: 0;
+                font-size: 1.1rem;
+                color: var(--dark-bg);
+            }
+            .author-info span {
+                font-size: 0.9rem;
+                color: #666;
+            }
+            .testimonial-rating {
+                color: #ffc107;
+                font-size: 1.2rem;
+            }
+            @media (max-width: 768px) {
+                .testimonials-section {
+                    padding: 3rem 0;
+                }
+                .testimonial-card {
+                    padding: 1.5rem;
+                }
+                .testimonial-text {
+                    font-size: 1rem;
+                }
+                .author-avatar {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+                .author-info h5 {
+                    font-size: 1rem;
+                }
+                .author-info span {
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </section>
+
+  
+
+    <!-- Features Section -->
+    <section class="py-5 features-section">
+        <div class="features-overlay"></div>
+        <div class="container ">
+            <h2 class="text-center mb-5 fade-in text-2xl text-white">Why Choose Gobitrage?</h2>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="">
+                    <div class="feature-box fade-in">
+                        <i class="bi bi-shield-check"></i>
+                        <h3>Secure Investment</h3>
+                        <p>Your funds are protected with state-of-the-art security measures and transparent operations.</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="feature-box fade-in" style="animation-delay: 0.2s;">
+                        <i class="bi bi-graph-up"></i>
+                        <h3>High Returns</h3>
+                        <p>Earn up to 50% weekly returns on your investments through our proven trading strategies.</p>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="feature-box fade-in" style="animation-delay: 0.4s;">
+                        <i class="bi bi-clock"></i>
+                        <h3>24/7 Support</h3>
+                        <p>Our dedicated support team is always available to assist you with any queries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .features-section {
+                position: relative;
+                background: url('assets/images/business-professional.jpg') no-repeat center center;
+                background-size: cover;
+                background-attachment: fixed;
+                padding: 6rem 0;
+                overflow: hidden;
+            }
+            .features-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%);
+                z-index: 1;
+            }
+            .features-section .container {
+                position: relative;
+                z-index: 2;
+            }
+            .feature-box {
+                background: rgba(255, 255, 255, 0.95);
+                padding: 2rem;
+                border-radius: 15px;
+                margin-bottom: 2rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            .feature-box:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            }
+            .feature-box i {
+                font-size: 2.5rem;
+                color: var(--secondary-color);
+                margin-bottom: 1.5rem;
+            }
+            .feature-box h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: var(--dark-bg);
+            }
+            .feature-box p {
+                color: #666;
+                margin-bottom: 0;
+                line-height: 1.6;
+            }
+            @media (max-width: 768px) {
+                .features-section {
+                    padding: 4rem 0;
+                    background-attachment: scroll;
+                }
+                .feature-box {
+                    padding: 1.5rem;
+                    margin-bottom: 1rem;
+                }
+                .feature-box i {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                }
+                .feature-box h3 {
+                    font-size: 1.3rem;
+                }
+                .feature-box p {
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- How to Join Section -->
+    <section class="py-5 bg-gradient">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in">How to Join Gobitrage</h2>
+            <div class="grid grid-cols-4 gap-5">
+                <div class="">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-4">
+                                <i class="bi bi-person-plus-fill display-4 text-primary"></i>
+                            </div>
+                            <h4 class="h5 mb-3">Create Account</h4>
+                            <p class="text-muted mb-0">Sign up for a free account in just a few minutes. No verification required to get started.</p>
+                            <div class="step-number">1</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-4">
+                                <i class="bi bi-wallet2 display-4 text-primary"></i>
+                            </div>
+                            <h4 class="h5 mb-3">Choose Plan</h4>
+                            <p class="text-muted mb-0">Select your preferred investment plan and deposit funds using our secure payment methods.</p>
+                            <div class="step-number">2</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-4">
+                                <i class="bi bi-graph-up-arrow display-4 text-primary"></i>
+                            </div>
+                            <h4 class="h5 mb-3">Start Earning</h4>
+                            <p class="text-muted mb-0">Watch your investment grow with our proven trading strategies and expert management.</p>
+                            <div class="step-number">3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <div class="card h-100 border-0 shadow-sm hover-lift">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-4">
+                                <i class="bi bi-cash-stack display-4 text-primary"></i>
+                            </div>
+                            <h4 class="h5 mb-3">Withdraw Profits</h4>
+                            <p class="text-muted mb-0">Withdraw your earnings anytime using our fast and secure withdrawal system.</p>
+                            <div class="step-number">4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ACRA Certificate Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4">Licensed & Regulated</h">
+                <div class="pt-5">
+                    <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+            <style>
+                .bg-gradient {
+                    background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-bg) 100%);
+                    color: var(--text-color);
+                }
+                .icon-box {
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease;
+                }
+                .card:hover .icon-box {
+                    transform: scale(1.1);
+                    background: rgba(255, 255, 255, 0.2);
+                }
+                .hover-lift {
+                    transition: all 0.3s ease;
+                    background: rgba(255, 255, 255, 0.05);
+                }
+                .hover-lift:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+                }
+                .step-number {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    width: 30px;
+                    height: 30px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    color: var(--text-color);
+                    border: 2px solid var(--text-color);
+                }
+                .card {
+                    position: relative;
+                    overflow: hidden;
+                }
+                .card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(255, 51, 102, 0.1));
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                }
+                .card:hover::before {
+                    opacity: 1;
+                }
+            </style>
+        </div>
+    </section>
+</x-template.guest>
+
+<style>
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 0;
+            width: 100%;
+        }
+
+        .col-md-3, .col-md-4 {
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .card {
+            margin-bottom: 15px;
+            padding: 15px;
+            height: 100%;
+            transform: scale(0.9);
+            transform-origin: center center;
+        }
+
+        .hero-section {
+            padding: 30px;
+        }
+
+        .lead {
+            font-size: 1rem;
+        }
+
+        .btn-lg {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+        }
+
+        .bi {
+            font-size: 1.5rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .price-tag {
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .price-tag h4 {
+            font-size: 1.1rem;
+        }
+
+        .list-unstyled li {
+            font-size: 0.9rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+        }
+
+        .feature-box {
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.1rem;
+            margin: 0.8rem 0;
+        }
+
+        .feature-box p {
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bg-gradient {
+            padding: 2rem 0;
+        }
+
+        /* Investment Plans Mobile Specific */
+        .investment-plans .card {
+            transform: none;
+            margin-bottom: 1rem;
+            height: auto;
+        }
+
+        .investment-plans .card-body {
+            padding: 1rem;
+        }
+
+        .investment-plans .icon-box {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 0.8rem;
+        }
+
+        .investment-plans .bi {
+            font-size: 1.2rem;
+        }
+
+        .investment-plans .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .investment-plans .price-tag {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .investment-plans .price-tag h4 {
+            font-size: 1rem;
+        }
+
+        .investment-plans .list-unstyled li {
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .investment-plans .btn-primary {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .investment-plans .row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .investment-plans .col-sm-6 {
+            padding: 0.25rem;
+        }
+
+        /* Testimonials Mobile Specific */
+        .testimonial-card {
+            transform: scale(0.9);
+            transform-origin: center center;
+        }
+
+        .testimonial-text {
+            font-size: 0.9rem;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            font-size: 0.9rem;
+        }
+
+        .author-info h5 {
+            font-size: 0.9rem;
+        }
+
+        .author-info span {
+            font-size: 0.8rem;
+        }
+    }
+
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    .scale-in {
+        animation: scaleIn 0.5s ease forwards;
+        opacity: 0;
+    }
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+        opacity: 0;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    .price-tag {
+        background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(255, 51, 102, 0.1));
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    .card {
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .text-dark {
+        color: #212529 !important;
+    }
+    .icon-box {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        background: rgba(0, 255, 136, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    .card:hover .icon-box {
+        transform: scale(1.1);
+        background: rgba(0, 255, 136, 0.2);
+    }
+    .hover-lift {
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 255, 136, 0.1);
+    }
+    .hover-lift:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 1rem 3rem rgba(0, 255, 136, 0.2) !important;
+    }
+    .bi {
+        font-size: 2rem;
+        color: var(--secondary-color);
+    }
+    .text-primary {
+        color: #ffffff !important;
+    }
+    .btn-primary {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        transform: translateY(-2px);
+    }
+    .investment-plans {
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 51, 102, 0.05) 100%);
+        padding: 4rem 0;
+    }
+    .investment-plans .card {
+        background: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        position: relative;
+    }
+    .investment-plans .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    }
+    .investment-plans .card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
+    }
+    .investment-plans .icon-box {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(255, 51, 102, 0.2));
+        border-radius: 50%;
+        margin-bottom: 1.5rem;
+        transition: all 0.4s ease;
+    }
+    .investment-plans .card:hover .icon-box {
+        transform: scale(1.1) rotate(5deg);
+    }
+    .investment-plans .card-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-bg);
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+    }
+    .investment-plans .card-title::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        border-radius: 3px;
+    }
+    .investment-plans .price-tag {
+        background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(255, 51, 102, 0.15));
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin: 1.5rem 0;
+        border: 2px solid rgba(0, 255, 136, 0.2);
+    }
+    .investment-plans .price-tag h4 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-bg);
+        margin-bottom: 0.5rem;
+    }
+    .investment-plans .price-tag p {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        margin: 0;
+    }
+    .investment-plans .list-unstyled li {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+    .investment-plans .list-unstyled li i {
+        position: absolute;
+        left: 0;
+        color: var(--secondary-color);
+        font-size: 1.2rem;
+    }
+    .investment-plans .btn-primary {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        border: none;
+        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        transition: all 0.4s ease;
+    }
+    .investment-plans .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 255, 136, 0.4);
+    }
+    @media (max-width: 768px) {
+        .investment-plans .card {
+            margin-bottom: 2rem;
+        }
+        .investment-plans .card-title {
+            font-size: 1.6rem;
+        }
+        .investment-plans .price-tag h4 {
+            font-size: 1.5rem;
+        }
+        .investment-plans .list-unstyled li {
+            font-size: 1rem;
+        }
+    }
+</style>
