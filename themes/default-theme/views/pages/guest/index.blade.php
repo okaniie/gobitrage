@@ -46,7 +46,7 @@
             .hero-section {
                 position: relative;
                 overflow: hidden;
-                background: url('/assets/images/hero-meeting.jpg') no-repeat center center;
+                background: url('/assets/images/Businessvd.mp4') no-repeat center center;
                 background-size: cover;
                 min-height: 50vh;
                 display: flex;
