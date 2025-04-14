@@ -16,7 +16,7 @@ class CalculateInterest
     {
     }
 
-    public function calculate(): int
+    public function calculate()
     {
         // release all deposits that the final interest date has passed
         // fetch all pending deposits
@@ -126,6 +126,8 @@ class CalculateInterest
                 ]);
 
                 // log success
+                Log::info("Deposit {$deposit->id}: timeDiff = {$timeDiff}, minimumInterval = {$minimumInterval}");
+
                 Log::channel('interest')->info("Earning of \${$interest} ({$deposit->crypto_currency}) added to {$user->username}.");
             } catch (\Exception $e) {
                 Log::channel('interest')->error("{$e->getMessage()}, in file: {$e->getFile()}, line {$e->getLine()}");

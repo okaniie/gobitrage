@@ -113,12 +113,12 @@
                                                 @if ($trans->status !== 'pending')
                                                     <div class="mt-2">
                                                         <small class="text-muted">
-                                                            <i class="fas fa-clock me-1"></i> Started: {{ $trans->deposit_approval_date }}
+                                                            <i class="fas fa-clock me-1"></i> Started: {{ $trans->approval_date }}
                                                         </small>
-                                                        @if (!empty($trans->last_interest_date))
+                                                        @if (!empty($trans->final_interest_date))
                                                             <br>
                                                             <small class="text-muted">
-                                                                <i class="fas fa-calendar-times me-1"></i> Expires: {{ $trans->last_interest_date }}
+                                                                <i class="fas fa-calendar-times me-1"></i> Expires: {{ $trans->final_interest_date }}
                                                             </small>
                                                         @endif
                                                     </div>

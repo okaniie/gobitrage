@@ -11,7 +11,6 @@ use App\Models\Deposit;
 use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\Wallet;
-use App\Services\QrCodeMaker\QrCodeMakerService;
 use App\Traits\DepositsTrait;
 use App\Traits\EmailNotificationTrait;
 use Illuminate\Http\Request;
