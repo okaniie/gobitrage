@@ -705,7 +705,7 @@
             <!-- ACRA Certificate Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4">Licensed & Regulated</h">
+            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4" style= "background-color: white;">Licensed & Regulated</h">
                 <div class="pt-5">
                     <img src="/assets/images/banks.png" alt="banks" class="img-fluid rounded-3 shadow-lg">
                 </div>
