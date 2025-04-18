@@ -705,8 +705,9 @@
             <!-- ACRA Certificate Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4" style= "background-color: white;">Licensed & Regulated</h">
-                <div class="pt-5">
+            <h2 class="text-center display-5 font-bold text-5xl text-white mb-4" style= "background-color: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%);">Licensed & Regulated</h">
+                <div class="pt-5" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%); padding: 20px; border-radius: 12px;">
+    <img src="/assets/images/banks.png"
                     <img src="/assets/images/banks.png" alt="banks" class="img-fluid rounded-3 shadow-lg">
                 </div>
             </div>
