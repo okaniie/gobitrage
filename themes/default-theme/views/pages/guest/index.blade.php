@@ -707,7 +707,7 @@
         <div class="container">
             <h2 class="text-center display-5 font-bold text-5xl text-white mb-4">Licensed & Regulated</h">
                 <div class="pt-5">
-                    <img src="/assets/images/acra-certificate.jpg" alt="ACRA Certificate" class="img-fluid rounded-3 shadow-lg">
+                    <img src="/assets/images/banks.png" alt="banks" class="img-fluid rounded-3 shadow-lg">
                 </div>
             </div>
         </div>
