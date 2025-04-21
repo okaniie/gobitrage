@@ -5,6 +5,18 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\HyipInstallerController;
 use App\Http\Controllers\IpnCallbackController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/run-schedule', function () {
+    // Optional: Add a secret token to prevent unauthorized access
+    if (request('token') !== env('CRON_TOKEN')) {
+        abort(403);
+    }
+
+    Artisan::call('schedule:run');
+
+    return 'Schedule run completed';
+});
 
 /*
 |--------------------------------------------------------------------------
