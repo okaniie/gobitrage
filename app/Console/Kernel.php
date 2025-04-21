@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         // calculate interests
         $schedule
             ->command(CalculateInterest::class)
-            ->hourly()
+            ->everyMinute()
             ->runInBackground();
 
         // clear logs older than 7 days
@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
         // process queue manually
         $schedule
             ->command(ManualQueueCommand::class)
-            ->hourly()
+            ->everyMinute()
             ->runInBackground();
     }
 
