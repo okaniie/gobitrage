@@ -10,10 +10,32 @@
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+    
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
+    <!-- Begin of Chaport Live Chat code -->
+    <script type="text/javascript">
+        (function(w,d,v3){
+        w.chaportConfig = {
+          appId : '67eb37fb4492a3ec53055f19'
+        };
+    
+        if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';
+        
+        // Add error handling
+        s.onerror = function() {
+            console.error('Failed to load Chaport chat script');
+        };
+        
+        s.onload = function() {
+            console.log('Chaport chat script loaded successfully');
+        };
+        
+        var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
+        </script>
+        <!-- End of Chaport Live Chat code -->
     
     <!-- google translate -->
     <style type="text/css">
@@ -75,12 +97,13 @@
             margin: 0;
         }
 
+
         /* Very small screens (e.g., smartwatches, very old phones) */
 @media (max-width: 320px) {
     body {
         transform: scale(0.3); /* Adjust scaling as needed */
         width: 333.33%; /* 100/0.3 */
-        height: 333.33%; /* 100/0.3 */
+        /* height: 333.33%;  */
     }
 }
 
@@ -89,7 +112,7 @@
     body {
         transform: scale(0.4); /* Adjust scaling as needed */
         width: 250%; /* 100/0.4 */
-        height: 250%; /* 100/0.4 */
+        /* height: 250%;  */
     }
 }
 
@@ -98,7 +121,7 @@
     body {
         transform: scale(0.5); /* Adjust scaling as needed */
         width: 200%; /* 100/0.5 */
-        height: 200%; /* 100/0.5 */
+        /* height: 200%; / */
     }
 }
 
@@ -108,7 +131,7 @@
     body {
         transform: scale(1);
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
     }
 }
         
@@ -310,28 +333,6 @@
     <script src="{{ asset('assets/js/view-mode.js') }}"></script>
     
     {{ \App\Models\Setting::get('footer_code') }}
-
-    <!-- Begin of Chaport Live Chat code -->
-    <script type="text/javascript">
-    (function(w,d,v3){
-    w.chaportConfig = {
-      appId : '67eb37fb4492a3ec53055f19'
-    };
-
-    if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';
-    
-    // Add error handling
-    s.onerror = function() {
-        console.error('Failed to load Chaport chat script');
-    };
-    
-    s.onload = function() {
-        console.log('Chaport chat script loaded successfully');
-    };
-    
-    var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-    </script>
-    <!-- End of Chaport Live Chat code -->
 
     <!--Body Inner end-->
     <script>
