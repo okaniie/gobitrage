@@ -93,14 +93,14 @@
             line-height: 1.6;
             background-color: var(--dark-bg);
             /* color: var(--text-color); */
-            transform-origin: top left;
+            /* transform-origin: top left; */
             margin: 0;
         }
 
 
         /* Very small screens (e.g., smartwatches, very old phones) */
 @media (max-width: 320px) {
-    body {
+    .content-wrapper {
         transform: scale(0.3); /* Adjust scaling as needed */
         width: 333.33%; /* 100/0.3 */
         /* height: 333.33%;  */
@@ -109,7 +109,7 @@
 
 /* Small phones (e.g., iPhone SE, older Android phones) */
 @media (min-width: 321px) and (max-width: 480px) {
-    body {
+    .content-wrapper {
         transform: scale(0.4); /* Adjust scaling as needed */
         width: 250%; /* 100/0.4 */
         /* height: 250%;  */
@@ -118,7 +118,7 @@
 
 /* Standard phones (e.g., most modern smartphones) */
 @media (min-width: 481px) and (max-width: 900px) {
-    body {
+    .content-wrapper {
         transform: scale(0.5); /* Adjust scaling as needed */
         width: 200%; /* 100/0.5 */
         /* height: 200%; / */
@@ -128,7 +128,7 @@
 /* Tablets and larger phones */
 @media (min-width: 900px) {
     /* Optional: You might not need scaling here, or adjust as needed */
-    body {
+    .content-wrapper {
         transform: scale(1);
         width: 100%;
         /* height: 100%; */
@@ -311,15 +311,15 @@
 </head>
 
 <body>
-    <main>
+    <main class="content-wrapper">
     <x-navigation.guest />
     <x-general.crypto-ticker />
         <div class="main-content">
             <div id="google_translate_element"></div>
             {{ $slot }}
         </div>
+        <x-footer.guest />
     </main>
-    <x-footer.guest />
 
     <!--
       Javascript Files
