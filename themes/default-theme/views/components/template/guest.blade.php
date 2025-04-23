@@ -3,9 +3,9 @@
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="content-type" content="text/html;" charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gobitrage - Your Trusted Investment Platform</title>
 
     <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Begin of Chaport Live Chat code -->
         <!-- Begin of Chaport Live Chat code -->
      <script type="text/javascript">
          (function(w,d,v3){
@@ -104,6 +103,8 @@
     .content-wrapper {
         transform: scale(0.3); /* Adjust scaling as needed */
         width: 333.33%; /* 100/0.3 */
+        position: absolute;
+        transform-origin: top left; 
         /* height: 333.33%;  */
     }
 }
@@ -113,6 +114,8 @@
     .content-wrapper {
         transform: scale(0.4); /* Adjust scaling as needed */
         width: 250%; /* 100/0.4 */
+        position: absolute;
+        transform-origin: top left; 
         /* height: 250%;  */
     }
 }
@@ -122,6 +125,8 @@
     .content-wrapper {
         transform: scale(0.5); /* Adjust scaling as needed */
         width: 200%; /* 100/0.5 */
+        position: absolute;
+        transform-origin: top left; 
         /* height: 200%; / */
     }
 }
