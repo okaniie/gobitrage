@@ -330,8 +330,6 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     
-    <!-- View Mode Script -->
-    <script src="{{ asset('assets/js/view-mode.js') }}"></script>
     
     {{ \App\Models\Setting::get('footer_code') }}
 
