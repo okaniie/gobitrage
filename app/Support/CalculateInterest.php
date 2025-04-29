@@ -7,142 +7,129 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Traits\DepositsTrait;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class CalculateInterest
 {
     use DepositsTrait;
 
-    public function __construct()
-    {
-    }
-
     public function calculate()
     {
-        // release all deposits that the final interest date has passed
-        // fetch all pending deposits
-        $deposits = Deposit::where('status', 'approved')->get()->all();
+        $now = Carbon::now();
+        $timestampNow = $now->timestamp;
 
-        if (empty($deposits)) {
-            Log::channel('interest')->info("No deposits to process");
-            return 0;
-        }
-
-        $now = time();
-
-        // loop through each
-        foreach ($deposits as $deposit) {
-
-            // find user first
-            $user = $deposit->user()->first();
-
-            if (empty($user->id)) {
-                // deposit without a user detected. Delete asap
-                $deposit->delete();
-                Log::channel('interest')->info("User {$deposit->username} ({$deposit->user_id}) seems to have disappeared, leaving Deposit {$deposit->id} as an orphan. Let the orphan go home!");
-                continue;
-            }
-
-            if (empty($user->status)) {
-                // user inactive
-                Log::channel('interest')->info("User {$user->username} inactive!");
-                continue;
-            }
-
-            // set a reference date for calculations
-            // use the deposit approval date if the last interest date is still null.
-            $referenceDate = !empty($deposit->last_interest_date) ? $deposit->last_interest_date : $deposit->approval_date;
-
-            // check the interest plan, see whether the current time is good to pay interest
-            switch ($deposit->profit_frequency) {
-                case 'year': {
-                        $minimumInterval = 52 * 7 * 24 * 60 * 60; // wk*dy*hr*min*secs
-                        break;
+        // Process approved deposits in chunks for efficiency
+        Deposit::where('status', 'approved')
+            ->chunkById(100, function ($deposits) use ($timestampNow, $now) {
+                foreach ($deposits as $deposit) {
+                    // Find and validate user
+                    $user = $deposit->user()->first();
+                    if (!$user) {
+                        // Orphaned deposit
+                        $deposit->delete();
+                        Log::channel('interest')->info(
+                            "User {$deposit->username} ({$deposit->user_id}) disappeared; Deposit {$deposit->id} deleted."
+                        );
+                        continue;
                     }
-                case 'month': {
-                        $minimumInterval = 4 * 7 * 24 * 60 * 60; // wk*dy*hr*min*secs
-                        break;
+                    if (!$user->status) {
+                        // Inactive user
+                        Log::channel('interest')->info(
+                            "User {$user->username} is inactive; skipping deposit {$deposit->id}."
+                        );
+                        continue;
                     }
-                case 'week': {
-                        $minimumInterval = 7 * 24 * 60 * 60; // dy*hr*min*secs
-                        break;
+
+                    // Determine reference timestamp (approval or last interest)
+                    $referenceDate = $deposit->last_interest_date
+                        ? Carbon::parse($deposit->last_interest_date)->timestamp
+                        : Carbon::parse($deposit->approval_date)->timestamp;
+
+                    // Calculate minimum interval based on profit frequency
+                    switch ($deposit->profit_frequency) {
+                        case 'year':
+                            $minimumInterval = 52 * 7 * 24 * 60 * 60;
+                            break;
+                        case 'month':
+                            $minimumInterval = 4 * 7 * 24 * 60 * 60;
+                            break;
+                        case 'week':
+                            $minimumInterval = 7 * 24 * 60 * 60;
+                            break;
+                        case 'day':
+                            $minimumInterval = 24 * 60 * 60;
+                            break;
+                        case 'hour':
+                            $minimumInterval = 60 * 60;
+                            break;
+                        case 'minute':
+                        case 'mintue': // handle possible typo
+                            $minimumInterval = 60;
+                            break;
+                        case 'end':
+                            // One-time payout at plan end, minus 1 minute grace
+                            $minimumInterval = strtotime($deposit->final_interest_date)
+                                - $referenceDate
+                                - 60;
+                            break;
+                        default:
+                            Log::channel('interest')->error(
+                                "Unknown profit_frequency '{$deposit->profit_frequency}' for deposit {$deposit->id}."
+                            );
+                            continue 2;
                     }
-                case 'day': {
-                        $minimumInterval = 24 * 60 * 60; //hr*min*secs
-                        break;
+
+                    // Skip if not yet due
+                    if ($timestampNow - $referenceDate < $minimumInterval) {
+                        continue;
                     }
-                case 'hour': {
-                        $minimumInterval = 60 * 60; //min*secs
-                        break;
+
+                    // Pay interest
+                    try {
+                        $interest = round($deposit->percentage / 100 * $deposit->amount, 2);
+                        $wallet = Wallet::whereBelongsTo($user)
+                            ->where('currency_code', $deposit->crypto_currency)
+                            ->first();
+                        $wallet->increment('balance', $interest);
+
+                        // Update last interest date and interest balance
+                        $deposit->update([
+                            'last_interest_date' => $now->toDateTimeString(),
+                        ]);
+                        $deposit->increment('interest_balance', $interest);
+
+                        // Log transaction
+                        Transaction::create([
+                            'user_id'             => $user->id,
+                            'username'            => $user->username,
+                            'log_type'            => 'deposit-earning',
+                            'crypto_currency'     => $deposit->crypto_currency,
+                            'transaction_details' => "Interest from \${$deposit->amount} at {$deposit->percentage}%",
+                            'transaction_id'      => $deposit->id,
+                            'amount'              => $interest,
+                        ]);
+
+                        Log::channel('interest')->info(
+                            "Paid \${$interest} to {$user->username} for deposit {$deposit->id}."
+                        );
+                    } catch (\Exception $e) {
+                        Log::channel('interest')->error(
+                            "Error paying interest for deposit {$deposit->id}: {$e->getMessage()}"
+                        );
+                        continue;
                     }
-                case 'minute': {
-                        $minimumInterval = 60; // secs
-                        break;
+
+                    // Release deposit if plan ended
+                    if (
+                        $deposit->profit_frequency === 'end' ||
+                        empty($deposit->final_interest_date) ||
+                        strtotime($deposit->final_interest_date) < $timestampNow
+                    ) {
+                        $this->releaseDeposit($deposit->id);
                     }
-                case 'end': {
-                        // should be end of plan
-                        $minimumInterval = strtotime($deposit->final_interest_date) - strtotime($referenceDate) - 60; // give 1 minute grace
-                        break;
-                    }
-                default: {
-                        Log::channel('interest')->error("Unable to detect profit_frequency for {$deposit->id}");
-                        break;
-                    }
-            }
+                }
+            });
 
-            if (empty($minimumInterval)) continue;
-
-            // be sure there is a date to work with
-            if (empty($referenceDate)) {
-                Log::channel('interest')->error("{$deposit->id} has issue with deposit_approval_date and last_interest_date.");
-                continue;
-            }
-
-            // check time difference between now and when interest was last paid
-            $timeDiff = $now - strtotime($referenceDate);
-
-            // check if deposit is qualified to receive interest right now
-            if ($timeDiff < $minimumInterval) continue;
-
-            // it is good to pay
-            try {
-                // calculate interest and add pay
-                $interest = round($deposit->percentage / 100 * $deposit->amount, 2);
-                $wallet = Wallet::whereBelongsTo($user)->where('currency_code', $deposit->crypto_currency)->first();
-                $wallet->increment('balance', $interest);
-
-                // update the deposit last paid interest
-                $deposit->update(['last_interest_date', now()]);
-                $deposit->increment('interest_balance',  $interest);
-
-                // add the record to logs too
-                Transaction::create([
-                    'user_id' => $user->id,
-                    'username' => $user->username,
-                    'log_type' => 'deposit-earning',
-                    'crypto_currency' => $deposit->crypto_currency,
-                    'transaction_details' => "Earning from deposit of $" . $deposit->amount . " - " . $deposit->percentage . "%",
-                    'transaction_id' => $deposit->id,
-                    'amount' => $interest
-                ]);
-
-                // log success
-                Log::info("Deposit {$deposit->id}: timeDiff = {$timeDiff}, minimumInterval = {$minimumInterval}");
-
-                Log::channel('interest')->info("Earning of \${$interest} ({$deposit->crypto_currency}) added to {$user->username}.");
-            } catch (\Exception $e) {
-                Log::channel('interest')->error("{$e->getMessage()}, in file: {$e->getFile()}, line {$e->getLine()}");
-                continue;
-            }
-
-            // then check up on releases
-            // verify that its end of plan or interest date not passed
-            if (($deposit->profit_frequency === "end") || empty($deposit->final_interest_date) || strtotime($deposit->final_interest_date) < $now) {
-                // release deposits that have passed
-                $this->releaseDeposit($deposit->id);
-                continue;
-            }
-
-            return 0;
-        }
+        Log::channel('interest')->info("Interest calculation completed at {$now->toDateTimeString()}");
     }
 }
