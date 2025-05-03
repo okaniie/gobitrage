@@ -131,9 +131,9 @@
                             </tr>
                                 </thead>
                         <tbody>
-                                    @foreach($withdrawals->take(5) as $withdrawal)
+                                    {{-- @foreach($withdrawals->take(5) as $withdrawal)
                                     <tr>
-                                        <td>{{ $withdrawal->user->username }}</td>
+                                        <td>{{ $withdrawal->users->username }}</td>
                                         <td>{{ number_format($withdrawal->amount, 2) }} {{ $withdrawal->currency }}</td>
                                 <td>
                                             <span class="badge bg-{{ $withdrawal->status === 'approved' ? 'success' : 'warning' }}">
@@ -142,7 +142,7 @@
                                 </td>
                                         <td>{{ $withdrawal->created_at->format('M d, Y') }}</td>
                             </tr>
-                                    @endforeach
+                                    @endforeach --}}
                         </tbody>
                     </table>
                         </div>
