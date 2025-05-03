@@ -28,6 +28,12 @@ class DashboardController extends Controller
             ->groupBy(['currency', 'status'])
             ->orderBy('currency')->get();
 
+            $recentWithdrawals = Withdrawal::with('user')
+            ->latest('created_at')
+            ->take(5)
+            ->get();
+    
+
         // plans
         $plans = Plan::count() ?? 0;
 
@@ -47,6 +53,7 @@ class DashboardController extends Controller
             'users' => $users,
             'deposits' => $deposits,
             'withdrawals' => $withdrawals,
+            'recentWithdrawals'  => $recentWithdrawals,
             'plans' => $plans,
             'transactions' => $transactions,
             'referrals' => $referrals,
