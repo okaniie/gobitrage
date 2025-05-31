@@ -19,7 +19,7 @@ class WalletFactory extends Factory
             'currency_id' => rand(1, 5),
             'currency_code' => $this->faker->currencyCode(),
             'balance' => rand(1, 90090),
-            'deposit_address' => $this->faker->uuid(),
+            // 'deposit_address' => $this->faker->uuid(),
         ];
     }
 }

@@ -40,7 +40,16 @@
                                                 value="{{ $address->deposit_address }}" class="inpts"></td>
                                     </tr>
                                 @endforeach
-
+                                {{-- Loop through each of the user's wallets to edit balances and display addresses --}}
+                                  @foreach ($wallets as $wallet)
+<tr>
+    <th>{{ $wallet->currency_code }} Balance:</th>
+    <td>
+        <input type="number" step="any" name="wallets[{{ $wallet->currency_code }}][balance]"
+            value="{{ old('wallets.' . $wallet->currency_code . '.balance', $wallet->balance) }}" class="inpts" size="30">
+    </td>
+</tr>
+@endforeach
                                 <tr>
                                     <th>Secret Question:</th>
                                     <td><input type="text" name="profile[secret_question]"

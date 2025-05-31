@@ -69,6 +69,7 @@ class UsersController extends Controller
 
         $addresses = [];
         $currencies = Currency::where('status', '1')->get()->all();
+        $wallets = $user->wallets()->get();
 
         foreach ($currencies as $currency) {
 
@@ -87,7 +88,9 @@ class UsersController extends Controller
 
         return view('pages.admin.users.edit', [
             'user' => $user,
-            'addresses' => $addresses
+            'addresses' => $addresses,
+            'wallets' => $wallets,
+
         ]);
     }
 
@@ -192,6 +195,8 @@ class UsersController extends Controller
             'profile.secret_answer' => 'nullable|string',
             'profile.auto_withdrawal' => 'required',
             'profile.status' => 'required',
+            'wallets' => 'array',
+            'wallets.*.balance' => 'required|numeric|min:0',
         ]);
 
         $profile = $request->profile;
@@ -209,23 +214,30 @@ class UsersController extends Controller
         $user = User::find($id);
         $user->update($profile);
 
-        // update the wallets
-        foreach ($addresses as $code => $address) {
-            $wallet = Wallet::whereBelongsTo($user)
-                ->where('currency_code', $code)->get()->first();
+       if ($request->has('wallets')) {
+    foreach ($request->wallets as $currencyCode => $walletData) {
+        $currency = Currency::where('code', $currencyCode)->first();
 
-            if (!empty($wallet)) {
-                $wallet->update(['deposit_address' => $address]);
-            } else {
-                $currency = Currency::where('code', $code)->get()->first();
-                Wallet::create([
-                    'user_id' => $user->id,
-                    'username' => $user->username,
-                    'currency_id' => $currency->id,
-                    'currency_code' => $currency->code,
-                ]);
-            }
+        if (!$currency) continue;
+
+        $wallet = Wallet::where('user_id', $user->id)
+            ->where('currency_code', $currencyCode)
+            ->first();
+
+        if ($wallet) {
+            $wallet->update(['balance' => $walletData['balance']]);
+        } else {
+            Wallet::create([
+                'user_id' => $user->id,
+                'username' => $user->username,
+                'currency_id' => $currency->id,
+                'currency_code' => $currency->code,
+                'balance' => $walletData['balance'],
+                'deposit_address' => '', // or null if preferred
+            ]);
         }
+    }
+    }
 
         return back()->with('success', "User saved successfully");
     }
@@ -254,97 +266,93 @@ class UsersController extends Controller
         ]);
     }
 
-    public function addBonusAction(AddBonusRequest $request, $id)
+  public function addBonusAction(AddBonusRequest $request, $id)
     {
-        // save the request
+        // 1. Validate the incoming request data
         $validated = $request->validated();
 
-        $validated['token'] = Uuid::generate()->string;
+        // 2. Prepare bonus data for immediate creation and completion
         $validated['user_id'] = $id;
+        $validated['status'] = 'completed'; // Set status to 'completed' immediately
+        // Set 'token' to null as it's no longer used for confirmation.
+        // IMPORTANT: Ensure the 'token' column in your 'user_bonuses' table is nullable.
+        $validated['token'] = null;
 
-
+        // 3. Create the UserBonus record in the database
+        // This record now directly reflects a completed bonus.
         $bonus = UserBonus::create($validated);
 
-        // dispatch
-        event(new AddBonusRequestEvent($bonus));
+        // 4. Retrieve necessary related models for applying the bonus
+        // Use findOrFail to automatically throw a 404 if the user is not found
+        $user = User::findOrFail($id);
+        // Find the currency details based on the bonus's currency code
+        $currency = Currency::where('code', $bonus->currency_code)->first();
 
-        // redirect
-        return back()->with('success', 'Bonus confirmation link sent to admin email. Click on the link to confirm action. Link will expire in 10 minutes.');
-    }
-
-    public function bonusConfirm($token)
-    {
-        $bonus = UserBonus::where('token', $token)->where('status', 'pending')->get()->first();
-
-        // 
-        if (!$bonus || strtotime($bonus->created_at) < (time() - (10 * 60))) {
-            if ($bonus) $bonus->update('status', 'cancelled');
-            die("Link expired.");
-        }
-
-        $user = User::findOrFail($bonus->user_id);
-        $currency = Currency::where('code', $bonus->currency_code)->get()->first();
-
-        // check if bonus is to go as deposit
+        // 5. Apply the bonus based on its type ('invest' or 'balance')
+        // Check if the bonus type is 'invest' and a plan ID is provided
         if ($bonus->type == "invest" && !empty($bonus->plan_id)) {
-
+            // Retrieve the investment plan details
             $plan = Plan::findOrFail($bonus->plan_id);
+
+            // Create a new deposit record for the user based on the bonus
             Deposit::create([
                 'user_id' => $user->id,
                 'username' => $user->username,
                 'plan_id' => $plan->id,
                 'plan_title' => $plan->title,
-                'transaction_id' => Uuid::generate()->string,
+                'transaction_id' => Uuid::generate()->string, // Generate a unique transaction ID for the deposit
                 'percentage' => $plan->percentage,
                 'profit_frequency' => $plan->profit_frequency,
-                'address' => "",
+                'address' => "", // Assuming 'address' is not relevant for bonus-based deposits
                 'amount' => $bonus->amount,
-                'charges' => 0,
+                'charges' => 0, // Assuming no charges for bonus deposits
                 'crypto_currency' => $bonus->currency_code,
             ]);
 
-            // check if you can pay referral commission on it
-            if (!empty($bonus->pay_referral) && !empty(Setting::get('pay_referral'))) {
+            // Check if referral commission should be paid for this bonus/deposit
+            // Ensure 'pay_referral' is a property on the bonus or a relevant setting
+            if (!empty($bonus->pay_referral) && Setting::get('pay_referral')) {
+                // Call the static method to pay referral commissions
                 Referral::payReferral($bonus->user_id, $bonus->amount, $plan->referral_percentage, $bonus->currency_code);
             }
         }
 
+        // Check if the bonus type is 'balance'
         if ($bonus->type == "balance") {
+            // Find the user's wallet for the specific currency
             $wallet = Wallet::where('user_id', $bonus->user_id)
                 ->where('currency_code', $currency->code)
-                ->get()->first();
+                ->first();
 
             if ($wallet) {
+                // If the wallet exists, increment its balance by the bonus amount
                 $wallet->increment('balance', $bonus->amount);
             } else {
+                // If no wallet exists for this currency, create a new one for the user
                 Wallet::create([
                     'user_id' => $user->id,
                     'username' => $user->username,
                     'currency_code' => $currency->code,
                     'currency_id' => $currency->id,
-                    'balance' => $bonus->amount,
+                    'balance' => $bonus->amount, // Initialize with the bonus amount
                 ]);
             }
         }
 
-        // register transaction
+        // 6. Register the bonus as a transaction in the system's transaction log
         Transaction::create([
             'user_id' => $user->id,
             'username' => $user->username,
-            'log_type' => 'bonus',
-            'transaction_details' => "Bonus of " . $bonus->amount . " added",
-            'transaction_id' => $bonus->token,
+            'log_type' => 'bonus', // Indicate that this is a bonus transaction
+            'transaction_details' => "Bonus of " . $bonus->amount . " " . $bonus->currency_code . " added",
+            'transaction_id' => Uuid::generate()->string, // Generate a unique ID for this specific transaction log entry
             'amount' => $bonus->amount,
             'crypto_currency' => $bonus->currency_code
         ]);
 
-        $bonus->update(['status', 'completed']);
-
-        // check if you can send notification 
-        event(new AddBonusConfirmedEvent($bonus));
-
-        echo "Bonus processed successfully.";
-        return;
+        // 7. Redirect the user back to the previous page with a success message
+        // This provides immediate feedback that the bonus has been processed.
+        return back()->with('success', 'Bonus added and applied to user balance immediately!');
     }
 
     public function addPenaltyView($id)
