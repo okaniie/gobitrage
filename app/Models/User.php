@@ -77,7 +77,7 @@ class User extends Authenticatable
 
     public function wallets()
     {
-        return $this->hasMany(Wallet::class)->select(['currency_code', 'balance']);
+        return $this->hasMany(Wallet::class);
     }
     
 }

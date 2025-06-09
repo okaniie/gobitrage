@@ -195,12 +195,15 @@ class UsersController extends Controller
             'profile.secret_answer' => 'nullable|string',
             'profile.auto_withdrawal' => 'required',
             'profile.status' => 'required',
+            'address' => 'array',
+            'address.*' => 'nullable|string|min:26|max:100',
             'wallets' => 'array',
             'wallets.*.balance' => 'required|numeric|min:0',
         ]);
 
         $profile = $request->profile;
         $addresses = $request->address ?? [];
+
 
         if (empty($profile['password'])) {
             unset($profile['password']);
@@ -209,6 +212,31 @@ class UsersController extends Controller
         if (!empty($profile['password'])) {
             $profile['password'] = Hash::make($profile['password']);
         }
+         $user = User::find($id);
+
+        // update user profile
+        foreach ($addresses as $currencyCode => $depositAddress) {
+    $currency = Currency::where('code', $currencyCode)->first();
+
+    if (!$currency) continue;
+
+    $wallet = Wallet::where('user_id', $user->id)
+        ->where('currency_code', $currencyCode)
+        ->first();
+
+    if ($wallet) {
+        $wallet->update(['deposit_address' => $depositAddress]);
+    } else {
+        Wallet::create([
+            'user_id' => $user->id,
+            'username' => $user->username,
+            'currency_id' => $currency->id,
+            'currency_code' => $currencyCode,
+            'balance' => 0,
+            'deposit_address' => $depositAddress,
+        ]);
+    }
+}
 
         // update user info
         $user = User::find($id);

@@ -13,6 +13,7 @@
                     <div class="card-body">
                         <form method="post" class="row g-4">
                             @csrf
+                            <input type="hidden" name="form_type" value="profile">
                             <div class="form-group col-md-6">
                                 <label for="username" class="text-white">Username</label>
                                 <input class="form-control bg-dark text-white border-secondary" id="username" type="text" value="{{ $user->username }}" readonly disabled />
@@ -25,14 +26,14 @@
                                 <label for="email" class="text-white">Email</label>
                                 <input class="form-control bg-dark text-white border-secondary" id="email" type="email" name="profile[email]" value="{{ $user->email }}" required />
                             </div>
-                            <div class="form-group col-md-6">
+                            {{-- <div class="form-group col-md-6">
                                 <label for="phone" class="text-white">Phone</label>
                                 <input class="form-control bg-dark text-white border-secondary" id="phone" type="text" name="profile[phone]" value="{{ $user->phone }}" />
-                            </div>
-                            <div class="form-group col-md-6">
+                            </div> --}}
+                            {{-- <div class="form-group col-md-6">
                                 <label for="address" class="text-white">Address</label>
                                 <input class="form-control bg-dark text-white border-secondary" id="address" type="text" name="profile[address]" value="{{ $user->address }}" />
-                            </div>
+                            </div> --}}
                             <div class="form-group col-md-6">
                                 <label for="password" class="text-white">New Password (leave blank to keep current)</label>
                                 <input class="form-control bg-dark text-white border-secondary" id="password" type="password" name="password[password]" />
@@ -56,6 +57,7 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('user.profile') }}" class="row g-4">
                             @csrf
+                            <input type="hidden" name="form_type" value="wallets">
                             @foreach ($addresses as $address)
                                 <div class="form-group col-md-6">
                                     <label for="{{ $address->currency_code }}" class="text-white">
