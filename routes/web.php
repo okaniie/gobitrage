@@ -6,9 +6,11 @@ use App\Http\Controllers\HyipInstallerController;
 use App\Http\Controllers\IpnCallbackController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Mail\SignUpMail;
+use Illuminate\Support\Facades\Mail;
 
+// Optional: Add a secret token to prevent unauthorized access
 Route::get('/run-schedule', function () {
-    // Optional: Add a secret token to prevent unauthorized access
     if (request('token') !== env('CRON_TOKEN')) {
         abort(403);
     }
@@ -16,6 +18,25 @@ Route::get('/run-schedule', function () {
     Artisan::call('schedule:run');
 
     return 'Schedule run completed';
+});
+
+// Route::get('/test-email', function () {
+//     $user = \App\Models\User::first(); // Use actual model
+//     Mail::to($user->email)->send(new SignUpMail($user));
+//     return 'Mail sent!';
+// });
+
+
+Route::get('/test-email', function() {
+    try {
+        Mail::raw('This is a test email from Brevo', function($message) {
+            $message->to('teleiosperfect1@gmail.com')
+                    ->subject('Brevo Test Email');
+        });
+        return 'Test email sent! Check your inbox.';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
 });
 
 /*

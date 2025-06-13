@@ -40,7 +40,7 @@ trait UserEmailsTrait
     public function prepareTemplate(EmailTemplate $template, array $replacements): array
     {
         // merge replacements
-        $replacements['site_name'] = config('app.name', 'Crypto-HYIP-Pro');
+        $replacements['site_name'] = config('app.name', 'Gobitrage');
         $replacements['site_url'] = url('/');
 
         $subject = $template->subject;
