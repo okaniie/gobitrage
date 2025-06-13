@@ -25,6 +25,7 @@ class SignUpMail extends Mailable // Changed from WelcomeMail to SignUpMail
             'login_url' => route('login'),
         ];
         
+        
         list($subject, $message) = $this->prepareTemplate($template, $replacements);
         
         $this->emailData = [
