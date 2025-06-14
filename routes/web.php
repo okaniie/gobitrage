@@ -20,6 +20,21 @@ Route::get('/run-schedule', function () {
     return 'Schedule run completed';
 });
 
+Route::get('/process-queue', function() {
+    // Authenticate the request
+    if (request('token') !== env('CRON_TOKEN')) {
+        abort(403);
+    }
+    
+    // Process jobs for 55 seconds (under Render's 60s timeout)
+    Artisan::call('queue:work --stop-when-empty --max-time=55');
+    
+    return response()->json([
+        'processed' => true,
+        'remaining' => \DB::table('jobs')->count()
+    ]);
+});
+
 // Route::get('/test-email', function () {
 //     $user = \App\Models\User::first(); // Use actual model
 //     Mail::to($user->email)->send(new SignUpMail($user));
