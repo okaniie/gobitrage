@@ -91,7 +91,7 @@
                                                     value="week">
                                                     Weekly
                                                 </option>
-                                                <option {{ $plan->profit_frequency == 'monthly' ? 'selected' : '' }}
+                                                <option {{ $plan->profit_frequency == 'month' ? 'selected' : '' }}
                                                     value="month">
                                                     Monthly
                                                 </option>
