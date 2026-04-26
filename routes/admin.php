@@ -40,6 +40,8 @@ Route::prefix('admin')
                 Route::post('{id}/add-penalty', 'addPenaltyAction')->name('admin.users.penalty.add');
                 // block user
                 Route::post('{id}/block', 'blockUser')->name('admin.users.block');
+                // reset user data
+                Route::post('reset-data', 'resetData')->name('admin.users.reset-data');
             });
 
         // referrals

@@ -27,6 +27,7 @@ use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use Webpatser\Uuid\Uuid;
 
 class UsersController extends Controller
@@ -445,5 +446,45 @@ class UsersController extends Controller
 
     public function blockUser()
     {
+    }
+
+    public function resetData(Request $request)
+    {
+        if (!$request->user() || $request->user()->user_type !== 'admin') {
+            abort(403);
+        }
+
+        $request->validate([
+            'confirmation' => ['required', 'in:RESET'],
+        ]);
+
+        $tables = [
+            'wallets',
+            'deposits',
+            'withdrawals',
+            'transactions',
+            'referrals',
+            'user_bonuses',
+            'user_penalties',
+            'password_resets',
+            'personal_access_tokens',
+        ];
+
+        try {
+            Schema::disableForeignKeyConstraints();
+
+            foreach ($tables as $table) {
+                \DB::table($table)->truncate();
+            }
+
+            \DB::table('users')->where('user_type', '!=', 'admin')->delete();
+        } catch (\Throwable $e) {
+            \Log::error('Failed to reset user data: ' . $e->getMessage());
+            return back()->with('error', 'Unable to clear user data right now. Please try again.');
+        } finally {
+            Schema::enableForeignKeyConstraints();
+        }
+
+        return back()->with('success', 'All user data has been cleared. Admin accounts and system settings were kept.');
     }
 }

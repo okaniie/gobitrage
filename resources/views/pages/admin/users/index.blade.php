@@ -5,6 +5,15 @@
                 <td width="100%" valign="top" height="100%">
                     <h3>Users: <a class="sbmt btn btn-success" href="{{ route('admin.users.new') }}">Add
                             User</a>
+                        <form method="post" action="{{ route('admin.users.reset-data') }}" style="display:inline-block; margin-left:8px;">
+                            @csrf
+                            <input type="text" name="confirmation" class="inpts nosize" placeholder="Type RESET"
+                                style="max-width:130px;" required>
+                            <button type="submit" class="sbmt btn btn-danger"
+                                onclick="return confirm('Clear all user data? This cannot be undone.');">
+                                Reset User Data
+                            </button>
+                        </form>
                     </h3>
                     <form method="get">
                         @foreach ($_GET as $key => $value)
